@@ -11,8 +11,10 @@ module.exports = function(options, imports, register) {
     db['ratings'].ensureIndex({ location: '2dsphere'});
     db['newsletter'].ensureIndex({ location: '2dsphere'});
 
-    db.on("error", function(){
-        console.log("cant connect to database. reconnecting ...");
+    db.on("error", function(error){
+        console.log("cant connect to database. ");
+        console.log(error);
+        console.log("reconnecting ...");
     });
 
     process.on('SIGINT', function() {
