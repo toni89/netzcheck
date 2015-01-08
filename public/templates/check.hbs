@@ -5,6 +5,11 @@
         'css!bootstrapcss',
         'css!fontawesomecss',
         'css!magiccss',
+        'css!chosenmincss',
+        'css!chosenbootstrapcss',
+        'css!litetooltipcss',
+        'css!ratingcss',
+        'css!dratingcss',
 
         /* Scripts */
         'jquery',
@@ -32,7 +37,7 @@
         'page.check',
         'module.footer-newsletter'
     ], function(
-        bootstrapCss, fontawesomeCss, magicCss,
+        bootstrapCss, fontawesomeCss, magicCss, chosenMinCss, chosenBootstrapCss, liteTooltipCss, ratingCss, dratingcss,
 
         jquery, bootstrap, velocityJs, chosen, jqueryRating, liteToolTip, justGage, stickyJs, placesApi, markerWithLabel,
         dRating, smoothScroll, feedback, icheck, geo, rotator, expose,
@@ -67,13 +72,6 @@
                         baseUrl: baseUrl
                     });
 
-                    //initRating(ratingOptions);
-
-                    //initGraphs(graphsOptions);
-                    //initMap(mapOptions);
-                    //initNewsletter(newsletterOptions);
-                    //initSidebar();
-                    //initSocial(socialOptions);
 
                     $('.fb-form').feedback(baseUrl + '/api/social/feedback');
 

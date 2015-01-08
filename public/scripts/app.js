@@ -3,33 +3,6 @@ define('placesapi', ['async!http://maps.googleapis.com/maps/api/js?libraries=pla
         return window.google.maps.places;
     });
 
-define('chosen', [
-    'css!../scripts/themes/css/chosen.min',
-    'css!../scripts/themes/css/chosen-bootstrap',
-    '../scripts/themes/js/plugins/chosen/chosen.jquery.min'
-]);
-
-define('litetooltip', [
-    'css!../scripts/vendor/litetooltip/css/litetooltip.min',
-    '../scripts/vendor/litetooltip/js/litetooltip.min'
-]);
-
-define('rating.jquery', [
-    'css!../scripts/vendor/rating.jquery/rating-min',
-    '../scripts/vendor/rating.jquery/rating.jquery.min'
-]);
-
-define('dRating', [
-    'css!../scripts/vendor/display-rating/display-rating',
-    '../scripts/vendor/display-rating/display-rating'
-]);
-
-define('icheck', [
-    'css!../scripts/vendor/icheck/skins/square/blue',
-    '../scripts/vendor/icheck/icheck.min'
-]);
-
-
 require.config({
     paths: {
         'page.check': '../scripts/libs/page.check',
@@ -60,6 +33,18 @@ require.config({
             '../scripts/vendor/justgage/raphael.2.1.0.min'
         ],
 
+        icheck: ['../scripts/vendor/icheck/icheck.min'],
+
+        chosen: [
+            '../scripts/themes/js/plugins/chosen/chosen.jquery.min'
+        ],
+
+        litetooltip: [
+            '../scripts/vendor/litetooltip/js/litetooltip.min'
+        ],
+
+        'rating.jquery': ['../scripts/vendor/rating.jquery/rating.jquery.min'],
+
         // Theme - Scripts
         bootstrap: [
             '../themes/default/vendor/bootstrap/js/bootstrap.min',
@@ -82,6 +67,8 @@ require.config({
         validatejs: [
             '../scripts/vendor/validatejs/jquery.validate.min'
         ],
+
+        dRating: ['../scripts/vendor/display-rating/display-rating'],
 
         smoothscroll: [
             '../scripts/vendor/smooth-scroll/jquery.smooth-scroll'
@@ -109,6 +96,15 @@ require.config({
             '../themes/default/vendor/font-awesome/css/font-awesome.min',
             '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min'
         ],
+
+        chosenmincss: ['../scripts/themes/css/chosen.min'],
+        chosenbootstrapcss: ['../scripts/themes/css/chosen-bootstrap'],
+
+        litetooltipcss: ['../scripts/vendor/litetooltip/css/litetooltip.min'],
+
+        ratingcss: ['../scripts/vendor/rating.jquery/rating-min'],
+
+        dratingcss: ['../scripts/vendor/display-rating/display-rating'],
 
         minoral: ['../scripts/themes/css/minoral'],
 
