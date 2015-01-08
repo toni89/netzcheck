@@ -1,0 +1,52 @@
+<script>
+    require(
+            [
+                /* Stylesheets */
+                'css!bootstrapcss',
+                'css!fontawesomecss',
+
+                /* Scripts */
+                'jquery',
+                'bootstrap',
+
+                /* Custom Stylesheet */
+                'css!defaultcss',
+
+                /* Components */
+                'navbar'
+
+            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, defaultCss, initNavbar) {
+
+                var baseUrl = '{{{baseUrl}}}';
+
+                var navbarOptions = {
+                    baseUrl: baseUrl
+                };
+
+                $(document).ready(function() {
+                    initNavbar(navbarOptions);
+                });
+            });
+
+</script>
+
+
+{{> navbar }}
+
+<div id="content" class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <section class="tile">
+                    <div class="tile-body">
+                        <h1><strong>Sitemap</strong></h1>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer}}

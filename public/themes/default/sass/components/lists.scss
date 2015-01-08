@@ -1,0 +1,39 @@
+/* ---------------------------- Lists ---------------------------- */
+
+.list-group-item {
+  padding: 10px 0;
+  border: none;
+
+  .rating-container {
+    padding: 0;
+    float:right;
+  }
+}
+
+/* --- modal error list --- */
+
+.modal-messages {
+  list-style: none;
+  margin-top: 15px;
+  padding: 0;
+
+  li {
+    display: none;
+    color: #ff4a43;
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+
+    &::before {
+      padding-right: 15px;
+      margin-top: 3px;
+      font-family: FontAwesome;
+      line-height: 1;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      content: "\f0da";
+    }
+  }
+}

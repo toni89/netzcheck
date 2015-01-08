@@ -1,0 +1,14 @@
+/* ---------------------------- Sidebar ---------------------------- */
+
+/* --- col-md --- */
+@media(max-width:991px) {
+  #sidebar-sticky-wrapper {
+    display: none;
+  }
+}
+
+@media(min-width:992px) {
+  #sidebar-sticky-wrapper {
+    display: block;
+  }
+}

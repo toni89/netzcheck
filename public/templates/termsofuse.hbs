@@ -1,0 +1,78 @@
+<script>
+    require(
+            [
+                /* Stylesheets */
+                'css!bootstrapcss',
+                'css!fontawesomecss',
+
+                /* Scripts */
+                'jquery',
+                'bootstrap',
+                'feedback',
+                'geo',
+
+                /* Custom Stylesheet */
+                'css!defaultcss'
+
+
+            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, feedback, geo, defaultCss) {
+
+                var baseUrl = '{{{baseUrl}}}';
+
+                $(document).ready(function() {
+
+                    $('.fb-form').feedback(baseUrl + '/api/social/feedback');
+
+                    $('#search-input').autocomplete();
+
+                    $('.cg-form').checkGeodata(
+                            function OnSuccess(address) {
+                                document.location.href = baseUrl + '/check/' + encodeURI(address);
+                            }, function OnError() {
+                                // TODO: alert popup oder so hinzufügen
+                                alert('Adresse nicht vorhanden');
+                            });
+                });
+            });
+
+</script>
+
+
+{{> navbar }}
+
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <section class="tile">
+                    <div class="tile-body">
+                        <h1><strong>Nutzungsbedingungen</strong></h1>
+
+                        <strong>Inhalte von Bewertungen und Kommentaren</strong>
+                        <p>
+                            Besucher und Mitglieder von netzcheck.org verpflichten sich, keine gesetzeswidrigen Bewertungen und Beiträge, insbesondere nicht solche Inhalte, welche gegen gesetzliche Bestimmungen über den Jugendschutz, Persönlichkeitsrechte, Urheberrechte oder sonstige Schutzrechte Dritter verstoßen, zur Gewalt aufrufen oder Kindesmissbrauch verherrlichen, in das Portal oder Forum einzustellen. Dasselbe gilt für hetzerische, diskriminierende, rassistische, Gewalt verherrlichende oder sonst in irgendeiner Form strafrechtlich relevante Inhalte. Es ist ebenfalls nicht zulässig, Links auf Websites mit oben genannten Inhalten einzustellen.
+                        </p>
+
+                        <strong>Werbefreiheit und Urheberrecht</strong>
+                        <p>
+                            Das Einstellen von Werbung, Junk- oder Spam-Inhalten sowie Kettenbriefen auf unser Portal sowie dem Forum ist nicht zulässig. Insbesondere gilt dies auch für Kontaktanzeigen und Links zu Websites mit pornographischem Inhalt. Das Veröffentlichen oder Verbreiten urheberrechtlich geschützter Text- und Bild- und Videomaterialien ist untersagt.
+                        </p>
+
+                        <strong>Löschen und Kürzen von Bewertungen und Beiträgen</strong>
+                        <p>
+                            Die Betreiber dieser Webseite behalten sich vor, Bewertungen und Kommentare jederzeit und unangekündigt zu kürzen oder vollständig zu entfernen sowie den Autor vom Forum auszuschließen, sofern die Beiträge inhaltlich nicht diesen Nutzungsbedingungen entsprechen.
+                        </p>
+
+                        <strong>Nutzungsrechte</strong>
+                        <p>
+                            Der Verfasser einer Bewertung oder eines Beitrags im Forum räumt den Betreibern ein unbeschränktes und übertragbares Nutzungsrecht daran ein, welche die Betreiber zu jeglicher Art der Verwertung, insbesondere zur dauerhaften Vorhaltung des Beitrags auf dieser Webseite und im Forum berechtigt. Die Betreiber haben damit das Nutzungsrecht an allen Bewertungen und Beiträgen zu dem von ihnen betriebenen Plattform.
+                        </p>
+                    </div>
+                </section>
+
+
+            </div>
+        </div>
+    </div>
+</div>

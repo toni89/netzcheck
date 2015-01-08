@@ -1,0 +1,830 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>E-Mail</title>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        html
+        {
+            width: 100%;
+        }
+
+        ::-moz-selection{background:#21c5f5;color:#ffffff;}
+        ::selection{background:#21c5f5;color:#ffffff;}
+
+        body {
+            background-color: #f5f6f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ReadMsgBody
+        {
+            width: 100%;
+            background-color: #f5f6f6;
+        }
+        .ExternalClass
+        {
+            width: 100%;
+            background-color: #f5f6f6;
+        }
+
+        a {
+            color:#21c5f5;
+            text-decoration:none;
+
+            font-style: normal;
+        }
+        a:hover {
+            color:#505050;
+            text-decoration:underline;
+            font-style: normal;
+        }
+
+        a.heading {
+            font-size: 26px;
+            font-weight: 100;
+            font-family: Roboto, Helvetica, Arial, sans-serif;
+            line-height:100%;
+            color: #21c5f5;
+            text-decoration: none;
+
+        }
+
+        p, div {
+            margin: 0 !important;
+        }
+        table {
+            border-collapse: collapse;
+        }
+
+        @media only screen and (max-width: 640px)  {
+            table table{width:100% !important; }
+            td[class="full_width"] {width:100% !important; }
+            div[class="div_scale"] {width: 440px !important; margin: 0 auto !important;}
+            table[class="table_scale"] {width: 440px !important; margin: 0 auto !important;}
+            table[class="featured_area"] {width: 454px !important; margin: 0 auto !important;}
+            td[class="td_scale"] {width: 440px !important; margin: 0 auto !important;}
+            img[class="img_scale"] {width: 100% !important; height: auto !important;}
+            img[class="divider"] {width: 440px !important; height: 2px !important;}
+            table[class="spacer"] {display: none !important;}
+            td[class="spacer"] {display: none !important;}
+            td[class="center"] {text-align: center !important;}
+            table[class="full"] {width: 400px !important; margin-left: 20px !important; margin-right: 20px !important;}
+            img[class="divider"] {width: 113px !important; height: 8px !important;}
+
+        }
+
+
+        @media only screen and (max-width: 479px)  {
+            table table{width:100% !important; }
+            td[class="full_width"] {width:100% !important; }
+            div[class="div_scale"] {width: 280px !important; margin: 0 auto !important;}
+            table[class="table_scale"] {width: 280px !important; margin: 0 auto !important;}
+            table[class="featured_area"] {width: 290px !important; margin: 0 auto !important;}
+            td[class="td_scale"] {width: 280px !important; margin: 0 auto !important;}
+            img[class="img_scale"] {width: 100% !important; height: auto !important;}
+            img[class="divider"] {width: 280px !important; height: 2px !important;}
+            table[class="spacer"] {display: none !important;}
+            td[class="spacer"] {display: none !important;}
+            td[class="center"] {text-align: center !important;}
+            table[class="full"] {width: 240px !important; margin-left: 20px !important; margin-right: 20px !important; }
+            img[class="divider"] {width: 113px !important; height: 8px !important;}
+
+        }
+    </style>
+
+
+</head>
+<body bgcolor="#f5f6f6">
+<!-- START OF PRE-HEADER AREA BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#f5f6f6" class="table_scale" width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="40">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF PRE-HEADER AREA BLOCK-->
+
+<!-- START OF HEADER BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#ffffff" class="table_scale" width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="30">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+
+                        <table class="table_scale" width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td class="spacer" width="30">
+                                            </td>
+
+                                            <td width="540">
+
+                                                <!-- START OF LOGO-->
+                                                <table class="full" align="left" width="540" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <tr>
+                                                        <td class="center" align="center" style="padding: 0px;">
+															<span>
+															<a href="{{baseUrl}}" class="heading">
+                                                                <strong>netz</strong>check.org
+                                                            </a>
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!-- END OF LOGO-->
+
+                                            </td>
+
+                                            <td class="spacer" width="30">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#ffffff" class="table_scale" width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="20">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF HEADER BLOCK-->
+
+<!-- START OF CALL TO ACTION BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+                        <table class="featured_area" align="center" width="620" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td align="center" style="margin: 0; font-size:14px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 0;">
+									<span>
+									<img class="img_scale" src="{{baseUrl}}/email/top-teaser.png" alt="top teaser" width="620" height="25" border="0" style="display: block;" />
+									</span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#21c5f5" class="featured_area" width="620" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="30">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+
+                        <table class="featured_area" align="center" width="620" bgcolor="#21c5f5" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%">
+                                    <table width="620" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td class="spacer" width="30">
+                                            </td>
+
+                                            <td width="540">
+                                                <!-- START OF LEFT COLUMN-->
+                                                <table class="full" align="left" width="350" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <!-- START OF HEADING-->
+                                                    <tr>
+                                                        <td class="center" align="left" style="padding: 0px; font-family: 'PT Sans', Helvetica, Arial, sans-serif; color:#ffffff; font-size:24px; line-height:34px; mso-line-height-rule: exactly;">
+															<span>
+															Standortanalyse für<br>{{street}}<br>{{city}}
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF HEADING-->
+                                                </table>
+                                                <!-- END OF LEFT COLUMN-->
+
+                                                <!-- START OF SPACER-->
+                                                <table width="25" align="left" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <tr>
+                                                        <td width="100%" height="30"></td>
+                                                    </tr>
+                                                </table>
+                                                <!-- END OF SPACER-->
+
+                                                <!-- START OF RIGHT COLUMN-->
+                                                <table class="full" align="right" width="160" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <tr>
+                                                        <td class="spacer" width="100%" height="20">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- START BUTTON-->
+                                                    <tr>
+                                                        <td bgcolor="#21c5f5" align="right" valign="middle" style="padding: 0px;">
+                                                            <table border="0" align="right" cellpadding="0" cellspacing="0" bgcolor="#505050" style="margin: 0;">
+                                                                <tr>
+                                                                    <td align="center" valign="middle" bgcolor="#505050" style="padding: 10px 30px;font-size: 13px; line-height: 18px; font-family: 'PT Sans', Helvetica, Arial, sans-serif; color:#ffffff; margin: 0 !important; ">
+                                                                        <a href="{{url}}" style="font-weight: normal; font-style: normal; color:#ffffff;">
+                                                                            Seite öffnen
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END BUTTON-->
+                                                </table>
+                                                <!-- END OF RIGHT COLUMN-->
+                                            </td>
+
+                                            <td class="spacer" width="30">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#21c5f5" class="featured_area" width="620" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="30">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+
+                        <table class="featured_area" align="center" width="620" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td align="center" style="margin: 0; font-size:14px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 0;">
+									<span>
+									<img class="img_scale" src="{{baseUrl}}/email/bottom-teaser.png" alt="bottom teaser" width="620" height="25" border="0" style="display: block;" />
+									</span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#ffffff" class="table_scale" width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="30">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF CALL TO ACTION BLOCK-->
+
+<!-- START OF 1/1 (FULL WIDTH) INTRO TEXT BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+                        <table class="table_scale" width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td class="spacer" width="30">
+                                            </td>
+
+                                            <td width="540">
+                                                <table class="full" align="left" width="540" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <!-- START OF TEXT-->
+                                                    <tr>
+                                                        <td class="center" align="center" style="margin: 0;  font-size:13px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 23px;mso-line-height-rule: exactly;">
+															<span>
+															Netzcheck.org erfasst Benutzerwertungen zur Qualität von DSL, LTE&UMTS sowie Wireless-DSL Leitungen zu Standorten in Deutschland. {{#if from}}{{from}}{{else}}Jemand den du kennst{{/if}} möchte dir eine Standortanalyse zur Adresse <strong>{{street}}, {{city}}</strong> empfehlen.
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF TEXT-->
+
+                                                </table>
+                                            </td>
+
+                                            <td class="spacer" width="30">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#ffffff" class="table_scale" width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="40">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF 1/1 (FULL WIDTH) INTRO TEXT BLOCK-->
+
+<!-- START OF DIVIDER IMAGE BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+                        <table class="table_scale" width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%">
+                                    <table align="center" width="540" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td align="center" style="margin: 0; font-size:14px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 0;">
+												<span>
+												<img class="divider" src="{{baseUrl}}/email/divider-image.png" alt="divider image" width="113" height="8" border="0" style="display: inline-block;" />
+												</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#ffffff" class="table_scale" width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="40">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF DIVIDER IMAGE BLOCK-->
+
+<!-- START OF 1/3 COLUMN BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+                        <table class="table_scale" width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td class="spacer" width="30">
+                                            </td>
+
+                                            <td width="540">
+
+                                                <!-- START OF LEFT COLUMN-->
+                                                <table class="full" align="left" width="160" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+
+                                                    <!-- START OF IMAGE-->
+                                                    <tr>
+                                                        <td align="center" style="margin: 0; padding-bottom: 20px; font-size:13px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 23px;">
+															<span>
+															<img src="{{baseUrl}}/email/icon1.png" alt="icon1" width="50" height="50" border="0" style="display: inline-block;" />
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF IMAGE-->
+
+                                                    <!-- START OF HEADING-->
+                                                    <tr>
+                                                        <td class="center" align="center" style="padding-bottom: 5px; border-bottom: 1px solid #f5f6f6;  font-family: 'PT Sans', Helvetica, Arial, sans-serif; color:#505050; font-size:24px; line-height:34px; mso-line-height-rule: exactly;">
+															<span>
+															<a class="heading_link" href="{{newsletterUrl}}" style="color:#505050; text-decoration: none; font-style: normal; ">
+                                                                Newsletter
+                                                            </a>
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF HEADING-->
+
+                                                    <!-- START OF TEXT-->
+                                                    <tr>
+                                                        <td class="center" align="center" style="padding-top: 10px; margin: 0;  font-size:13px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 23px;mso-line-height-rule: exactly;">
+															<span>
+															Erhalte Informationen und Angebote die dich interessieren könnten
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF TEXT-->
+
+                                                    <!-- START BUTTON-->
+                                                    <tr>
+                                                        <td bgcolor="#ffffff" align="center" valign="top" style="padding-top: 20px;">
+                                                            <table border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#f5f6f6" style="margin: 0;">
+                                                                <tr>
+                                                                    <td align="center" valign="middle" bgcolor="#f5f6f6" style="border-left: 5px solid #21c5f5; padding: 7px 20px;font-size: 13px; line-height: 18px; font-family: 'PT Sans', Helvetica, Arial, sans-serif; color:#677b82; margin: 0 !important; ">
+                                                                        <a href="{{newsletterUrl}}" style=" font-style: normal; color:#677b82;">
+                                                                            Mehr
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END BUTTON-->
+                                                </table>
+                                                <!-- END OF LEFT COLUMN-->
+
+
+                                                <!-- START OF SPACER-->
+                                                <table width="30" align="left" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <tr>
+                                                        <td width="100%" height="40"></td>
+                                                    </tr>
+                                                </table>
+                                                <!-- END OF SPACER-->
+
+                                                <!-- START OF MIDDLE COLUMN-->
+                                                <table class="full" align="left" width="160" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <!-- START OF IMAGE-->
+                                                    <tr>
+                                                        <td align="center" style="margin: 0; padding-bottom: 20px; font-size:13px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 23px;">
+															<span>
+															<img src="{{baseUrl}}/email/forum.png" alt="icon2" width="50" height="50" border="0" style="display: inline-block;" />
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF IMAGE-->
+
+                                                    <!-- START OF HEADING-->
+                                                    <tr>
+                                                        <td class="center" align="center" style="padding-bottom: 5px; border-bottom: 1px solid #f5f6f6; font-family: 'PT Sans', Helvetica, Arial, sans-serif; color:#505050; font-size:24px; line-height:34px; mso-line-height-rule: exactly;">
+															<span>
+															<a class="heading_link" href="{{forumUrl}}" style="color:#505050; text-decoration: none; font-style: normal; ">
+                                                                Forum
+                                                            </a>
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF HEADING-->
+
+                                                    <!-- START OF TEXT-->
+                                                    <tr>
+                                                        <td class="center" align="center" style="padding-top: 10px; margin: 0;  font-size:13px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 23px;mso-line-height-rule: exactly;">
+															<span>
+															Schaue in unserem Forum vorbei. Wir helfen gerne bei Problemen
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF TEXT-->
+
+                                                    <!-- START BUTTON-->
+                                                    <tr>
+                                                        <td bgcolor="#ffffff" align="center" valign="top" style="padding-top: 20px;">
+                                                            <table border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#f5f6f6" style="margin: 0;">
+                                                                <tr>
+                                                                    <td align="center" valign="middle" bgcolor="#f5f6f6" style="border-left: 5px solid #21c5f5; padding: 7px 20px;font-size: 13px; line-height: 18px; font-family: 'PT Sans', Helvetica, Arial, sans-serif; color:#677b82; margin: 0 !important; ">
+                                                                        <a href="{{forumUrl}}" style=" font-style: normal; color:#677b82;">
+                                                                            Mehr
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END BUTTON-->
+                                                </table>
+                                                <!-- END OF MIDDLE COLUMN-->
+
+                                                <!-- START OF SPACER-->
+                                                <table width="20" align="left" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <tr>
+                                                        <td width="100%" height="40"></td>
+                                                    </tr>
+                                                </table>
+                                                <!-- END OF SPACER-->
+
+                                                <!-- START OF RIGHT COLUMN-->
+                                                <table class="full" align="right" width="160" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <!-- START OF IMAGE-->
+                                                    <tr>
+                                                        <td align="center" style="margin: 0; padding-bottom: 20px; font-size:13px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 23px;">
+															<span>
+															<img src="{{baseUrl}}/email/feedback.png" alt="icon3" width="50" height="50" border="0" style="display: inline-block;" />
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF IMAGE-->
+
+                                                    <!-- START OF HEADING-->
+                                                    <tr>
+                                                        <td class="center" align="center" style="padding-bottom: 5px; border-bottom: 1px solid #f5f6f6; font-family: 'PT Sans', Helvetica, Arial, sans-serif; color:#505050; font-size:24px; line-height:34px; mso-line-height-rule: exactly;">
+															<span>
+															<a class="heading_link" href="{{feedbackUrl}}" style="color:#505050; text-decoration: none; font-style: normal; ">
+                                                                Feedback
+                                                            </a>
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF HEADING-->
+
+                                                    <!-- START OF TEXT-->
+                                                    <tr>
+                                                        <td class="center" align="center" style="padding-top: 10px; margin: 0;  font-size:13px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 23px;mso-line-height-rule: exactly;">
+															<span>
+															Hat etwas nicht geklappt oder war unverständlich? Schreib uns ein Feedback!
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF TEXT-->
+
+                                                    <!-- START BUTTON-->
+                                                    <tr>
+                                                        <td bgcolor="#ffffff" align="center" valign="top" style="padding-top: 20px;">
+                                                            <table border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#f5f6f6" style="margin: 0;">
+                                                                <tr>
+                                                                    <td align="center" valign="middle" bgcolor="#f5f6f6" style="border-left: 5px solid #21c5f5; padding: 7px 20px;font-size: 13px; line-height: 18px; font-family: 'PT Sans', Helvetica, Arial, sans-serif; color:#677b82; margin: 0 !important; ">
+                                                                        <a href="{{feedbackUrl}}" style=" font-style: normal; color:#677b82;">
+                                                                            Mehr
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END BUTTON-->
+                                                </table>
+                                                <!-- END OF RIGHT COLUMN-->
+                                            </td>
+
+                                            <td class="spacer" width="30">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#ffffff" class="table_scale" width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="40">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF 1/3 COLUMN BLOCK-->
+
+
+<!-- START OF DIVIDER IMAGE BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+                        <table class="table_scale" width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%">
+                                    <table align="center" width="540" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td align="center" style="margin: 0; font-size:14px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 0;">
+												<span>
+												<img class="divider" src="{{baseUrl}}/email/divider-image.png" alt="divider image" width="113" height="8" border="0" style="display: inline-block;" />
+												</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- START OF VERTICAL SPACER-->
+                        <table bgcolor="#ffffff" class="table_scale" width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%" height="40">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- END OF VERTICAL SPACER-->
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF DIVIDER IMAGE BLOCK-->
+
+
+<!-- START OF SUB-FOOTER BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+
+                        <table class="table_scale" width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" style="">
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td class="spacer" width="30">
+                                            </td>
+
+                                            <td width="540">
+
+                                                <!-- START OF LEFT COLUMN-->
+                                                <table class="full" align="left" width="255" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <!-- START OF TEXT-->
+                                                    <tr>
+                                                        <td class="center" align="left" style="margin: 0; padding: 0;  font-size:13px ; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 23px;mso-line-height-rule: exactly;">
+															<span>
+															Copyright &#169; netzcheck.org
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- END OF TEXT-->
+                                                </table>
+                                                <!-- END OF LEFT COLUMN-->
+
+
+                                                <!-- START OF SPACER-->
+                                                <table width="20" align="left" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <tr>
+                                                        <td width="100%" height="20"></td>
+                                                    </tr>
+                                                </table>
+                                                <!-- END OF SPACER-->
+
+                                                <!-- START OF RIGHT COLUMN-->
+                                                <table class="full" align="right" width="255" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <tr>
+                                                        <td class="center" align="right" style="margin: 0; padding-top: 0px;padding-bottom: 30px;font-size:11px ; color:#787878; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 100%;">
+															<span>
+															<a href="{{facebookUrl}}" style="color:#ededed;">
+                                                                <img src="{{baseUrl}}/email/facebook.png" alt="facebook" width="32" height="32" border="0" style="display: inline-block;" />
+                                                            </a>
+                                                            &nbsp;&nbsp;&nbsp;
+															<a href="{{gplusUrl}}" style="color:#ededed;">
+                                                                <img src="{{baseUrl}}/email/gplus.png" alt="twitter" width="32" height="32" border="0" style="display: inline-block;" />
+                                                            </a>
+															&nbsp;&nbsp;&nbsp;
+															<a href="{{twitterUrl}}" style="color:#ededed;">
+                                                                <img src="{{baseUrl}}/email/twitter.png" alt="twitter" width="32" height="32" border="0" style="display: inline-block;" />
+                                                            </a>
+															&nbsp;&nbsp;&nbsp;
+															<a href="{{linkedinUrl}}" style="color:#ededed;">
+                                                                <img src="{{baseUrl}}/email/linkedin.png" alt="linkedin" width="32" height="32" border="0" style="display: inline-block;" />
+                                                            </a>
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!-- END OF RIGHT COLUMN-->
+                                            </td>
+
+                                            <td class="spacer" width="30">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF SUB-FOOTER BLOCK-->
+
+<!-- START OF BOTTOM TEASER BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td align="center" valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+                        <table class="table_scale" width="600" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td width="540">
+                                                <table align="left" width="540" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                                                    <tr>
+                                                        <td align="center" valign="top" style="padding: 0px;">
+                                                            <table border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#21c5f5" style="margin: 0;">
+                                                                <tr>
+                                                                    <td align="center" valign="middle" bgcolor="#f5f6f6" style="padding: 0px; font-size:13px ; font-style:normal; color:#677b82; font-family: 'PT Sans', Helvetica, Arial, sans-serif; line-height: 0;">
+                                                                        <img class="img_scale" src="{{baseUrl}}/email/footer-teaser.png" width="600" height="10" alt="img 600 290" border="0" style="display: block;" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF BOTTOM TEASER BLOCK-->
+
+<!-- START OF FOOTER BLOCK-->
+<table width="100%" align="center" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" width="100%">
+            <table align="center" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td width="100%">
+                        <table class="table_scale" width="600" bgcolor="#f5f6f6" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td width="600">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- END OF FOOTER BLOCK-->
+</body>
+</html>

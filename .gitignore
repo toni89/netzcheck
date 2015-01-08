@@ -1,0 +1,11 @@
+node_modules/
+mailer/node_modules/
+.sass-cache/
+
+
+Gruntfile.js
+.bowerrc
+
+.idea
+*.swp
+.DS_Store

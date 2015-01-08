@@ -1,0 +1,15 @@
+{
+    "name": "main",
+    "description": "Serves generic api functions",
+    "version" : "0.0.1",
+    "main" : "./main.js",
+    "plugin" : {
+        "consumes" : [
+            "db"
+        ],
+
+        "provides" : [
+            "main"
+        ]
+    }
+}

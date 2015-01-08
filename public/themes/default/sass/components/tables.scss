@@ -1,0 +1,193 @@
+/* ---------------------------- Tables ---------------------------- */
+
+thead {
+  font-size: 13px;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table thead tr th {
+  border-bottom-width: 1px;
+}
+
+.provider-actions {
+  vertical-align: middle;
+}
+
+
+.company-table {
+  width: 100%;
+  margin-bottom: 20px;
+  border: hidden;
+  border-collapse: collapse;
+
+  tr {
+
+    td {
+      padding: 8px 10px;
+      border: 1px solid #fff;
+    }
+
+    td:first-child {
+      width: 120px;
+      max-width: 120px;
+      background-color: $panel-color-dark;
+      font-weight: 500;
+    }
+
+    td:last-child {
+      background-color: $panel-color-light;
+      font-weight: 200;
+
+    }
+  }
+}
+
+
+.blocktable {
+  display:table;
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+
+  .head {
+    font-size: 13px;
+    font-weight: 700;
+
+    div {
+      padding: 8px;
+    }
+
+
+  }
+
+  & > div {
+    display: table-row;
+    border-bottom: 1px solid $border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    & > div {
+      display: table-cell;
+      padding: 5px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    .cnt {
+      display: block;
+    }
+
+    .th {
+      display:none;
+    }
+
+
+  }
+}
+
+@media(max-width:767px) {
+
+  .blocktable {
+    /* I was the table */
+    display: block;
+
+    .head {
+      display:none;
+    }
+
+    & > div {
+      /* I'm the table now */
+      display: table;
+      width: 100%;
+
+
+
+      .th, .cnt {
+        padding: 8px 10px;
+      }
+
+      .th {
+        /* I'm the left column */
+        display: table-cell;
+        background-color: $panel-color-dark;
+        border: 1px solid #fff;
+        width: 120px;
+        font-weight: 500;
+      }
+
+      .cnt{
+        /* I'm the right column */
+        display: table-cell;
+        background-color: $panel-color-light;
+        border: 1px solid #fff;
+        font-weight: 300;
+        padding: 8px;
+      }
+
+      .center, .right {
+        text-align: left;
+      }
+
+
+      & > div {
+        /* I'm the row now */
+        display: table-row;
+        border: none;
+        padding: 0;
+      }
+
+      .row-hide {
+        display: none;
+      }
+
+      &:nth-child(even) .th {
+        background-color: #e2e2e2;
+      }
+
+      &:nth-child(even) .cnt {
+        background-color: #f4f4f4;
+      }
+    }
+
+  }
+}
+
+@media(max-width:445px) {
+  .blocktable .btn-default{
+    margin: 4px 0;
+    width: 100%;
+  }
+
+  .blocktable > div .cnt {
+    padding: 4px 8px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

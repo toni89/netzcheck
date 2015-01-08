@@ -1,0 +1,37 @@
+/* ---------------------------- Typography ---------------------------- */
+
+$thin: 200;
+$regular: 400;
+$bold: 700;
+
+$base-font: Helvetica, 'Open Sans', sans-sarif;
+$base-font-size: 14px;
+$base-font-color: $font-primary;
+
+$logo-font: $base-font;
+$logo-font-size: 24px;
+$logo-font-weight: 100;
+$logo-font-color: #fff;
+
+$heading-font-size: 22px;
+
+$table-font-size: 13px;
+
+@mixin basefont($size : $base-font-size, $weight : $regular, $color: $base-font-color) {
+  font-family: $base-font, 'Open Sans', sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: $thin;
+  font-size: $heading-font-size;
+  padding-bottom: 15px;
+  margin: 0px;
+  line-height: 1.4;
+
+  strong {
+    font-weight: 400;
+  }
+}

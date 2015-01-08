@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Neue Bewertung online: {{{rating.street}}} {{{rating.streetnumber}}}, {{{rating.city}}}</title>
+    <link href="style.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<table class="body-wrap">
+    <tr>
+        <td></td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="alert alert-warning">
+                            Eine neue Bewertung wurde erstellt
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-wrap">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="content-block">
+                                        <table id="rating" cellpadding="0" cellspacing="1">
+                                            <tr>
+                                                <td>ID</td>
+                                                <td>{{{rating.id}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>IP-Adresse</td>
+                                                <td>{{{rating.ip}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Erstellt</td>
+                                                <td>{{{rating.created}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Long/Lat<br>Ort</td>
+                                                <td>
+                                                    {{{rating.long}}} / {{{rating.lat}}}<br>
+                                                    {{{rating.street}}} {{{rating.streetnumber}}}<br>
+                                                    {{{rating.city}}}<br>
+                                                    {{{rating.state}}}<br>
+                                                    {{{rating.country}}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Typ</td>
+                                                <td>{{{rating.type}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Provider</td>
+                                                <td>{{{rating.provider}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tarif</td>
+                                                <td>{{{rating.plan}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Geschwindigkeit</td>
+                                                <td>{{{rating.speed}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Verfügbarkeit</td>
+                                                <td>{{{rating.availability}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Service</td>
+                                                <td>{{{rating.service}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sprachqualität</td>
+                                                <td>{{{rating.speechquality}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Streaming</td>
+                                                <td>{{{rating.streaming}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gaming</td>
+                                                <td>{{{rating.gaming}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gesamtbewertung</td>
+                                                <td>{{{rating.average}}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Text</td>
+                                                <td>{{{rating.text}}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        <a href="{{{domain}}}/jev/rating/edit?id={{{rating.id}}}&aotp={{rating.adminOtp}}" class="btn btn-wide btn-blue">Editieren</a>
+                                        <a href="{{{domain}}}/jev/rating/deactivate?id={{{rating.id}}}&aotp={{rating.adminOtp}}" class="btn btn-wide btn-red">Deaktivieren</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <div class="footer">
+
+                </div></div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+</body>
+</html>

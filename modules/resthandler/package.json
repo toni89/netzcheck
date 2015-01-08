@@ -1,0 +1,14 @@
+{
+    "name": "resthandler",
+    "description": "Handles rest requests",
+    "version" : "0.0.1",
+    "main" : "./resthandler.js",
+    "plugin" : {
+        "consumes" : [
+            "db",
+            "geodata",
+            "main",
+            "server"
+        ]
+    }
+}

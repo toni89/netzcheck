@@ -1,0 +1,67 @@
+<div id="footer" role="footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <h3><strong>netzcheck.org</strong></h3>
+                <a href="{{baseUrl}}/forum">Forum</a>
+                <a href="#" onclick="$('#modal-footer-newsletter').modal('show');">Newsletter</a>
+                <a href="{{baseUrl}}/impressum">Impressum</a>
+                <a href="{{baseUrl}}/datenschutzerklaerung">Datenschutzerklärung</a>
+                <a href="{{baseUrl}}/nutzungsbedingungen">Nutzungsbedingungen</a>
+                <!--<a href="{{baseUrl}}/sitemap">Sitemap</a>-->
+            </div>
+
+            <div class="col-md-4">
+                <h3><strong>Folge</strong> uns</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="social-btn social-fb simple"><span class="fa fa-facebook-square social-icon"></span></button>
+                        <button class="social-btn social-gplus simple"><span class="fa fa-google-plus social-icon"></span></button>
+                        <button class="social-btn social-twitter simple"><span class="fa fa-twitter social-icon"></span></button>
+                        <button class="social-btn social-linkedin simple"><span class="fa fa-linkedin social-icon"></span></button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4 expose">
+                <h3><strong>Feedback</strong></h3>
+
+                <div class="fb-form">
+                <div class="row">
+                    <div class="col-md-6 padding-right-4">
+                        <input class="fb-name form-control" type="text" placeholder="Name (optional)">
+                    </div>
+                    <div class="col-md-6 padding-left-4">
+                        <input class="fb-email form-control" type="text" placeholder="E-Mail (optional)">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea class="fb-text" placeholder="Text" ></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="fb-error fb-input-error">Feedback-Text fehlt</div>
+                        <div class="fb-error fb-connection-error">Verbindungsproblem! Versuchen Sie es später noch einmal</div>
+                        <div class="fb-success fb-success">Feedback erfolgreich gesendet</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-default fb-submit">Feedback Senden</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="expose-overlay"></div>
+{{> footer-newsletter}}

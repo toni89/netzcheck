@@ -1,0 +1,127 @@
+/* ---------------------------- Inputs ---------------------------- */
+
+textarea, .form-control {
+  -webkit-appearance: none !important;
+  color: #717171;
+  outline: 0;
+  padding: 6px 11px !important;
+  line-height: 18px;
+  font-size: 13px;
+  vertical-align: top;
+  background-color: #fafafa;
+  min-height: 37px;
+  filter: none !important;
+  border: 1px solid #ececec;
+
+  @include border-radius(0px);
+  @include linear-transistion(.2s);
+  @include box-shadow();
+
+  &:focus {
+    background-color: #fff;
+    border: 1px solid #d2d2d2;
+    @include box-shadow();
+  }
+}
+
+
+/* --- chosen select --- */
+
+select.form-control + .chosen-container.chosen-container-single .chosen-single {
+
+  color: rgba(113, 113, 113, 0.5);
+  outline: 0;
+  height: 16px;
+  padding: 6px 11px;
+  line-height: 22px;
+  font-size: 14px;
+  vertical-align: top;
+  background-color: #fafafa;
+  min-height: 37px;
+  filter: none;
+  border: 1px solid #ececec;
+
+  @include appearance();
+  @include box-shadow(none);
+  @include border-radius(0);
+  @include linear-transistion(.2s);
+}
+
+select.form-control + .chosen-container .chosen-drop {
+  @include border-radius(0);
+}
+
+select.form-control + .chosen-container.chosen-container-single.chosen-container-active .chosen-single {
+  outline: none;
+  background-color: #fff;
+  border: 1px solid #d2d2d2;
+  color: $base-font-color;
+}
+
+
+.chosen-container {
+  width: 100%;
+}
+/*
+.chosen-container-single .chosen-default {
+
+  -webkit-appearance: none !important;
+  color: #717171;
+  outline: 0;
+  padding: 6px 11px !important;
+  line-height: 18px;
+  font-size: 13px;
+  vertical-align: top;
+  background-color: #fafafa;
+  min-height: 37px;
+  filter: none !important;
+  border: 1px solid #ececec;
+
+  @include border-radius(0px);
+  @include linear-transistion(.2s);
+  @include box-shadow();
+
+  &:focus {
+    background-color: #fff;
+    border: 1px solid #d2d2d2;
+    @include box-shadow();
+  }
+}
+*/
+
+/* --- checkbox --- */
+
+
+input[type="checkbox"] {
+  padding: 8px;
+  cursor: pointer;
+  vertical-align:middle;
+  margin: 0;
+  background-color: $bg-color;
+
+  border: 1px solid $border-color;
+  @include border-radius();
+  @include appearance();
+}
+
+input[type="checkbox"] + label {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 5px;
+  font-weight: 400;
+}
+
+input[type="checkbox"]:checked {
+  background:url(./../images/checkbox-blue-14px.png) center center no-repeat;
+  background-color: $bg-color;
+}
+
+input[type="checkbox"]:checked + label {
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.checkbox-group {
+  padding-top: 10px;
+}

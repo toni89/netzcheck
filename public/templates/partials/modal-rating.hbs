@@ -1,0 +1,118 @@
+<!-- RESET INPUT -->
+<div class="modal fade" id="modalInputReset" tabindex="-1" role="dialog" aria-labelledby="modalInputReset" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title thin" id="modalConfirmLabel">Eingaben löschen</h3>
+            </div>
+            <div class="modal-body">
+                <p>Wollen Sie wirklich alle Eingaben löschen?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-red" data-dismiss="modal" aria-hidden="true">Schließen</button>
+                <button class="btn btn-green" id="modalInputReset-delete">Löschen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- SUBMIT -->
+<div class="modal fade" id="modalRatingSubmit" tabindex="-1" role="dialog" aria-labelledby="modalRatingSubmit" aria-hidden="true">
+
+    <!-- MISSING ADDRESS INFO -->
+    <div class="modal-dialog" id="modalRatingSubmit-missing" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title thin" id="modalConfirmLabel">Vervollständigen Sie Ihre Adresse</h3>
+            </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="text-center margin-bottom-40">
+                            <img src="../themes/default/images/mail.png">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-offset-1 col-sm-offset-2 col-md-offset-2 col-xs-10 col-sm-8 col-md-8 text-center">
+                            <p class="text-center">Damit Ihre Bewertung richtig zugeordnet werden kann, geben Sie bitte eine bis auf die Hausnummer genaue Adresse ein.</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <ul class="modal-messages" id="modalRatingSubmit-notification"></ul>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-offset-1 col-sm-offset-2 col-md-offset-1 col-xs-10 col-sm-8 col-md-10 margin-top-15 margin-bottom-20">
+                            <!-- TODO: Wieder auf form stellen
+                            <form role="form" id="modalRatingSubmit-missingform">-->
+                                <div class="input-group col-md-12">
+                                    <input type="text" class="form-control" id="modalRatingSubmit-geoinput" placeholder="Straße Hausnummer, Plz, Land">
+                                    <span class="input-group-btn"><button id="modalRatingSubmit-resend" class="btn btn-blue">
+                                    <div class="rotator">
+                                    <span class="spinner"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                    <span class="done"><i class="fa fa-check"></i></span>
+                                    <span class="fail"><i class="fa fa-close"></i></span>
+                                    </div>Senden</button></span>
+                                </div>
+                            <!--</form>-->
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-red" data-dismiss="modal" aria-hidden="true">Schließen</button>
+                </div>
+
+        </div>
+    </div>
+
+
+    <!-- SUCCESS -->
+    <div class="modal-dialog" id="modalRatingSubmit-success" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title thin" id="modalConfirmLabel">Bewertung abgeschlossen</h3>
+            </div>
+            <div class="modal-body">
+                <div class="text-center margin-bottom-20">
+                    <img src="../themes/default/images/mail.png">
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-offset-1 col-sm-offset-2 col-md-offset-2 col-xs-10 col-sm-8 col-md-8 text-center margin-bottom-20">
+                        <h3>Vielen Dank für deine Bewertung!</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-offset-1 col-sm-offset-2 col-md-offset-2 col-xs-10 col-sm-8 col-md-8 text-center margin-bottom-40">
+                        <p>Melde dich bei unserem Bewertungsalarm an und wir benachrichtigen dich sobald neue Bewertungen für diese Umgebung online sind.</p>
+                        <button id="mrs-alarm" class="btn btn-default btn-160px">Bewertungsalarm</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-offset-1 col-sm-offset-2 col-md-offset-2 col-xs-10 col-sm-8 col-md-8 text-center margin-bottom-40">
+                        <p>Besuche unser Forum und finde Antworten zu allen Fragen rund um Provider, Technik und Netzausbau</p>
+                        <button id="mrs-forum" class="btn btn-default btn-160px">Forum</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-red" data-dismiss="modal" aria-hidden="true">Schließen</button>
+            </div>
+        </div>
+    </div>
+</div>

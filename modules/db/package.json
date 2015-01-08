@@ -1,0 +1,12 @@
+{
+    "name": "db",
+    "description": "Provides mongodb access",
+    "version" : "0.0.1",
+    "main" : "./db.js",
+    "plugin" : {
+        "provides" : [
+            "db",
+            "mongojs"
+        ]
+    }
+}

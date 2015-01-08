@@ -1,0 +1,468 @@
+<script>
+    require(
+    [
+        /* Stylesheets */
+        'css!bootstrapcss',
+        'css!fontawesomecss',
+        'css!magiccss',
+
+        /* Scripts */
+        'jquery',
+        'bootstrap',
+        'velocityjs',
+        'chosen',
+        'rating.jquery',
+        'litetooltip',
+        'justgage',
+        'stickyjs',
+        'placesapi',
+        'markerWithLabel',
+        'dRating',
+        'smoothscroll',
+        'feedback',
+        'icheck',
+        'geo',
+        'rotator',
+        'expose',
+
+        /* Custom Stylesheet */
+        'css!defaultcss',
+
+        /* Components */
+        'page.check',
+        'module.footer-newsletter'
+    ], function(
+        bootstrapCss, fontawesomeCss, magicCss,
+
+        jquery, bootstrap, velocityJs, chosen, jqueryRating, liteToolTip, justGage, stickyJs, placesApi, markerWithLabel,
+        dRating, smoothScroll, feedback, icheck, geo, rotator, expose,
+
+        defaultCss,
+
+        initPage,footerNewsletter) {
+
+            var formattedAddress = '{{{formattedAddress}}}';
+            var address = {{{addressJSON}}};
+            var providerFilter = '{{{providerFilter}}}';
+            var typeFilter = '{{{typeFilter}}}';
+            var baseUrl = '{{{baseUrl}}}';
+            var showFeedback = '{{showFeedback}}';
+            var showNewsletter = '{{showNewsletter}}';
+
+
+            var options = {
+                baseUrl: '{{{baseUrl}}}',
+                address: {{{addressJSON}}},
+                formattedAddress: '{{{formattedAddress}}}',
+                typeFilter: typeFilter,
+                providerFilter: providerFilter,
+                showFeedback: showFeedback,
+                showNewsletter: showNewsletter
+            };
+
+                $(document).ready(function() {
+                    initPage(options);
+
+                    footerNewsletter.init({
+                        baseUrl: baseUrl
+                    });
+
+                    //initRating(ratingOptions);
+
+                    //initGraphs(graphsOptions);
+                    //initMap(mapOptions);
+                    //initNewsletter(newsletterOptions);
+                    //initSidebar();
+                    //initSocial(socialOptions);
+
+                    $('.fb-form').feedback(baseUrl + '/api/social/feedback');
+
+                    $('#search-input').autocomplete();
+
+                    $('.cg-form').checkGeodata(
+                            function OnSuccess(address) {
+                                document.location.href = baseUrl + '/check/' + encodeURI(address);
+                            }, function OnError() {
+                                // TODO: alert popup oder so hinzufügen
+                                alert('Adresse nicht vorhanden');
+                            });
+                });
+
+    });
+
+    function touchfix()
+    {
+        var el = this;
+        var par = el.parentNode;
+        var next = el.nextSibling;
+        par.removeChild(el);
+        setTimeout(function() {par.insertBefore(el, next);}, 0)
+    }
+</script>
+
+
+
+    {{> navbar }}
+
+    <!-- content main container -->
+    <div id="content">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8">
+
+                <section class="tile noborder">
+                    <div class="type-pills">
+                            <div id="type-all"><a href="{{{path}}}">Alle</a></div>
+                            <div id="type-dsl"><a href="{{{path}}}?type=dsl">DSL</a></div>
+                            <div id="type-mobile"><a href="{{{path}}}?type=mobile">UMTS & LTE</a></div>
+                            <div id="type-hotspot"><a href="{{{path}}}?type=hotspot">WLAN & Funk</a></div>
+                    </div>
+                </section>
+
+                <section class="tile">
+                    <!-- tile body -->
+                    <div class="tile-body">
+                        <h1><strong>{{{titlePrefix}}}:</strong> {{{titlePostfix}}}</h1>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4 text-center"><div id="gauge-speed"></div><div id="gauge-speed-info" class="well">Keine Daten vorhanden</div></div>
+                            <div class="col-xs-12 col-sm-4 col-md-4"><div id="gauge-availability"></div><div id="gauge-availability-info" class="well">Keine Daten vorhanden</div></div>
+                            <div class="col-xs-12 col-sm-4 col-md-4"><div id="gauge-service"></div><div id="gauge-service-info" class="well">Keine Daten vorhanden</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4"><div id="gauge-speechquality"></div><div id="gauge-speechquality-info" class="well">Keine Daten vorhanden</div></div>
+                            <div class="col-sm-4 col-md-4"><div id="gauge-streaming"></div><div id="gauge-streaming-info" class="well">Keine Daten vorhanden</div></div>
+                            <div class="col-sm-4 col-md-4"><div id="gauge-gaming"></div><div id="gauge-gaming-info" class="well last-well">Keine Daten vorhanden</div></div>
+                        </div>
+
+
+                    </div>
+                    <!-- /tile body -->
+
+                </section>
+
+
+                {{> content-social}}
+
+
+                <section class="tile">
+                    <!-- tile body -->
+                    <div class="tile-body">
+                        <h2><strong>Top</strong> Provider</h2>
+
+                            <div class="notification" id="toplist-help" style="display: none;">
+                                <p>Bis jetzt hat niemand eine Bewertung <span id="toplist-helptext"></span>für <br>diese Umgebung geschrieben. Hilf mit und sei der Erste!</p>
+                                <button class="btn btn-default write-rating">Bewertung schreiben</button>
+                                <span class="clearfix"></span>
+
+                            </div>
+
+
+                            <div class="blocktable" id="toplist-body">
+                                <div class="head">
+                                    <div>#</div>
+                                    <div>Name</div>
+                                    <div class="center">Verbindung</div>
+                                    <div class="center">Bewertung</div>
+                                    <div></div>
+                                </div>
+                            </div>
+                    </div>
+                    <!-- /tile body -->
+
+                    <!-- target for next tile -->
+                    <span id="provider-target"></span>
+                </section>
+
+
+                <section class="tile" id="provider-container" style="display: none;">
+                    <!-- tile body -->
+                    <div class="tile-body">
+                        <h2><strong id="provider-title"></strong> Details</h2>
+
+
+                        <!-- company info -->
+                        <div class="row" id="company-container" style="display: none;">
+                            <div class="col-sm-6 col-md-6">
+                            <table class="company-table">
+                                <tbody>
+                                    <tr>
+                                        <td>Firma</td>
+                                        <td id="company-name"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gründung</td>
+                                        <td id="company-founded"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sitz</td>
+                                        <td id="company-location"></td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <table class="company-table">
+                                    <tbody>
+                                    <tr>
+                                        <td>Mitarbeiter</td>
+                                        <td id="company-employees"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Umsatz</td>
+                                        <td id="company-salesvolume"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Internet</td>
+                                        <td id="company-url"></td>
+                                    </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /company info -->
+
+                        <!-- provider rating -->
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="rating-tupel">
+                                    <div class="rt-side">
+                                        <div id="provider-speed" class="rt-gage"></div>
+                                    </div>
+                                    <div class="rt-content">
+                                        <h4>Geschwindigkeit</h4>
+                                        <div id="provider-speed-info"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="rating-tupel">
+                                    <div class="rt-side">
+                                        <div id="provider-availability" class="rt-gage"></div>
+                                    </div>
+                                    <div class="rt-content">
+                                        <h4>Verfügbarkeit</h4>
+                                        <div id="provider-availability-info"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="rating-tupel">
+                                    <div class="rt-side">
+                                        <div id="provider-service" class="rt-gage"></div>
+                                    </div>
+                                    <div class="rt-content">
+                                        <h4>Service</h4>
+                                        <div id="provider-service-info"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="rating-tupel">
+                                    <div class="rt-side">
+                                        <div id="provider-speechquality" class="rt-gage"></div>
+                                    </div>
+                                    <div class="rt-content">
+                                        <h4>Sprachqualität</h4>
+                                        <div id="provider-speechquality-info"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row margin-bottom-20">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="rating-tupel">
+                                    <div class="rt-side">
+                                        <div id="provider-streaming" class="rt-gage"></div>
+                                    </div>
+                                    <div class="rt-content">
+                                        <h4>Streaming</h4>
+                                        <div id="provider-streaming-info"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="rating-tupel">
+                                    <div class="rt-side">
+                                        <div id="provider-gaming" class="rt-gage"></div>
+                                    </div>
+                                    <div class="rt-content">
+                                        <h4>Gaming</h4>
+                                        <div id="provider-gaming-info"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2><strong>Top</strong> Tarife</h2>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="blocktable" id="topplans-body">
+                                    <div class="head">
+                                        <div>#</div>
+                                        <div>Name</div>
+                                        <div class="center">Bewertung</div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /tile body -->
+
+                </section>
+
+
+
+                <section class="tile">
+
+                    <!-- tile header -->
+
+                    <!-- /tile header -->
+
+                    <!-- tile body -->
+                    <div class="tile-body" >
+                        <h2 id="rating-counter" ><strong>Bewertungen</strong></h2>
+
+
+                        <div id="map-canvas"></div>
+
+                        <div id="rating-container" class="margin-top-20"></div>
+
+                        <button id="rating-more" class="btn btn-default btn-justified">Mehr Bewertungen anzeigen</button>
+
+                        <div class="btn-group btn-group-justified" id="rating-more-container" style="display: none;">
+                            <a id="rating-more-button" class="btn btn-darkgreen" role="button">Mehr Bewertungen anzeigen</a>
+                        </div>
+
+                    </div>
+                    <!-- /tile body -->
+
+                    <!-- target for next tile -->
+                    <span id="write-rating-target"></span>
+                </section>
+
+
+
+                <section class="tile" >
+                    <!-- tile body -->
+                    <div class="tile-body">
+                        <h2><strong>Bewertung</strong> verfassen</h2>
+
+                        <form class="form-horizontal" role="form" id="newrating">
+
+                            <div class="form-group">
+                                <label for="newrating_provider" class="col-sm-2 control-label"><i id="newrating_check_provider" class="fa fa-check fa-lg fa-green" style="display: none;"></i>Provider</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="newrating_provider" data-placeholder="Bitte Provider auswählen"></select>
+                                    <span id="newrating-provider-error" class="form-validation-error" style="display: none;">Dieses Feld muss ausgefüllt sein</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newrating_plan" class="col-sm-2 control-label"><i id="newrating_check_plan" class="fa fa-check fa-lg fa-green" style="display: none;"></i>Tarif (optional)</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="newrating_plan" data-placeholder="Bitte zuerst Provider auswählen" disabled></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newrating_text" class="col-sm-2 control-label"><i id="newrating_check_text" class="fa fa-check fa-lg fa-green" style="display: none;"></i>Bewertung</label>
+                                <div class="col-sm-10">
+
+                                    <!-- Textarea -->
+                                    <textarea class="form-control" id="newrating_text" rows="8" data-parsley-type="wordcount"></textarea>
+                                    <span id="newrating-text-error" class="form-validation-error" style="display: none;">Dieses Feld muss ausgefüllt sein</span>
+
+                                    <!-- Strip -->
+                                    <div id="newrating_progress" style="display:none">
+                                        <div class="progress-info">
+                                            <div class="desc">&nbsp;</div>
+                                            <div class="percent" id="newrating_progresstext">Noch 15 Wörter</div>
+                                        </div>
+                                        <div class="progress progress-striped">
+                                            <div id="newrating_progressbar" class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                <span class="sr-only">20% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id="newrating_criteria" class="form-group">
+                                <label class="col-sm-2 control-label"><i id="newrating_check_criteria" class="fa fa-check fa-lg fa-green" style="display: none;"></i>Kriterien (optional)</label>
+                                <div class="col-sm-10">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><input class="rating" type="number" id="newrating_speed"> Geschwindigkeit</li>
+                                            <li class="list-group-item"><input class="rating" type="number" id="newrating_availability"> Verfügbarkeit</li>
+                                            <li class="list-group-item"><input class="rating" type="number" id="newrating_service"> Service</li>
+                                            <li class="list-group-item"><input class="rating" type="number" id="newrating_speechquality"> Sprachqualität</li>
+                                            <li class="list-group-item"><input class="rating" type="number" id="newrating_streaming"> Streaming</li>
+                                            <li class="list-group-item"><input class="rating" type="number" id="newrating_gaming"> Gaming</li>
+                                        </ul>
+                                </div>
+                            </div>
+
+
+                                <div class="text-center">
+                                    <button id="newrating_reset" type="button" class="btn btn-default btn-width-75" style="margin-right: 10px;">Reset</button>
+                                    <button id="newrating_submit" type="submit" class="btn btn-default btn-width-75">Senden</button>
+                                </div>
+
+                        </form>
+
+                    </div>
+                    <!-- /tile body -->
+
+                </section>
+
+            </div>
+
+
+
+            </section>
+
+
+            <div class="col-md-4">
+
+                <div id="sidebar" style="max-width:360px;" >
+                    {{> check-sidebar}}
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    {{> modal-rating}}
+
+    {{> modal-maps}}
+
+    {{> modal-newsletter}}
+
+    {{> modal-social}}
+
+
+    </div>
+    <!-- content main container end -->
+
+
+
+

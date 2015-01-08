@@ -1,0 +1,15 @@
+{
+    "name": "geodata",
+    "description": "Serves geoinformation over google maps api",
+    "version" : "0.0.1",
+    "main" : "./geodata.js",
+    "plugin" : {
+        "consumes" : [
+            "db"
+        ],
+
+        "provides" : [
+            "geodata"
+        ]
+    }
+}

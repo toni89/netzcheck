@@ -1,0 +1,221 @@
+/* ---------------------------- Buttons ---------------------------- */
+
+.btn {
+  background-color: $primary-color;
+  color: #fff;
+  border:0;
+  @include border-radius(0px);
+}
+
+.btn-width-75 {
+  min-width: 75px;
+}
+
+.btn-default {
+  padding: 4px 10px;
+  border: 2px solid $primary-color;
+  @include border-radius(2px);
+  @include box-shadow(0 1px 6px rgba(0, 0, 0, 0.2));
+
+  &:hover {
+    background-color: #fff;
+    border: 2px solid $primary-color;
+    color: $primary-color;
+  }
+
+  &:visited {
+    padding: 4px 10px;
+    background-color: $primary-color;
+    border: 2px solid #fff;
+  }
+}
+
+.btn-blue {
+  @include border-radius(2px);
+  background-color: $primary-color;
+  color: #fff;
+  border: 2px solid transparent;
+  @include box-shadow(0 1px 6px rgba(0, 0, 0, 0.2));
+
+  &:hover {
+    background-color: #fff;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+  }
+}
+
+.btn-red {
+  @include border-radius(2px);
+  background-color: #ff7b76;
+  color: #f2f2f2;
+  border: 2px solid rgba(0, 0, 0, 0);
+  @include box-shadow(0 1px 6px rgba(0, 0, 0, 0.2));
+
+  &:hover {
+    background-color: #fff;
+    color: #ff4f48;
+    border: 2px solid #ff4f48;
+  }
+}
+
+.input-group-btn .btn-red{
+ @include border-top-right-radius(2px);
+ @include border-bottom-right-radius(2px);
+}
+
+.btn-justified {
+  width: 100%;
+}
+
+.btn-160px {
+  width: 160px;
+}
+
+#rating-more {
+  display: none;
+  margin-top: 20px;
+}
+
+.rotator {
+  display: inline-block;
+  width: 0;
+  text-align:left;
+}
+
+.rotator.active{
+  margin-right: 7px;
+  width: 15px;
+
+  -webkit-transition: width 0.25s;
+  -moz-transition: width 0.25s;
+  -o-transition: width 0.25s;
+  transition: width 0.25s;
+}
+
+.spinner, .done, .fail {
+  display: none;
+  opacity: 0;
+  font-size: 14px;
+  max-width: 0;
+
+  -webkit-transition: opacity 0.45s, max-width 0.45s;
+  -moz-transition: opacity 0.45s, max-width 0.45s;
+  -o-transition: opacity 0.45s, max-width 0.45s;
+  transition: opacity 0.45s, max-width 0.45s;
+}
+
+.rotator i {
+  left: 0;
+}
+
+.rotator .active {
+  display: inline-block;
+  opacity: 1;
+  max-width: 15px;
+}
+
+/* --- input-group --- */
+
+.input-group-btn > .btn {
+  height: 37px;
+}
+
+/* --- social buttons --- */
+
+.social-btn {
+  display:block;
+  padding: 0;
+  border: 0;
+
+  overflow: hidden;
+  color:#FFF;
+  font-size:16px;
+  font-weight: 500 !important;
+  font-family: "Open Sans", sans-serif;
+  text-decoration:none;
+  text-align:left;
+  margin-bottom: 10px;
+  width: 100%;
+
+  @include box-shadow(inset 0 -4px 0 rgba(0,0,0,0.3));
+  @include border-radius(3px);
+
+  .social-text {
+    position: relative;
+    top: -3px;
+    padding-left: 10px;
+  }
+
+  .social-icon {
+    display: inline-block;
+    font-size: 28px;
+    padding: 5px 8px;
+    background-color: rgba(0,0,0,0.1);
+    min-width: 48px;
+    text-align: center;
+  }
+
+  .icon-small {
+    font-size: 22px;
+    min-height: 38px;
+    padding: 8px;
+  }
+
+
+  &:hover {
+    color: #fff;
+    text-decoration:none;
+  }
+}
+
+.simple {
+  display: inline-block;
+  width: auto;
+  margin: 3px;
+}
+
+.social-fb, .fb     { background:#4769A5; }
+.social-twitter, .twitter     { background:#00acee; }
+.social-gplus, .gplus       { background:#dd4b39; }
+.social-linkedin    { background:#0e76a8; }
+.social-xing        { background:#007e81; }
+.social-digg        { background:#727272; }
+.social-link, .link        { background:#27ae60; }
+.social-email        { background:#2895d3; }
+
+
+.social-fb:hover, .fb:hover { background:#2f4679; }
+.social-twitter:hover, .twitter:hover   { background:#0089bd; }
+.social-gplus:hover, .gplus:hover     { background:#b03b2d; }
+.social-linkedin:hover  { background:#0b5e85; }
+.social-xing:hover      { background:#006063; }
+.social-digg:hover      { background:#4e4e4e; }
+.social-link:hover, .link:hover      { background:#258c46; }
+.social-email:hover      { background:#1d6894; }
+
+
+/* --- col-md --- */
+@media(min-width:992px) {
+  .social-btn .social-icon {
+    padding: 5px 0;
+    min-width: 35px;
+  }
+
+  .social-btn .social-text {
+    padding-left: 5px;
+  }
+}
+
+
+/* --- col-lg --- */
+@media(min-width:1200px) {
+  .social-btn .social-icon {
+    padding: 5px 8px;
+    min-width: 48px;
+  }
+
+  .social-btn .social-text {
+    padding-left: 10px;
+  }
+}
+

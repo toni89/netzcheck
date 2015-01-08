@@ -1,0 +1,81 @@
+<script>
+    require(
+    [
+        /* Stylesheets */
+        'css!bootstrapcss',
+        'css!fontawesomecss',
+
+        /* Scripts */
+        'jquery',
+        'bootstrap',
+        'feedback',
+        'geo',
+
+        /* Custom Stylesheet */
+        'css!defaultcss'
+
+
+    ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, feedback, geo, defaultCss) {
+
+        var baseUrl = '{{{baseUrl}}}';
+
+        $(document).ready(function() {
+
+            $('.fb-form').feedback(baseUrl + '/api/social/feedback');
+
+            $('#search-input').autocomplete();
+
+            $('.cg-form').checkGeodata(
+                    function OnSuccess(address) {
+                        document.location.href = baseUrl + '/check/' + encodeURI(address);
+                    }, function OnError() {
+                        // TODO: alert popup oder so hinzufügen
+                        alert('Adresse nicht vorhanden');
+                    });
+        });
+    });
+
+</script>
+
+
+{{> navbar }}
+
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <section class="tile">
+                    <div class="tile-body">
+                        <h1><strong>Impressum</strong></h1>
+
+                        <strong>Angaben gemäß § 5 TMG:</strong><br>
+                        Hammerschmidt Webservices<br>
+                        Josef-Priller-Str. 21<br>
+                        86159 Augsburg<br><br>
+                        <strong>Verantwortlicher:</strong><br>
+                        Anton Hammerschmidt<br>
+                        Telefon: +49 177 654 85 35<br>
+                        E-Mail: info<i class="fa fa-at"></i>netzcheck.org<br>
+                        USt.-IdNr: DE295567093
+                    </div>
+                </section>
+
+                <section class="tile">
+                    <div class="tile-body">
+                        <h2><strong>Haftungsausschluss</strong></h2>
+
+                        Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+                        <br><br>
+                        Die Bewertungen oder Beiträge im Forum geben ausschließlich die persönlichen Ansichten und Meinungen der Besucher wieder. Für die Richtigkeit und Vollständigkeit der Inhalte übernehmen wir keinerlei Gewähr.
+                        Soweit Bewertungen oder Foreneinträge die Rechte Dritter verletzen oder aus anderen Gründen rechtswidrigen Inhalte enthalten, ist für den Rechtsverstoß der jeweils genannte Verfasser verantwortlich.
+                        <br><br>
+                        Wir bemühen uns, die Beiträge regelmäßig zu kontrollieren. Eine inhaltliche Verantwortung – gleich welcher Art – ist dadurch jedoch nicht möglich.
+
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>

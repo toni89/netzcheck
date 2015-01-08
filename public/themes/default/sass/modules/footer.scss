@@ -1,0 +1,64 @@
+/* ---------------------------- Footer ---------------------------- */
+
+#footer {
+  background-color: #eeeeee;
+  border-top: 1px solid $border-color;
+  border-bottom: 5px solid $primary-color;
+
+  h3 {
+    color: #777;
+    font-size: 18px;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: #777;
+    margin-bottom: 5px;
+  }
+
+  a:hover {
+    color: $font-primary;
+  }
+}
+
+#footer {
+  .fb-name, .fb-email, .fb-text {
+    width: 100%;
+  }
+
+  .fb-text, .fb-submit {
+    margin-top: 8px;
+  }
+
+  .col-md-4 {
+    padding: 15px;
+  }
+}
+
+@media(max-width:991px) {
+
+  #footer .col-md-4 {
+    padding-bottom: 0;
+  }
+
+  #footer {
+    padding-bottom: 15px;
+  }
+
+  .padding-left-4 {
+    padding-left: 15px;
+
+  }
+
+  .padding-right-4 {
+    padding-right: 15px;
+  }
+
+  .fb-name {
+    margin-bottom: 8px;
+  }
+}

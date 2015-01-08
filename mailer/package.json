@@ -1,0 +1,16 @@
+{
+  "name": "mailer",
+  "version": "0.0.1",
+  "dependencies": {
+      "body-parser": "1.8.1",
+      "bull": "0.1.10",
+      "express": "4.8.8",
+      "email-templates": "1.1.2",
+      "nodemailer": "1.3.0",
+      "nodemailer-smtp-transport": "0.1.13",
+      "mongojs": "0.14.1",
+      "require-all": "0.0.8",
+      "request": "2.47.0",
+      "handlebars": "2.0.0"
+  }
+}

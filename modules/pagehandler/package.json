@@ -1,0 +1,15 @@
+{
+    "name": "pagehandler",
+    "description": "Handles http requests",
+    "version" : "0.0.1",
+    "main" : "./pagehandler.js",
+    "plugin" : {
+        "consumes" : [
+            "db",
+            "mongojs",
+            "geodata",
+            "main",
+            "server"
+        ]
+    }
+}

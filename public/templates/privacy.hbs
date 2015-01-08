@@ -1,0 +1,98 @@
+<script>
+    require(
+            [
+                /* Stylesheets */
+                'css!bootstrapcss',
+                'css!fontawesomecss',
+
+                /* Scripts */
+                'jquery',
+                'bootstrap',
+
+                /* Custom Stylesheet */
+                'css!defaultcss',
+
+                /* Components */
+                'navbar'
+
+            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, defaultCss, initNavbar) {
+
+                var baseUrl = '{{{baseUrl}}}';
+
+                var navbarOptions = {
+                    baseUrl: baseUrl
+                };
+
+                $(document).ready(function() {
+                    initNavbar(navbarOptions);
+                });
+            });
+
+</script>
+
+
+{{> navbar }}
+
+<div id="content" class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <section class="tile">
+                    <div class="tile-body">
+                        <h1><strong>Datenschutzerklärung</strong></h1>
+
+                        <strong>Zugriffsdaten/ Server-Logfiles</strong>
+                        <p>
+                            Diese Webseite (beziehungsweise der Webspace-Provider) erhebt Daten über jeden Zugriff auf das Angebot (so genannte Serverlogfiles). Zu den Zugriffsdaten gehören:
+
+                            Name der abgerufenen Webseite, Datei, Datum und Uhrzeit des Abrufs, übertragene Datenmenge, Meldung über erfolgreichen Abruf, Browsertyp nebst Version, das Betriebssystem des Nutzers, Referrer URL (die zuvor besuchte Seite), IP-Adresse und der anfragende Provider.
+
+                            Netzcheck.org verwendet die Protokolldaten nur für statistische Auswertungen zum Zweck des Betriebs, der Sicherheit und der Optimierung des Angebotes. Wir behalten uns jedoch vor, die Protokolldaten nachträglich zu überprüfen, wenn aufgrund konkreter Anhaltspunkte der berechtigte Verdacht einer rechtswidrigen Nutzung besteht.
+                        </p>
+
+                        <strong>Kontaktaufnahme</strong>
+                        <p>
+                            Bei der Kontaktaufnahme (zum Beispiel per Kontaktformular oder E-Mail) werden die Angaben des Nutzers zwecks Bearbeitung der Anfrage sowie für den Fall, dass Anschlussfragen entstehen, gespeichert.
+                        </p>
+
+                        <strong>Bewertungen und Kommentare / Beiträge</strong>
+                        <p>
+                            Wenn Nutzer Bewertungen oder Beiträge auf netzcheck.org sowie dem Forum hinterlassen, werden ihre IP-Adressen gespeichert. Das erfolgt zur Sicherheit des Anbieters, falls jemand in Kommentaren und Beiträgen widerrechtliche Inhalte schreibt (Beleidigungen, verbotene politische Propaganda, etc.). In diesem Fall kann Netzcheck.org selbst für den Kommentar oder Beitrag belangt werden und ist daher an der Identität des Verfassers interessiert.
+                        </p>
+
+                        <strong>Einbindung von Diensten und Inhalten Dritter</strong>
+                        <p>
+                            Es kann vorkommen, dass innerhalb dieses Onlineangebotes Inhalte Dritter, wie zum Beispiel Videos von YouTube, Kartenmaterial von Google-Maps, RSS-Feeds oder Grafiken von anderen Webseiten eingebunden werden. Dies setzt immer voraus, dass die Anbieter dieser Inhalte (nachfolgend bezeichnet als "Dritt-Anbieter") die IP-Adresse der Nutzer wahr nehmen. Denn ohne die IP-Adresse, könnten sie die Inhalte nicht an den Browser des jeweiligen Nutzers senden. Die IP-Adresse ist damit für die Darstellung dieser Inhalte erforderlich. Wir bemühen uns nur solche Inhalte zu verwenden, deren jeweilige Anbieter die IP-Adresse lediglich zur Auslieferung der Inhalte verwenden. Jedoch haben wir keinen Einfluss darauf, falls die Dritt-Anbieter die IP-Adresse z.B. für statistische Zwecke speichern. Soweit dies uns bekannt ist, klären wir die Nutzer darüber auf.
+                        </p>
+
+                        <strong>Cookies</strong>
+                        <p>
+                            Cookies sind kleine Dateien, die es ermöglichen, auf dem Zugriffsgerät der Nutzer (PC, Smartphone o.ä.) spezifische, auf das Gerät bezogene Informationen zu speichern. Sie dienen zum einem der Benutzerfreundlichkeit von Webseiten und damit den Nutzern (z.B. Speicherung von Logindaten). Zum anderen dienen sie, um die statistische Daten der Webseitennutzung zu erfassen und sie zwecks Verbesserung des Angebotes analysieren zu können. Die Nutzer können auf den Einsatz der Cookies Einfluss nehmen. Die meisten Browser verfügen eine Option mit der das Speichern von Cookies eingeschränkt oder komplett verhindert wird. Allerdings wird darauf hingewiesen, dass die Nutzung und insbesondere der Nutzungskomfort ohne Cookies eingeschränkt werden.
+                        </p>
+
+                        <strong>Webanalyse mit Google Analytics</strong>
+                        <p>
+                            Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. (Google). Google Analytics verwendet sog.Cookies, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Im Falle der Aktivierung der IP-Anonymisierung auf dieser Webseite, wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum zuvor gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt. Im Auftrag des Betreibers dieser Website wird Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber dem Websitebetreiber zu erbringen. Die im Rahmen von Google Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt. Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich werden nutzen können. Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren: http://tools.google.com/dlpage/gaoptout?hl=de
+                        </p>
+
+                        <strong>Newsletter</strong>
+                        <p>
+                            Bei Anmeldung zum Newsletter wird Ihre E-Mail-Adresse für eigene Werbezwecke genutzt, bis Sie sich vom Newsletter abmelden. Die Abmeldung ist jederzeit möglich. Die nachstehende Einwilligung haben Sie gesondert oder ggf. im Verlauf des Bestellprozesses ausdrücklich erteilt:
+                            ( Newsletter )
+                            Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen. Wenn Sie den Newsletter nicht weiter beziehen wollen, dann können Sie sich folgendermaßen abmelden:
+                            ( Abmeldelink im Newsletter ). Ihre E-Mail Adresse wird zu keinem Zeitpunkt an Dritte weitergegeben.
+                        </p>
+
+                        <strong>Auskunft</strong>
+                        <p>
+                            Nach dem Bundesdatenschutzgesetz haben Sie ein Recht auf unentgeltliche Auskunft über Ihre gespeicherten Daten sowie ggf. ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Fragen können Sie z.B. über die folgende E-Mail-Adresse stellen: ( info<i class="fa fa-at"></i>netzcheck.org )
+                        </p>
+
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>

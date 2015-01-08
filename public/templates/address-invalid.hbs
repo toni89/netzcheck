@@ -1,0 +1,83 @@
+<script>
+    require(
+            [
+                /* Stylesheets */
+                'css!bootstrapcss',
+                'css!fontawesomecss',
+
+                /* Scripts */
+                'jquery',
+                'bootstrap',
+                'feedback',
+                'geo',
+                'smoothscroll',
+                'expose',
+
+                /* Custom Stylesheet */
+                'css!defaultcss'
+
+
+            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, feedback, geo, smoothScroll, expose, defaultCss) {
+
+                var baseUrl = '{{{baseUrl}}}';
+
+                $(document).ready(function() {
+
+                    $('#gotoHome').click(function() {
+                        document.location.href = baseUrl + '/';
+                    });
+
+                    $('#gotoFeedback').click(function() {
+                        $.smoothScroll({
+                            scrollTarget: '#footer',
+                            afterScroll: function() {
+                                $('.expose').expose();
+                            }
+                        });
+                    });
+
+                    $('.fb-form').feedback(baseUrl + '/api/social/feedback');
+
+                    $('#search-input').autocomplete();
+
+                    $('.cg-form').checkGeodata(
+                            function OnSuccess(address) {
+                                document.location.href = baseUrl + '/check/' + encodeURI(address);
+                            }, function OnError() {
+                                // TODO: alert popup oder so hinzufügen
+                                alert('Adresse nicht vorhanden');
+                            });
+                });
+            });
+
+</script>
+
+
+{{> navbar }}
+
+<div id="content">
+    <div class="container">
+
+        <div class="row">
+            <div style="padding: 50px 0">
+                <div class="col-md-5 col-centered text-center margin-bottom-20">
+                    <div>
+                        <h1><strong>Die eingegebene Adresse ist zu ungenau</strong></h1>
+                        Warum? Wir zeigen Bewertungen erst ab einem gültigen Straßennamen an da ein Zielgebiet darüber hinaus zu groß für eine aussagekräftige Analyse ist.
+                    </div>
+                </div>
+
+                <div class="col-xs-5 col-md-3 col-lg-2 col-centered">
+                    <button class="btn btn-default btn-justified" id="gotoHome">Zur Startseite</button>
+                </div>
+                <div class="col-xs-5 col-md-3 col-lg-2 col-centered">
+                    <button class="btn btn-default btn-justified margin-top-15" id="gotoFeedback">Feedback schreiben</button>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

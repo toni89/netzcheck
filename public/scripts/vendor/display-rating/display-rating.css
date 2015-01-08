@@ -1,0 +1,49 @@
+.rating-display-container {
+    text-align: center;
+    display: inline-block;
+}
+
+.rating-display-container .stars {
+    display: block;
+}
+
+.rating-display-container .stars i {
+    font-size: 20px;
+    color: white;
+    margin-right: 3px;
+    padding: 3px;
+}
+
+.rating-display-container .stars i:last-child {
+    margin-right: 0;
+}
+
+.rating-display-container span {
+    padding-top: 15px;
+    display: block;
+}
+
+@media(max-width:350px) {
+
+    .rating-display-container .stars i {
+        margin-right: 2px;
+        padding: 2px;
+    }
+
+}
+
+.dR-grey {
+    background-color: #c9c9c9;
+}
+
+.dR-red {
+    background-color: #ff7876;
+}
+
+.dR-yellow {
+    background-color: #ffc131;
+}
+
+.dR-green {
+    background-color: #9ed132;
+}

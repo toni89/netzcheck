@@ -1,0 +1,169 @@
+/* ---------------------------- Navbar ---------------------------- */
+
+
+.navbar-default {
+  z-index: 50;
+  background-color: $secondary-color;
+  border-top: 5px solid $primary-color;
+  border-bottom: 1px solid $border-color;
+}
+
+.navbar-collapse {
+  padding:0;
+}
+
+.navbar {
+  margin-bottom: 23px;
+  min-height: 60px;
+
+  @include border-radius();
+  @include box-shadow(0px 2px 2px #ededed);
+}
+
+.navbar-nav {
+  margin: 8px 30px;
+
+  font-family: Helvetica, Arial, sans-serif;
+  color: $font-navbar;
+  float:none;
+  display: inline-block;
+  position:relative;
+
+  li {
+
+    &:hover {
+      a : {
+        color: $primary-color;
+      }
+    }
+
+    a {
+      padding: 0 10px;
+    }
+
+  }
+}
+
+/* ------ Logo ------ */
+
+#logo {
+  position: absolute;
+  top: 0;
+  background-color: $primary-color;
+  height: 68px;
+}
+
+#logo-link {
+  display: block;
+  line-height: normal;
+  color: $logo-font-color;
+  font: $logo-font-weight $logo-font-size $logo-font;
+  padding: 18px 20px;
+  text-decoration: none;
+}
+
+#logo-edge {
+  display: block;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  border-left: 8px solid #3b7aa3;/*#dcdcdc;*/
+  border-bottom: 13px solid transparent;
+}
+
+@media(max-width:510px){
+  #logo {
+    height: 60px;
+  }
+
+  #logo-link {
+    font-size: 20px;
+    padding: 3px 8px 0 8px;
+    line-height: 1.2;
+
+    strong {
+      display: block;
+    }
+  }
+
+  #logo-edge {
+    border-left: 3px solid #3b7aa3;
+    border-bottom: 5px solid transparent;
+  }
+
+
+}
+
+/* ------ Search ------ */
+
+.search {
+  display: inline-block;
+  margin-left: 205px;
+  margin-top: 8px;
+  width: 280px;
+
+}
+
+
+#search-input {
+  @include border-top-left-radius(2px);
+  @include border-bottom-left-radius(2px);
+
+  border: 1px solid $primary-color;
+  height: 30px;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#search-submit {
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  background-color: #fafafa;
+
+  @include border-top-right-radius(2px);
+  @include border-bottom-right-radius(2px);
+  @include box-shadow(none);
+}
+
+#search-submit:hover {
+  background-color: $primary-color;
+  color: #fff;
+}
+
+
+@media(max-width:570px){
+  .search {
+    margin-left: 115px;
+    width: 190px;
+  }
+}
+
+@media(max-width:375px){
+  .search {
+    margin-left: 115px;
+    width: 135px;
+  }
+}
+
+/* ------ Action ------ */
+
+.action {
+  display: none;
+  padding: 11px 15px;
+  float: right;
+
+  &:after {
+    clear: both;
+  }
+
+}
+
+@media(max-width:767px){
+  .action {
+    display: inline-block;
+  }
+
+  .navbar-nav {
+    display: none;
+  }
+}

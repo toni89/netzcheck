@@ -1,0 +1,66 @@
+<script>
+    require(
+            [
+                /* Stylesheets */
+                'css!bootstrapcss',
+                'css!fontawesomecss',
+
+                /* Scripts */
+                'jquery',
+                'bootstrap',
+                'feedback',
+                'geo',
+
+                /* Custom Stylesheet */
+                'css!defaultcss'
+
+
+            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, feedback, geo, defaultCss) {
+
+                var baseUrl = '{{{baseUrl}}}';
+
+                $(document).ready(function() {
+
+                    $('.fb-form').feedback(baseUrl + '/api/social/feedback');
+
+                    $('#search-input').autocomplete();
+
+                    $('.cg-form').checkGeodata(
+                            function OnSuccess(address) {
+                                document.location.href = baseUrl + '/check/' + encodeURI(address);
+                            }, function OnError() {
+                                // TODO: alert popup oder so hinzufügen
+                                alert('Adresse nicht vorhanden');
+                            });
+                });
+            });
+
+</script>
+
+
+{{> navbar }}
+
+<div id="content">
+    <div class="container">
+
+        <div class="row">
+            <div style="padding: 50px 0">
+            <div class="col-md-5 col-centered text-center margin-bottom-20">
+                <div>
+                    <h1><strong>{{{message}}}</strong></h1>
+                    Keine Lust auf E-Mails? Alle News und Informationen sind auch über Facebook & Co. verfügbar!
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 col-lg-2 col-centered">
+                <button class="social-btn social-fb"><span class="fa fa-facebook-square social-icon"></span><span class="social-text">Facebook</span></button>
+                <button class="social-btn social-gplus"><span class="fa fa-google-plus social-icon"></span><span class="social-text">Google+</span></button>
+                <button class="social-btn social-twitter"><span class="fa fa-twitter social-icon"></span><span class="social-text">Twitter</span></button>
+                <button class="social-btn social-linkedin"><span class="fa fa-linkedin social-icon"></span><span class="social-text">LinkedIn</span></button>
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

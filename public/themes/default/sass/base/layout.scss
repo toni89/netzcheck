@@ -1,0 +1,38 @@
+/* ---------------------------- Layout ---------------------------- */
+
+html {
+  height: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  font-family: $base-font;
+  font-size: $base-font-size;
+  font-weight: $regular;
+  color: $base-font-color;
+
+}
+
+body {
+  height: 100%;
+  background-color: $bg-color;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+
+  @include display-flex();
+  @include flex-direction(column);
+}
+
+
+@media(max-width:767px) {
+ #content {
+   margin-top: 10px;
+   padding-top: 0;
+   padding-left: 0;
+   padding-right: 0;
+   margin-right: auto;
+   margin-left: auto;
+ }
+}

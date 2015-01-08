@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-collapse">
+
+            <div id="logo">
+                <a id="logo-link" href="{{baseUrl}}/"><strong>netz</strong>check.org</a>
+                <span id="logo-edge"></span>
+            </div>
+
+            <div class="action">
+                <button class="btn btn-default" ontouchend="this.onclick=touchfix"><i class="fa fa-bars"></i></button>
+            </div>
+
+            <div class="search">
+                <form class="cg-form">
+                    <div class="input-group">
+                        <input id="search-input" class="form-control cg-address" type="text" placeholder="Adresse suchen ...">
+                        <span class="input-group-btn">
+                            <button type="submit" id="search-submit" class="btn"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+
+                </form>
+            </div>
+
+
+
+            <ul class="nav navbar-nav">
+                <li><a href="{{baseUrl}}/forum">Forum</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>

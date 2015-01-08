@@ -1,0 +1,29 @@
+/* ---------------------------- Modals ---------------------------- */
+
+.modal {
+  z-index: 500;
+}
+
+.modal-header {
+  background-color: #f8f8f8;
+}
+
+.modal-title {
+  padding-bottom: 0px;
+  font-weight: 200;
+}
+
+.modal-content {
+  border: 0;
+  @include box-shadow(0 5px 15px rgba(0,0,0,0.5));
+  @include border-radius(0px);
+}
+
+.modal-footer {
+  background-color: #f8f8f8;
+}
+
+.close {
+  font-size: 36px;
+  line-height: 25px;
+}
