@@ -2,7 +2,7 @@ node_modules/
 mailer/node_modules/
 .sass-cache/
 
-
+config.js
 Gruntfile.js
 .bowerrc
 
