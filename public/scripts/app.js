@@ -9,7 +9,6 @@ require.config({
         jquery: [
             '../scripts/vendor/jquery/dist/jquery-2.1.1.min',
             '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min'
-
         ],
 
         markerWithLabel: [
@@ -189,14 +188,14 @@ define('placesapi', ['async!http://maps.googleapis.com/maps/api/js?libraries=pla
 });
 
 define('chosen', [
-    'css!../scripts/themes/css/chosen.min',
-    'css!../scripts/themes/css/chosen-bootstrap',
-    '../scripts/themes/js/plugins/chosen/chosen.jquery.min'
+    'css!./../scripts/themes/css/chosen.min',
+    'css!./../scripts/themes/css/chosen-bootstrap',
+    './../scripts/themes/js/plugins/chosen/chosen.jquery.min'
 ]);
 
 define('litetooltip', [
-    'css!../scripts/vendor/litetooltip/css/litetooltip.min',
-    '../scripts/vendor/litetooltip/js/litetooltip.min'
+    'css!./../scripts/vendor/litetooltip/css/litetooltip.min',
+    './../scripts/vendor/litetooltip/js/litetooltip.min'
 ]);
 
 define('rating.jquery', [
