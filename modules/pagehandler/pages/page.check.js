@@ -41,8 +41,6 @@ module.exports = {
                     console.log("pages/check: Can't get geodata");
                 } else if (result[0]) {
                     var geodata = result[0];
-                    console.log(geodata);
-
                     // check country first
 
                     if(modules.main.isValidCountry(geodata.countryCode)) {
