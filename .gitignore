@@ -6,6 +6,7 @@ config.js
 Gruntfile.js
 .bowerrc
 
+
 .idea
 *.swp
 .DS_Store
