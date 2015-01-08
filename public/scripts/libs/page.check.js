@@ -1042,7 +1042,7 @@ define(['countable'], function(Countable) {
                     ui.graphs.toplist.body.hide();
                     ui.graphs.toplist.help.show();
 
-                    setTopListHelpText(type);
+                    setTopListHelpText(options.typeFilter);
                 }
             }
         });
@@ -1125,40 +1125,41 @@ define(['countable'], function(Countable) {
 
     function setGenericGages(values) {
 
-        if(values.avg_speed > 0) {
-            ui.graphs.generic.gauge.speed.el.refresh(roundTo1(values.avg_speed));
-            ui.graphs.generic.gauge.speed.info.html(values.speed_text);
+        if(values) {
+            if(values.avg_speed > 0) {
+                ui.graphs.generic.gauge.speed.el.refresh(roundTo1(values.avg_speed));
+                ui.graphs.generic.gauge.speed.info.html(values.speed_text);
+            }
+
+            if(values.avg_availability > 0) {
+                ui.graphs.generic.gauge.availability.el.refresh(roundTo1(values.avg_availability));
+                ui.graphs.generic.gauge.availability.info.html(values.availability_text);
+            }
+
+
+            if(values.avg_service > 0) {
+                ui.graphs.generic.gauge.service.el.refresh(roundTo1(values.avg_service));
+                ui.graphs.generic.gauge.service.info.html(values.service_text);
+            }
+
+
+            if(values.avg_speechquality > 0) {
+                ui.graphs.generic.gauge.speechquality.el.refresh(roundTo1(values.avg_speechquality));
+                ui.graphs.generic.gauge.speechquality.info.html(values.speechquality_text);
+            }
+
+
+            if(values.avg_streaming > 0) {
+                ui.graphs.generic.gauge.streaming.el.refresh(roundTo1(values.avg_streaming));
+                ui.graphs.generic.gauge.streaming.info.html(values.streaming_text);
+            }
+
+
+            if(values.avg_gaming > 0) {
+                ui.graphs.generic.gauge.gaming.el.refresh(roundTo1(values.avg_gaming));
+                ui.graphs.generic.gauge.gaming.info.html(values.gaming_text);
+            }
         }
-
-        if(values.avg_availability > 0) {
-            ui.graphs.generic.gauge.availability.el.refresh(roundTo1(values.avg_availability));
-            ui.graphs.generic.gauge.availability.info.html(values.availability_text);
-        }
-
-
-        if(values.avg_service > 0) {
-            ui.graphs.generic.gauge.service.el.refresh(roundTo1(values.avg_service));
-            ui.graphs.generic.gauge.service.info.html(values.service_text);
-        }
-
-
-        if(values.avg_speechquality > 0) {
-            ui.graphs.generic.gauge.speechquality.el.refresh(roundTo1(values.avg_speechquality));
-            ui.graphs.generic.gauge.speechquality.info.html(values.speechquality_text);
-        }
-
-
-        if(values.avg_streaming > 0) {
-            ui.graphs.generic.gauge.streaming.el.refresh(roundTo1(values.avg_streaming));
-            ui.graphs.generic.gauge.streaming.info.html(values.streaming_text);
-        }
-
-
-        if(values.avg_gaming > 0) {
-            ui.graphs.generic.gauge.gaming.el.refresh(roundTo1(values.avg_gaming));
-            ui.graphs.generic.gauge.gaming.info.html(values.gaming_text);
-        }
-
     }
 
 
