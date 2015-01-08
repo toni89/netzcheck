@@ -28,6 +28,7 @@ module.exports = [
         'mailerUrl': 'http://192.168.1.101:8001',
         'http' : {
             'port': '8000'
+
         }
     }
 
