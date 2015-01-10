@@ -181,7 +181,7 @@ require.config({
             deps: ['jquery']
         },
 
-        'smooth-scroll' : {
+        'smoothscroll' : {
             deps: ['jquery']
         },
 
@@ -198,6 +198,10 @@ require.config({
         },
 
         'expose' : {
+            deps: ['jquery']
+        },
+
+        'module.footer-newsletter' : {
             deps: ['jquery']
         }
     }
