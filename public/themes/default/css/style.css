@@ -41,6 +41,9 @@ h1, h2, h3, h4, h5 {
 .padding-right-4 {
   padding-right: 4px; }
 
+.invisible {
+  display: none; }
+
 /* ---------------------------- Layout ---------------------------- */
 html {
   height: 100%;

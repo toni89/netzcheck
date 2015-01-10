@@ -43,10 +43,10 @@ module.exports = {
     streaming: [
         'Keine Daten vorhanden', // 0
         'Videostreams werden <strong>ständig</strong> unterbrochen', // 1
-        'Videostreams werden oft mit <strong>langen</strong> Unterbrechungen wiedergegeben', // 2
-        'Videostreams werden oft mit <strong>kurzen</strong> Unterbrechungen wiedergegeben', // 3
-        'Videostreams werden mit <strong>kurzen</strong> Unterbrechungen wiedergegeben', // 4
-        'Videostreams werden <strong>ohne</strong> Unterbrechungen wiedergegeben' // 5
+        'Videostreams werden <strong>häufig</strong> unterbrochen', // 2
+        'Videostreams werden <strong>gelegentlich</strong> unterbrochen', // 3
+        'Videostreams werden <strong>selten</strong> unterbrochen', // 4
+        'Videostreams werden <strong>nur zu Stoßzeiten (abends)</strong> unterbrochen' // 5
     ],
 
     gaming: [

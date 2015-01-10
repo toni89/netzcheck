@@ -113,6 +113,15 @@ define(['countable'], function(Countable) {
                 streaming: $('#newrating_streaming'),
                 gaming: $('#newrating_gaming')
             },
+            tooltip: {
+                rating: $('#tooltip-rating'),
+                speed: $('#tooltip-speed'),
+                availability: $('#tooltip-availability'),
+                service: $('#tooltip-service'),
+                speechquality: $('#tooltip-spechquality'),
+                streaming: $('#tooltip-streaming'),
+                gaming: $('#tooltip-gaming')
+            },
             check: {
                 provider: $('#newrating_check_provider'),
                 plan: $('#newrating_check_plan'),
@@ -317,14 +326,7 @@ define(['countable'], function(Countable) {
             margin: 5,
             textalign: 'left',
             backcolor: '#22beef',
-            title: '<div class="tooltip-menu">' +
-            '<h5>Was steht in einer guten Bewertung?</h5>' +
-            '<ul class="tooltip-rating-list">' +
-            '<li>* Pro und Contra Stickpunkte</li>' +
-            '<li>* Welche Probleme sind aufgetretten?</li>' +
-            '<li>* Warum habe ich so bewertet? (Kriterien)</li>' +
-            '</ul>' +
-            '</div>'
+            title: ui.rating.newRating.tooltip.rating.html()
         });
 
 
@@ -335,16 +337,7 @@ define(['countable'], function(Countable) {
             margin: 5,
             textalign: 'left',
             backcolor: '#22beef',
-            title: '<div class="tooltip-menu">' +
-            '<h5>Verhältnis zwischen der erreichten und der bestellten Bandbreite</h5>' +
-            '<ul class="tooltip-rating-list">' +
-            '<li><strong>1 Stern:</strong> 0 bis 40%</li>' +
-            '<li><strong>2 Sterne:</strong> 40 bis 55%</li>' +
-            '<li><strong>3 Sterne:</strong> 55 bis 70%</li>' +
-            '<li><strong>4 Sterne:</strong> 70 bis 85%</li>' +
-            '<li><strong>5 Sterne:</strong> 85 bis 100%</li>' +
-            '</ul>' +
-            '</div>'
+            title: ui.rating.newRating.tooltip.speed.html()
         });
 
         ui.rating.newRating.criteria.availability.next().LiteTooltip({
@@ -353,16 +346,7 @@ define(['countable'], function(Countable) {
             margin: 5,
             textalign: 'left',
             backcolor: '#22beef',
-            title: '<div class="tooltip-menu">' +
-            '<h5>Wie oft tretten Verbindungsprobleme auf?</h5>' +
-            '<ul class="tooltip-rating-list">' +
-            '<li><strong>1 Stern:</strong> Ständig</li>' +
-            '<li><strong>2 Sterne:</strong> Häufig</li>' +
-            '<li><strong>3 Sterne:</strong> Gelegentlich</li>' +
-            '<li><strong>4 Sterne:</strong> Selten</li>' +
-            '<li><strong>5 Sterne:</strong> Nie</li>' +
-            '</ul>' +
-            '</div>'
+            title: ui.rating.newRating.tooltip.availability.html()
         });
 
         ui.rating.newRating.criteria.service.next().LiteTooltip({
@@ -371,16 +355,7 @@ define(['countable'], function(Countable) {
             margin: 5,
             textalign: 'left',
             backcolor: '#22beef',
-            title: '<div class="tooltip-menu">' +
-            '<h5>Wie würden Sie den Service benoten?</h5>' +
-            '<ul class="tooltip-rating-list">' +
-            '<li><strong>1 Stern:</strong> Schlecht</li>' +
-            '<li><strong>2 Sterne:</strong> Ausreichend</li>' +
-            '<li><strong>3 Sterne:</strong> Befriedigend</li>' +
-            '<li><strong>4 Sterne:</strong> Gut</li>' +
-            '<li><strong>5 Sterne:</strong> Sehr gut</li>' +
-            '</ul>' +
-            '</div>'
+            title: ui.rating.newRating.tooltip.service.html()
         });
 
         ui.rating.newRating.criteria.speechquality.next().LiteTooltip({
@@ -389,16 +364,7 @@ define(['countable'], function(Countable) {
             margin: 5,
             textalign: 'left',
             backcolor: '#22beef',
-            title: '<div class="tooltip-menu">' +
-            '<h5>Wie oft tretten Unterbrechungen bei Telefonaten auf?</h5>' +
-            '<ul class="tooltip-rating-list">' +
-            '<li><strong>1 Stern:</strong> Ständig</li>' +
-            '<li><strong>2 Sterne:</strong> Häufig</li>' +
-            '<li><strong>3 Sterne:</strong> Gelegentlich</li>' +
-            '<li><strong>4 Sterne:</strong> Selten</li>' +
-            '<li><strong>5 Sterne:</strong> Nie</li>' +
-            '</ul>' +
-            '</div>'
+            title: ui.rating.newRating.tooltip.speechquality.html()
         });
 
         ui.rating.newRating.criteria.streaming.next().LiteTooltip({
@@ -407,16 +373,7 @@ define(['countable'], function(Countable) {
             margin: 5,
             textalign: 'left',
             backcolor: '#22beef',
-            title: '<div class="tooltip-menu">' +
-            '<h5>Wie oft und wie lange tretten Unterbrechungen beim Videostreaming auf?</h5>' +
-            '<ul class="tooltip-rating-list">' +
-            '<li><strong>1 Stern:</strong> Ständig</li>' +
-            '<li><strong>2 Sterne:</strong> Oft und lang</li>' +
-            '<li><strong>3 Sterne:</strong> Oft und kurz</li>' +
-            '<li><strong>4 Sterne:</strong> Selten und kurz</li>' +
-            '<li><strong>5 Sterne:</strong> Nie</li>' +
-            '</ul>' +
-            '</div>'
+            title: ui.rating.newRating.tooltip.streaming.html()
         });
 
         ui.rating.newRating.criteria.gaming.next().LiteTooltip({
@@ -425,16 +382,7 @@ define(['countable'], function(Countable) {
             margin: 5,
             textalign: 'left',
             backcolor: '#22beef',
-            title: '<div class="tooltip-menu">' +
-            '<h5>Welchen durchschnittlichen Ping erreichen Sie bei Online-Spielen?</h5>' +
-            '<ul class="tooltip-rating-list">' +
-            '<li><strong>1 Stern:</strong> Über 200</li>' +
-            '<li><strong>2 Sterne:</strong> 120 bis 200ms</li>' +
-            '<li><strong>3 Sterne:</strong> 80 bis 120ms</li>' +
-            '<li><strong>4 Sterne:</strong> 50 bis 80ms</li>' +
-            '<li><strong>5 Sterne:</strong> Bis 50ms</li>' +
-            '</ul>' +
-            '</div>'
+            title: ui.rating.newRating.tooltip.gaming.html()
         });
 
         // Submit Button
