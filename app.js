@@ -13,4 +13,5 @@ architect.createApp(config, function(err, app) {
 
 process.on('SIGINT', function() {
     process.exit(0);
+
 });
