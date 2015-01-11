@@ -35,7 +35,8 @@ module.exports = {
         host: 'smtp.gmail.com',
         port: 465,
         user: 'hammerschmidt.webservices@gmail.com',
-        password: 'a89t]QB4hpTnr'
+        password: 'a89t]QB4hpTnr',
+        debug: false
     }
 
 };

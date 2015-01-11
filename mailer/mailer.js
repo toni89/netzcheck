@@ -35,6 +35,7 @@ modules.mailer = nodemailer.createTransport(smtpTransport({
     host: config.email.host,
     port: config.email.port,
     secure: true,
+    debug: config.email.debug,
     auth: {
         user: config.email.user,
         pass: config.email.password
