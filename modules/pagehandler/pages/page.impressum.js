@@ -13,7 +13,8 @@ module.exports = {
             'meta': {
                 'title': 'Impressum',
                 'description': '',
-                'keywords': ''
+                'keywords': '',
+                'robots': 'noindex,follow'
             }
         });
     }

@@ -8,35 +8,15 @@
                 /* Scripts */
                 'jquery',
                 'bootstrap',
-                'feedback',
-                'geo',
 
                 /* Custom Stylesheet */
                 'css!defaultcss'
+            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap) {
 
 
-            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, feedback, geo, defaultCss) {
-
-                var baseUrl = '{{{baseUrl}}}';
-
-                $(document).ready(function() {
-
-                    $('.fb-form').feedback(baseUrl + '/api/social/feedback');
-
-                    $('#search-input').autocomplete();
-
-                    $('.cg-form').checkGeodata(
-                            function OnSuccess(address) {
-                                document.location.href = baseUrl + '/check/' + encodeURI(address);
-                            }, function OnError() {
-                                // TODO: alert popup oder so hinzufügen
-                                alert('Adresse nicht vorhanden');
-                            });
-                });
-            });
-
+            }
+    );
 </script>
-
 
 {{> navbar }}
 
@@ -52,6 +32,9 @@
                         <strong>Inhalte von Bewertungen und Kommentaren</strong>
                         <p>
                             Besucher und Mitglieder von netzcheck.org verpflichten sich, keine gesetzeswidrigen Bewertungen und Beiträge, insbesondere nicht solche Inhalte, welche gegen gesetzliche Bestimmungen über den Jugendschutz, Persönlichkeitsrechte, Urheberrechte oder sonstige Schutzrechte Dritter verstoßen, zur Gewalt aufrufen oder Kindesmissbrauch verherrlichen, in das Portal oder Forum einzustellen. Dasselbe gilt für hetzerische, diskriminierende, rassistische, Gewalt verherrlichende oder sonst in irgendeiner Form strafrechtlich relevante Inhalte. Es ist ebenfalls nicht zulässig, Links auf Websites mit oben genannten Inhalten einzustellen.
+                        </p>
+                        <p>
+                            Darüber hinaus ist jedes Mitglied verpflichtet, in den von ihm abgegebenen Bewertungen ausschließlich wahrheitsgemäße Angaben zu machen und die gesetzlichen Bestimmungen einzuhalten. Die von den Mitgliedern abgegebenen Bewertungen müssen sachlich gehalten sein und dürfen keine Schmähkritik enthalten.
                         </p>
 
                         <strong>Werbefreiheit und Urheberrecht</strong>

@@ -16,9 +16,10 @@ module.exports = {
             'showNewsletter' : showNewsletter,
 
             'meta': {
-                'title': 'dsl-exp',
-                'description': '',
-                'keywords': ''
+                'title': 'netzcheck.org: Finde den besten Internetanschluss in deiner Umgebung',
+                'description': 'Schon mal einen Vertrag  mit dem falschen Internet-Anbieter abgeschlossen? Vergleiche und bewerte LTE / Funk  sowie DSL-Anbieter für deine Umgebung.',
+                'keywords': 'netcheck, dsl-check, lte-check, umts-check, funk-check',
+                'robots': 'index, follow'
             }
         });
     }

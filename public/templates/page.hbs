@@ -3,12 +3,14 @@
     <head lang="de">
         <title>{{meta.title}}</title>
 
-        <meta name="description" content="{{meta.description}}">
-        <meta name="keywords" content="{{meta.keywords}}">
-        <meta name="robots" content="index,follow">
+        <meta name="description" content="{{meta.description}}"/>
+        <meta name="keywords" content="{{meta.keywords}}"/>
+        <meta name="robots" content="{{meta.robots}}"/>
+        <meta name="language" content="de"/>
 
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
         <script src="{{baseUrl}}/scripts/vendor/requirejs/require.js"></script>
@@ -21,7 +23,15 @@
         <![endif]-->
     </head>
     <body>
-        <div id="wrap">
+
+        <div class="sb-slidebar sb-right sb-width-thin">
+            <ul id="sb-menu">
+                <li><a href="{{baseUrl}}/">Startseite</a></li>
+                <li><a href="{{baseUrl}}/forum" target="_blank">Forum</a></li>
+            </ul>
+        </div>
+
+        <div id="wrap" class="sb-site-container">
             {{{body}}}
             {{> footer}}
         </div>

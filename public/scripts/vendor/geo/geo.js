@@ -1,31 +1,21 @@
-(function($) {
+(function(ge) {
 
-    $.fn.autocomplete= function() {
+    ge.geocomplete = function(el) {
 
-        this.each(function() {
-            new window.google.maps.places.Autocomplete(this ,{ types: ['geocode'] });
-        });
-
-        return this;
+        new window.google.maps.places.Autocomplete(el ,{ types: ['geocode'] });
     };
 
 
-    $.fn.checkGeodata = function(success, error) {
+    ge.checkGeodata = function(form, success, error) {
 
-
-        this.each(function() {
-            var form = $(this);
-
-            var addressInput = form.find('.cg-address');
-
-            form.submit(function(el) {
+            addEvent(form, 'submit', function(el) {
                 el.preventDefault();
 
-                var address = addressInput.val();
+                var addressInput = this.querySelectorAll('.cg-address')[0];
 
-                if(address != '') {
+                if(addressInput && addressInput.value != '') {
                     var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({'address': address}, function(results, status) {
+                    geocoder.geocode({'address': addressInput.value}, function(results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
                             success(results[0].formatted_address);
                         }else {
@@ -34,8 +24,26 @@
                     });
                 }
             });
-        });
 
-        return this
     };
-})(jQuery);
+
+    function addEvent(el, eventName, callback) {
+        if(el && callback) {
+            if(el == '[object NodeList]') {
+                var len = el.length;
+                for(var i=0; i<len; i++) {
+                    addEventHandler(el[i], eventName, callback);
+                }
+            } else {
+                addEventHandler(el, eventName, callback);
+            }
+        }
+    }
+
+    function addEventHandler(elem, eventType, handler) {
+        if (elem.addEventListener)
+            elem.addEventListener (eventType, handler, false);
+        else if (elem.attachEvent)
+            elem.attachEvent ('on' + eventType, handler);
+    }
+})(this.geo = this.geo || {});

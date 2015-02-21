@@ -1,4 +1,4 @@
-define(function() {
+define(['vanilla', 'rotator'],function(vanillaJS, rotatorJs) {
 
     var options = {
         baseUrl: ''
@@ -6,72 +6,96 @@ define(function() {
 
     var ui = {
 
-        success: $('#modal-footer-newsletter-success'),
+        success: vanilla.byId('modal-footer-newsletter-success'),
 
         input: {
-            modal: $('#modal-footer-newsletter'),
+            modal: vanilla.byId('modal-footer-newsletter'),
 
-            email: $('#mfn-email'),
-            submit: $('#mfn-submit'),
+            email: vanilla.byId('mfn-email'),
+            submit: vanilla.byId('mfn-submit'),
 
             messages: {
-                formatError: $('#mfn-formaterror'),
-                connectionError: $('#mfn-connectionerror')
+                formatError: vanilla.byId('mfn-formaterror'),
+                connectionError: vanilla.byId('mfn-connectionerror')
             }
-        }
+        },
+
+        facebook: vanilla.byClass('social-fb '),
+        googleplus: vanilla.byClass('social-gplus'),
+        twitter: vanilla.byClass('social-twitter ')
     };
 
 
     var init = function(_options) {
         options = _options;
 
-        // Submit button
-        ui.input.submit.click(function (el) {
+
+        // Social buttons
+
+        vanilla.onClick(ui.facebook , function() {
+            popup('https://www.facebook.com/netzcheck.org');
+            return false;
+        });
+
+
+        vanilla.onClick(ui.googleplus , function() {
+            popup('https://plus.google.com/116301334318173767639/');
+            return false;
+        });
+
+        vanilla.onClick(ui.twitter , function() {
+            popup('https://twitter.com/netzcheckorg');
+            return false;
+        });
+
+
+
+        // On Newsletter popup submit
+
+        vanilla.onClick(ui.input.submit, function(el) {
             el.preventDefault();
 
-            ui.input.submit.resetButton();
-            ui.input.submit.rotate();
+            rotator.resetButton(ui.input.submit);
+            rotator.rotate(ui.input.submit);
 
-            var email = ui.input.email.val();
+            var email = vanilla.getVal(ui.input.email);
 
             if(!validateEmail(email)) {
-                ui.input.submit.fail();
-                ui.input.messages.formatError.show();
+                rotator.fail(ui.input.submit);
+                vanilla.show(ui.input.messages.formatError);
             } else {
-                ui.input.messages.formatError.hide();
+                vanilla.hide(ui.input.messages.formatError);
 
                 sendForm(email, function(error, status) {
 
                     if(error || !status || status.message != 'subscription saved') {
-                        ui.input.submit.fail();
-                        ui.input.messages.connectionError.show();
+                        vanilla.show(ui.input.messages.connectionError);
+                        rotator.fail(ui.input.submit);
                     } else {
-                        ui.input.messages.connectionError.hide();
-
-                        ui.input.submit.done(function() {
-                            ui.input.email.val('');
-                            ui.input.modal.modal('hide');
-                            ui.success.modal('show');
+                        vanilla.hide(ui.input.messages.connectionError);
+                        rotator.done(ui.input.submit, function() {
+                            vanilla.setVal(ui.input.email, '');
+                            $(ui.input.modal).modal('hide');
+                            $(ui.success).modal('show');
                         });
+
                     }
                 })
             }
 
-
             return false;
         });
-
     };
 
 
     var show = function() {
-        ui.input.modal.modal('show');
+        $(ui.input.modal).modal('show');
     };
 
     function sendForm(email, callback) {
         $.ajax({
             type: 'POST',
-            url: options.baseUrl + '/api/newsletter/subscribe',
+            url: options.baseUrl + '/api1/newsletter/subscribe',
             dataType: 'json',
             timeout: 5000,
             data: {
@@ -93,6 +117,9 @@ define(function() {
         return re.test(email);
     }
 
+    function popup(url) {
+        window.open(url,'_blank');
+    }
 
     return {
         init: init,

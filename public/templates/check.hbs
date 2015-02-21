@@ -13,6 +13,8 @@
 
         /* Scripts */
         'jquery',
+        'vanilla',
+        'fastclick',
         'bootstrap',
         'velocityjs',
         'chosen',
@@ -24,35 +26,31 @@
         'markerWithLabel',
         'dRating',
         'smoothscroll',
-        'feedback',
-        'icheck',
-        'geo',
         'rotator',
-        'expose',
 
         /* Custom Stylesheet */
         'css!defaultcss',
 
         /* Components */
-        'page.check',
-        'module.footer-newsletter'
+        'page.check'
     ], function(
         bootstrapCss, fontawesomeCss, magicCss, chosenMinCss, chosenBootstrapCss, liteTooltipCss, ratingCss, dratingcss,
 
-        jquery, bootstrap, velocityJs, chosen, jqueryRating, liteToolTip, justGage, stickyJs, placesApi, markerWithLabel,
-        dRating, smoothScroll, feedback, icheck, geo, rotator, expose,
+        jquery, vanillaJS, fastclick, bootstrap, velocityJs, chosen, jqueryRating, liteToolTip, justGage, stickyJs,
+        placesApi, markerWithLabel, dRating, smoothScroll, rotator,
 
         defaultCss,
 
-        initPage,footerNewsletter) {
+        initPage) {
+
+            fastclick.attach(document.body, {});
 
             var formattedAddress = '{{{formattedAddress}}}';
             var address = {{{addressJSON}}};
             var providerFilter = '{{{providerFilter}}}';
             var typeFilter = '{{{typeFilter}}}';
             var baseUrl = '{{{baseUrl}}}';
-            var showFeedback = '{{showFeedback}}';
-            var showNewsletter = '{{showNewsletter}}';
+            var showNewsletter = '{{showNewsletter2}}';
 
 
             var options = {
@@ -61,41 +59,18 @@
                 formattedAddress: '{{{formattedAddress}}}',
                 typeFilter: typeFilter,
                 providerFilter: providerFilter,
-                showFeedback: showFeedback,
                 showNewsletter: showNewsletter
             };
+
 
                 $(document).ready(function() {
                     initPage(options);
 
-                    footerNewsletter.init({
-                        baseUrl: baseUrl
-                    });
-
-
-                    $('.fb-form').feedback(baseUrl + '/api/social/feedback');
-
-                    $('#search-input').autocomplete();
-
-                    $('.cg-form').checkGeodata(
-                            function OnSuccess(address) {
-                                document.location.href = baseUrl + '/check/' + encodeURI(address);
-                            }, function OnError() {
-                                // TODO: alert popup oder so hinzufügen
-                                alert('Adresse nicht vorhanden');
-                            });
+                    vanilla.touchfix('btn');
                 });
 
     });
 
-    function touchfix()
-    {
-        var el = this;
-        var par = el.parentNode;
-        var next = el.nextSibling;
-        par.removeChild(el);
-        setTimeout(function() {par.insertBefore(el, next);}, 0)
-    }
 </script>
 
 
@@ -183,8 +158,20 @@
                         <!-- company info -->
                         <div class="row" id="company-container" style="display: none;">
                             <div class="col-sm-6 col-md-6">
-                            <table class="company-table">
-                                <tbody>
+                                <div id="image-container" data-bg="fff">
+                                    <img id="company-logo" src="" title="" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+
+
+                                <table class="company-table">
+                                    <tbody>
+                                    <tr>
+                                        <td>Bewertung</td>
+                                        <td id="company-rating"></td>
+                                    </tr>
                                     <tr>
                                         <td>Firma</td>
                                         <td id="company-name"></td>
@@ -197,23 +184,16 @@
                                         <td>Sitz</td>
                                         <td id="company-location"></td>
                                     </tr>
-
-                                </tbody>
-
-                            </table>
-                            </div>
-
-                            <div class="col-sm-6 col-md-6">
-                                <table class="company-table">
-                                    <tbody>
                                     <tr>
                                         <td>Mitarbeiter</td>
                                         <td id="company-employees"></td>
                                     </tr>
+<!--
                                     <tr>
                                         <td>Umsatz</td>
                                         <td id="company-salesvolume"></td>
                                     </tr>
+-->
                                     <tr>
                                         <td>Internet</td>
                                         <td id="company-url"></td>
@@ -313,6 +293,7 @@
                                     <div class="head">
                                         <div>#</div>
                                         <div>Name</div>
+                                        <div class="center">Geschwindigkeit</div>
                                         <div class="center">Bewertung</div>
                                         <div></div>
                                     </div>
@@ -414,6 +395,10 @@
                                             <li class="list-group-item"><input class="rating" type="number" id="newrating_streaming"> Streaming</li>
                                             <li class="list-group-item"><input class="rating" type="number" id="newrating_gaming"> Gaming</li>
                                         </ul>
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" value="1" id="newrating-tos">
+                                        <label for="newrating-tos">Ich akzeptiere die <a href="{{baseUrl}}/nutzungsbedingungen" target="_blank">Nutzungsbedingungen</a> <span id="newrating-tos-error" class="form-validation-error" style="display: none;"><- Einverstanden?</span></label>
+                                    </div>
                                 </div>
                                 {{> check-tooltips}}
                             </div>

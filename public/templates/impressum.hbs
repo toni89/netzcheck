@@ -1,42 +1,21 @@
 <script>
     require(
-    [
-        /* Stylesheets */
-        'css!bootstrapcss',
-        'css!fontawesomecss',
+            [
+                /* Stylesheets */
+                'css!bootstrapcss',
+                'css!fontawesomecss',
 
-        /* Scripts */
-        'jquery',
-        'bootstrap',
-        'feedback',
-        'geo',
+                /* Scripts */
+                'jquery',
+                'bootstrap',
 
-        /* Custom Stylesheet */
-        'css!defaultcss'
-
-
-    ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, feedback, geo, defaultCss) {
-
-        var baseUrl = '{{{baseUrl}}}';
-
-        $(document).ready(function() {
-
-            $('.fb-form').feedback(baseUrl + '/api/social/feedback');
-
-            $('#search-input').autocomplete();
-
-            $('.cg-form').checkGeodata(
-                    function OnSuccess(address) {
-                        document.location.href = baseUrl + '/check/' + encodeURI(address);
-                    }, function OnError() {
-                        // TODO: alert popup oder so hinzufügen
-                        alert('Adresse nicht vorhanden');
-                    });
-        });
-    });
-
+                /* Custom Stylesheet */
+                'css!defaultcss'
+            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap) {
+                
+            }
+    );
 </script>
-
 
 {{> navbar }}
 
@@ -55,7 +34,6 @@
                         86159 Augsburg<br><br>
                         <strong>Verantwortlicher:</strong><br>
                         Anton Hammerschmidt<br>
-                        Telefon: +49 177 654 85 35<br>
                         E-Mail: info<i class="fa fa-at"></i>netzcheck.org<br>
                         USt.-IdNr: DE295567093
                     </div>

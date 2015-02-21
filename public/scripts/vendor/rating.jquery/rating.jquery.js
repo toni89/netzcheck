@@ -35,7 +35,7 @@
 
     // The actual plugin constructor
     function Plugin (element, options) {
-        this.element = element;
+        this.$element = $(element);
         this.settings = $.extend({}, defaults, options);
         this._defaults = defaults;
         this._name = pluginName;
@@ -44,7 +44,7 @@
 
     Plugin.prototype = {
         init: function () {
-            var $el = $(this.element),
+            var $el = this.$element,
                 self = this,
                 $container,
                 star,
@@ -54,11 +54,13 @@
 
             this.value = $el.val() ? parseInt($el.val(), 10) : 0;
 
-            $el.on('invalid', function (e) {
-                e.preventDefault();
-                $container.tipi('text', self.settings.validationMessage)
-                    .tipi('show');
+            $el.on('change', function () {
+              console.log('change!');
+              var val = (+$el.val());
+              self.value = val;
+              highlightStars(val);
             });
+
 
             // highlight the stars in the container
             function highlightStars(current) {
@@ -78,9 +80,7 @@
             }
 
             // create DOM elements
-            $container = $('<div class="rating-container" />')
-            // instantiate tipi on the container
-                .tipi();
+            $container = $('<div class="rating-container" />');
 
             if(self.settings.inline) {
                 $container.css('display', 'inline-block');
@@ -107,10 +107,7 @@
                 highlightStars(val);
             }).click(function () {
                 var val = parseInt($(this).attr('rating-value'), 10);
-                self.value = val;
                 $el.val(val).trigger('change');
-                // if tipi was open because of an error, hide it!
-                $container.tipi('hide');
             });
 
             $container.mouseleave(function () {
@@ -130,8 +127,16 @@
             return this;
         },
 
-        val: function () {
-            return this.value;
+        val: function (value) {
+            if(!value) {
+                return this.value;
+            }
+
+            if(value < 1 || value > 5) {
+                throw 'Invalid value, rating can only range from 1 to 5';
+            }
+
+            this.$element.val(value).trigger('change');
         },
 
         container: function () {

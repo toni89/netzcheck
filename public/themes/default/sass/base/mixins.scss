@@ -87,3 +87,10 @@
   -webkit-align-items: $align;
   align-items: $align;
 }
+
+@mixin flex-justify($direction: center) {
+  -webkit-box-pack: $direction;
+  -moz-box-pack: $direction;
+  box-pack: $direction;
+  justify-content: $direction;
+}

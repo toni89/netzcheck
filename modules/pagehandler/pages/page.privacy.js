@@ -13,7 +13,8 @@ module.exports = {
             'meta': {
                 'title': 'Datenschutzerklärung',
                 'description': '',
-                'keywords': ''
+                'keywords': '',
+                'robots': 'noindex,follow'
             }
         });
     }

@@ -19,25 +19,19 @@ module.exports = {
         var showNewsletter = req.query.newsletter == '1' || '';
 
         var reqUrl = url.parse(req.url);
+        var keywords = '';
+        var connection = '';
         var titlePrefix = '';
         var titlePostfix = '';
 
 
-        if(typeFilter == 'dsl') {
-            titlePrefix = 'DSL Check';
-        } else if(typeFilter == 'mobile') {
-            titlePrefix = 'UMTS & LTE Check'
-        } else if(typeFilter == 'hotspot') {
-            titlePrefix = 'WLAN & Funk Check'
-        } else {
-            titlePrefix = 'Netzcheck';
-        }
+
 
         try {
 
             modules.geodata.lookup(formattedAddress, function (error, result) {
                 if (error) {
-                    res.render('address-unknown');
+                    res.render('address-unknown', { meta: { title: 'Adresse unbekannt', robots: 'noindex,nofollow' }});
                     console.log("pages/check: Can't get geodata");
                 } else if (result[0]) {
                     var geodata = result[0];
@@ -71,7 +65,35 @@ module.exports = {
                                                 ratings = results;
                                             }
 
+
+                                            if(typeFilter == 'dsl') {
+                                                titlePrefix = 'DSL Check';
+                                                keywords = 'dsl-check, dsl, ' + geodata.city;
+                                                connection = 'DSL'
+                                            } else if(typeFilter == 'mobile') {
+                                                titlePrefix = 'UMTS & LTE Check';
+                                                keywords = 'umts-lte-check, umts-check, lte-check, ' + geodata.city;
+                                                connection = 'UMTS/LTE';
+                                            } else if(typeFilter == 'hotspot') {
+                                                titlePrefix = 'WLAN & Funk Check';
+                                                keywords = 'wlan-funk-check, wlan-check, funk-check, ' + geodata.city;
+                                                connection = 'WLAN/Funk';
+                                            } else {
+                                                titlePrefix = 'Netzcheck';
+                                                keywords = 'netzcheck-'+geodata.city+', '+geodata.city;
+                                                connection = 'Internet';
+                                            }
+
+
                                             titlePostfix = geodata.streetName + (geodata.streetNumber ? ' ' + geodata.streetNumber : '') + ', ' + geodata.city;
+                                            var description = '';
+                                            if(results.length > 0) {
+                                                description = results.length +' Standort-Bewertungen für ' + geodata.streetName + ', ' + geodata.city +' gefunden.'
+                                                + ' Vergleichen und wählen Sie den richtigen ' + connection + "-Anbieter für Ihre Umgebung.";
+                                            }else{
+                                                description = 'Schon mal einen Vertrag  mit dem falschen ' + connection + '-Provider abgeschlossen? Bewerten und vergleichen Sie ihren Internet-Anschluss für '
+                                                + geodata.streetName + ', ' + geodata.city+ '.';
+                                            }
 
                                             res.render('check', {
                                                 'baseUrl': modules.server.options.baseUrl,
@@ -87,23 +109,24 @@ module.exports = {
                                                 'ratings': ratings,
                                                 'ratingsRAW': JSON.stringify(ratings),
                                                 'showFeedback' : showFeedback,
-                                                'showNewsletter' : showNewsletter,
+                                                'showNewsletter2' : showNewsletter,
 
                                                 /* Meta */
                                                 'meta': {
                                                     'title': titlePrefix + ': ' + titlePostfix,
-                                                    'description': '', // TODO: Insert Description & Keywords
-                                                    'keywords': ''
+                                                    'description': description,
+                                                    'keywords': keywords,
+                                                    'robots': 'index, follow'
                                                 }
                                             });
                                         }
                                     });
                             }
                         } else {
-                            res.render('address-invalid');
+                            res.render('address-invalid', { meta: { title: 'Adresse ungenau', robots: 'noindex,nofollow' }});
                         }
                     } else {
-                        res.render('address-invalid-country');
+                        res.render('address-invalid-country', { meta: { title: 'Land nicht verfügbar', robots: 'noindex,nofollow' }});
                     }
 
 
@@ -111,7 +134,7 @@ module.exports = {
             });
 
         } catch(error) {
-            res.render('500');
+            res.render('500',{ meta: { title: 'Fehler 505', robots: 'noindex,nofollow' }});
         }
     }
 

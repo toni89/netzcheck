@@ -71,7 +71,7 @@
   border-bottom: 13px solid transparent;
 }
 
-@media(max-width:510px){
+@media(max-width:767px){
   #logo {
     height: 60px;
   }
@@ -130,8 +130,12 @@
   color: #fff;
 }
 
+#search-submit:active {
+  @include box-shadow(inset 0 1px 6px rgba(0, 0, 0, 0.2));
+}
 
-@media(max-width:570px){
+
+@media(max-width:767px){
   .search {
     margin-left: 115px;
     width: 190px;
@@ -141,7 +145,7 @@
 @media(max-width:375px){
   .search {
     margin-left: 115px;
-    width: 135px;
+    width: 180px;
   }
 }
 

@@ -15,11 +15,11 @@ module.exports = {
 
     availability : [
         'Keine Daten vorhanden', // 0
-        'Es tretten <strong>ständig</strong> Verbindungsprobleme auf', // 1
-        'Es tretten <strong>häufig</strong> Verbindungsprobleme auf', // 2
-        'Es tretten <strong>gelegentlich</strong> Verbindungsprobleme auf', // 3
-        'Es tretten <strong>selten</strong> Verbindungsprobleme auf', // 4
-        'Es tretten <strong>keine</strong> Verbindungsprobleme auf' // 5
+        'Es treten <strong>ständig</strong> Verbindungsprobleme auf', // 1
+        'Es treten <strong>häufig</strong> Verbindungsprobleme auf', // 2
+        'Es treten <strong>gelegentlich</strong> Verbindungsprobleme auf', // 3
+        'Es treten <strong>selten</strong> Verbindungsprobleme auf', // 4
+        'Es treten <strong>keine</strong> Verbindungsprobleme auf' // 5
     ],
 
     service: [
@@ -33,11 +33,11 @@ module.exports = {
 
     speechquality: [
         'Keine Daten vorhanden', // 0
-        'Es tretten <strong>ständig</strong> Unterbrechungen auf', // 1
-        'Es tretten <strong>häufig</strong> Unterbrechungen auf', // 2
-        'Es tretten <strong>gelegentlich</strong> Unterbrechungen auf', // 3
-        'Es tretten <strong>selten</strong> Unterbrechungen auf ', // 4
-        'Es tretten <strong>keine</strong> Unterbrechungen auf' // 5
+        'Es treten <strong>ständig</strong> Unterbrechungen auf', // 1
+        'Es treten <strong>häufig</strong> Unterbrechungen auf', // 2
+        'Es treten <strong>gelegentlich</strong> Unterbrechungen auf', // 3
+        'Es treten <strong>selten</strong> Unterbrechungen auf ', // 4
+        'Es treten <strong>keine</strong> Unterbrechungen auf' // 5
     ],
 
     streaming: [
@@ -52,10 +52,10 @@ module.exports = {
     gaming: [
         'Keine Daten vorhanden', // 0
         'Mit einem Ping von <strong>über 200ms</strong> sind Onlinespiele stark verzögert spielbar', // 1
-        'Mit einem Ping von <strong>120 - 200ms</strong> sind Onlinespiele eingeschränkt spielbar', // 2
-        'Mit einem Ping von <strong>80 bis 120ms</strong> sind Onlinespiele merklich verzögert spielbar', // 3
-        'Mit einem Ping von <strong>50 bis 80ms</strong> sind Onlinespiele leicht verzögert spielbar', // 4
-        'Mit einem Ping <strong>bis 50ms</strong> sind alle Onlinespiele problemlos spielbar' // 5
+        'Mit einem Ping von <strong>130 - 200ms</strong> sind Onlinespiele eingeschränkt spielbar', // 2
+        'Mit einem Ping von <strong>90 bis 130ms</strong> sind Onlinespiele merklich verzögert spielbar', // 3
+        'Mit einem Ping von <strong>60 bis 90ms</strong> sind Onlinespiele leicht verzögert spielbar', // 4
+        'Mit einem Ping <strong>bis 60ms</strong> sind alle Onlinespiele problemlos spielbar' // 5
     ]
 
 

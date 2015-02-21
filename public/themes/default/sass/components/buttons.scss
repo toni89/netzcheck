@@ -142,8 +142,11 @@
 
   .social-text {
     position: relative;
-    top: -3px;
     padding-left: 10px;
+  }
+
+  .t3 {
+    top: -3px;
   }
 
   .social-icon {
@@ -197,7 +200,7 @@
 /* --- col-md --- */
 @media(min-width:992px) {
   .social-btn .social-icon {
-    padding: 5px 0;
+    /*padding: 5px 0;*/
     min-width: 35px;
   }
 

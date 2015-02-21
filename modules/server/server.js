@@ -11,6 +11,7 @@ module.exports = function(options, imports, register) {
 
     var http = express();
 
+    http.use('/images',express.static('./public/images'));
     http.use('/scripts',express.static('./public/scripts'));
     http.use('/themes',express.static('./public/themes'));
     http.use(bodyparser.json());

@@ -8,35 +8,15 @@
                 /* Scripts */
                 'jquery',
                 'bootstrap',
-                'feedback',
-                'geo',
 
                 /* Custom Stylesheet */
                 'css!defaultcss'
+            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap) {
 
 
-            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, feedback, geo, defaultCss) {
-
-                var baseUrl = '{{{baseUrl}}}';
-
-                $(document).ready(function() {
-
-                    $('.fb-form').feedback(baseUrl + '/api/social/feedback');
-
-                    $('#search-input').autocomplete();
-
-                    $('.cg-form').checkGeodata(
-                            function OnSuccess(address) {
-                                document.location.href = baseUrl + '/check/' + encodeURI(address);
-                            }, function OnError() {
-                                // TODO: alert popup oder so hinzufügen
-                                alert('Adresse nicht vorhanden');
-                            });
-                });
-            });
-
+            }
+    );
 </script>
-
 
 {{> navbar }}
 
@@ -56,7 +36,7 @@
                 <button class="social-btn social-fb"><span class="fa fa-facebook-square social-icon"></span><span class="social-text">Facebook</span></button>
                 <button class="social-btn social-gplus"><span class="fa fa-google-plus social-icon"></span><span class="social-text">Google+</span></button>
                 <button class="social-btn social-twitter"><span class="fa fa-twitter social-icon"></span><span class="social-text">Twitter</span></button>
-                <button class="social-btn social-linkedin"><span class="fa fa-linkedin social-icon"></span><span class="social-text">LinkedIn</span></button>
+                <!--<button class="social-btn social-linkedin"><span class="fa fa-linkedin social-icon"></span><span class="social-text">LinkedIn</span></button>-->
             </div>
             </div>
         </div>

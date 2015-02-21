@@ -6,14 +6,20 @@ define('placesapi', ['async!http://maps.googleapis.com/maps/api/js?libraries=pla
 require.config({
     paths: {
         'page.check': '../scripts/libs/page.check',
+
         'module.footer-newsletter': '../scripts/libs/module.footer-newsletter',
 
         async: '../scripts/vendor/requirejs-plugins/src/async',
+
         geo: '../scripts/vendor/geo/geo',
 
         jquery: [
             '../scripts/vendor/jquery/dist/jquery-2.1.1.min',
             '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min'
+        ],
+
+        slidebars: [
+            '../scripts/vendor/Slidebars/distribution/0.10.2/slidebars.min'
         ],
 
         markerWithLabel: [
@@ -32,8 +38,6 @@ require.config({
         raphael: [
             '../scripts/vendor/justgage/raphael.2.1.0.min'
         ],
-
-        icheck: ['../scripts/vendor/icheck/icheck.min'],
 
         chosen: [
             '../scripts/themes/js/plugins/chosen/chosen.jquery.min'
@@ -56,6 +60,10 @@ require.config({
             '../scripts/vendor/velocityjs/velocity.min'
         ],
 
+        fastclick: [
+            '../scripts/vendor/fastclick/lib/fastclick'
+        ],
+
         countable: [
             '../scripts/vendor/Countable/Countable'
         ],
@@ -66,6 +74,10 @@ require.config({
 
         validatejs: [
             '../scripts/vendor/validatejs/jquery.validate.min'
+        ],
+
+        vanilla: [
+            '../scripts/vendor/vanilla/vanilla'
         ],
 
         dRating: ['../scripts/vendor/display-rating/display-rating'],
@@ -79,11 +91,11 @@ require.config({
         ],
 
         rotator: [
-            '../scripts/vendor/rotator/jquery.rotator'
+            '../scripts/vendor/rotator/rotator'
         ],
 
         expose: [
-            '../scripts/vendor/expose/jquery.expose'
+            '../scripts/vendor/expose/expose'
         ],
 
         // Theme - CSS
@@ -105,6 +117,8 @@ require.config({
         ratingcss: ['../scripts/vendor/rating.jquery/rating-min'],
 
         dratingcss: ['../scripts/vendor/display-rating/display-rating'],
+
+        slidebarscss: ['../scripts/vendor/Slidebars/distribution/0.10.2/slidebars.min'],
 
         minoral: ['../scripts/themes/css/minoral'],
 
@@ -130,19 +144,11 @@ require.config({
         },
 
         'geo': {
-            deps: ['jquery','placesapi']
-        },
-
-        'parsley': {
-            deps: ['jquery']
+            deps: ['placesapi']
         },
 
         'markerWithLabel' : {
             deps: ['placesapi']
-        },
-
-        'dRating': {
-            deps: ['jquery']
         },
 
         'stickyjs': {
@@ -189,15 +195,7 @@ require.config({
             deps: ['jquery']
         },
 
-        'icheck' : {
-            deps: ['jquery']
-        },
-
-        'rotator' : {
-            deps: ['jquery']
-        },
-
-        'expose' : {
+        'slidebars' : {
             deps: ['jquery']
         },
 

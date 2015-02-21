@@ -19,11 +19,34 @@ module.exports = {
             if(url) {
                 res.redirect(redirectCode, url);
             } else {
-                res.render('500');
+                res.render('500', { meta: { title: 'Fehler 500', robots: 'noindex,nofollow' }});
             }
 
         } else {
-            res.render('500');
+            res.render('500', { meta: { title: 'Fehler 500', robots: 'noindex,nofollow' }});
+        }
+
+    },
+
+    redirectCompanyHomepage: function(req, res)  {
+        var providerSlug = req.params.providerSlug;
+
+        if(providerSlug) {
+            var url = '';
+
+            if(redirectList['homepage'].hasOwnProperty(providerSlug)) {
+                url = redirectList['homepage'][providerSlug];
+            }
+
+
+            if(url) {
+                res.redirect(redirectCode, url);
+            } else {
+                res.render('500', { meta: { title: 'Fehler 500', robots: 'noindex,nofollow' }});
+            }
+
+        } else {
+            res.render('500', { meta: { title: 'Fehler 500', robots: 'noindex,nofollow' }});
         }
 
     },
@@ -38,10 +61,10 @@ module.exports = {
             if(url) {
                 res.redirect(redirectCode, url);
             } else {
-                res.render('500');
+                res.render('500', { meta: { title: 'Fehler 500', robots: 'noindex,nofollow' }});
             }
         } else {
-            res.render('500');
+            res.render('500', { meta: { title: 'Fehler 500', robots: 'noindex,nofollow' }});
         }
 
     },
@@ -59,10 +82,10 @@ module.exports = {
             if(url) {
                 res.redirect(redirectCode, url);
             } else {
-                res.render('500');
+                res.render('500', { meta: { title: 'Fehler 500', robots: 'noindex,nofollow' }});
             }
         } else {
-            res.render('500');
+            res.render('500', { meta: { title: 'Fehler 500', robots: 'noindex,nofollow' }});
         }
     }
 
@@ -85,7 +108,8 @@ function generateRedirectList(providerList) {
     var tempRedirectList = {
         provider: {},
         plan: {},
-        availability: {}
+        availability: {},
+        homepage: {}
     };
     var provider, plan;
     var totalPlans, totalProvider;
@@ -128,9 +152,14 @@ function generateRedirectList(providerList) {
                 }
             }
 
+            if(provider.hasOwnProperty('business') && provider.business.hasOwnProperty('url') && provider.business.url.hasOwnProperty('goto')) {
+                tempRedirectList.homepage[provider.slug] = provider.business.url.goto;
+            }
+
             tempRedirectList.provider[provider.slug] = provider.affiliateUrl;
         }
     }
+
 
     return tempRedirectList;
 }

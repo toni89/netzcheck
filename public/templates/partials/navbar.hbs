@@ -1,3 +1,36 @@
+<script>
+    require(
+        ['css!slidebarscss', 'slidebars', 'geo']
+    , function(geoJs) {
+
+        var baseUrl = '{{{baseUrl}}}';
+        var searchInput = document.getElementById('search-input');
+        var searchForm = document.getElementsByClassName('cg-form');
+
+
+        $(document).ready(function() {
+
+            /* Enable autocomplete for search input */
+            geo.geocomplete(searchInput);
+
+            /* Verify input and redirect*/
+            geo.checkGeodata(searchForm,
+
+                    function OnSuccess(address) {
+                        document.location.href = baseUrl + '/check/' + encodeURI(address);
+                    },
+
+                    function OnError() {
+                        // TODO: alert popup oder so hinzufügen
+                        alert('Adresse nicht vorhanden');
+                    }
+            );
+
+            $.slidebars({ scrollLock: true });
+        });
+    });
+</script>
+
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-collapse">
@@ -8,7 +41,7 @@
             </div>
 
             <div class="action">
-                <button class="btn btn-default" ontouchend="this.onclick=touchfix"><i class="fa fa-bars"></i></button>
+                <button class="btn btn-default menu-btn sb-toggle-right" ontouchend="this.onclick=touchfix"><i class="fa fa-bars"></i></button>
             </div>
 
             <div class="search">
@@ -24,6 +57,7 @@
             </div>
 
             <ul class="nav navbar-nav">
+                <li><a href="{{baseUrl}}/">Startseite</a></li>
                 <li><a href="{{baseUrl}}/forum" target="_blank">Forum</a></li>
             </ul>
 

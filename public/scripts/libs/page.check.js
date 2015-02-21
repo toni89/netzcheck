@@ -7,8 +7,7 @@ define(['countable'], function(Countable) {
         formattedAddress: '',
         typeFilter: '',
         providerFilter: '',
-        showFeedback: false,
-        showNewsletter: false,
+        showNewsletter: false
     };
 
     var globals = {
@@ -17,10 +16,10 @@ define(['countable'], function(Countable) {
     var ui = {
         global: {
             typePills : {
-                all: $('#type-all'),
-                dsl: $('#type-dsl'),
-                mobile: $('#type-mobile'),
-                hotspot: $('#type-hotspot')
+                all: vanilla.byId('type-all'),
+                dsl: vanilla.byId('type-dsl'),
+                mobile: vanilla.byId('type-mobile'),
+                hotspot: vanilla.byId('type-hotspot')
             },
 
             showFeedbackTarget: '#footer'
@@ -35,7 +34,6 @@ define(['countable'], function(Countable) {
 
         setTypePills(options.typeFilter);
 
-        handleFeedbackOverlay(options.showFeedback);
         handleNewsletterPopup(options.showNewsletter);
 
         initRating();
@@ -65,72 +63,75 @@ define(['countable'], function(Countable) {
     ui.rating = {
 
         list: {
-            counter: $('#rating-counter'),
-            container: $('#rating-container'),
-            more: $('#rating-more')
+            counter: vanilla.byId('rating-counter'),
+            container: vanilla.byId('rating-container'),
+            more: vanilla.byId('rating-more')
         },
 
         modal : {
             reset: {
-                dialog: $('#modalInputReset'),
-                delete: $('#modalInputReset-delete')
+                dialog: vanilla.byId('modalInputReset'),
+                delete: vanilla.byId('modalInputReset-delete')
             },
             submit: {
-                dialog: $('#modalRatingSubmit'),
-                resend: $('#modalRatingSubmit-resend'),
-                missingform: $('#modalRatingSubmit-missingform'),
-                geoinput: $('#modalRatingSubmit-geoinput'),
-                notification: $('#modalRatingSubmit-notification'),
+                dialog: vanilla.byId('modalRatingSubmit'),
+                resend: vanilla.byId('modalRatingSubmit-resend'),
+                missingform: vanilla.byId('modalRatingSubmit-missingform'), // TODO; unbenuzt?
+                geoinput: vanilla.byId('modalRatingSubmit-geoinput'),
+                notification: vanilla.byId('modalRatingSubmit-notification'),
 
-                missing: $('#modalRatingSubmit-missing'),
-                success: $('#modalRatingSubmit-success'),
+                missing: vanilla.byId('modalRatingSubmit-missing'),
+                success: vanilla.byId('modalRatingSubmit-success'),
 
-                alarm: $('#mrs-alarm'),
-                forum: $('#mrs-forum')
+                alarm: vanilla.byId('mrs-alarm'),
+                forum: vanilla.byId('mrs-forum'),
+                close: vanilla.byClass('mrs-close')
             }
         },
 
         newRating : {
-            form: $('#newrating'),
-            provider: $('#newrating_provider'),
-            plan: $('#newrating_plan'),
-            text: $('#newrating_text'),
+            form: vanilla.byId('newrating'),
+            provider: vanilla.byId('newrating_provider'),
+            plan: vanilla.byId('newrating_plan'),
+            text: vanilla.byId('newrating_text'),
+            tos: vanilla.byId('newrating-tos'),
             progress: {
-                container: $('#newrating_progress'),
-                text: $('#newrating_progresstext'),
-                bar: $('#newrating_progressbar')
+                container: vanilla.byId('newrating_progress'),
+                text: vanilla.byId('newrating_progresstext'),
+                bar: vanilla.byId('newrating_progressbar')
             },
             error: {
-                provider: $('#newrating-provider-error'),
-                text: $('#newrating-text-error')
+                provider: vanilla.byId('newrating-provider-error'),
+                text: vanilla.byId('newrating-text-error'),
+                tos: vanilla.byId('newrating-tos-error')
             },
             criteria: {
-                container: $('#newrating_criteria'),
-                speed: $('#newrating_speed'),
-                availability: $('#newrating_availability'),
-                service: $('#newrating_service'),
-                speechquality: $('#newrating_speechquality'),
-                streaming: $('#newrating_streaming'),
-                gaming: $('#newrating_gaming')
+                container: vanilla.byId('newrating_criteria'),
+                speed: vanilla.byId('newrating_speed'),
+                availability: vanilla.byId('newrating_availability'),
+                service: vanilla.byId('newrating_service'),
+                speechquality: vanilla.byId('newrating_speechquality'),
+                streaming: vanilla.byId('newrating_streaming'),
+                gaming: vanilla.byId('newrating_gaming')
             },
             tooltip: {
-                rating: $('#tooltip-rating'),
-                speed: $('#tooltip-speed'),
-                availability: $('#tooltip-availability'),
-                service: $('#tooltip-service'),
-                speechquality: $('#tooltip-spechquality'),
-                streaming: $('#tooltip-streaming'),
-                gaming: $('#tooltip-gaming')
+                rating: vanilla.byId('tooltip-rating'),
+                speed: vanilla.byId('tooltip-speed'),
+                availability: vanilla.byId('tooltip-availability'),
+                service: vanilla.byId('tooltip-service'),
+                speechquality: vanilla.byId('tooltip-speechquality'),
+                streaming: vanilla.byId('tooltip-streaming'),
+                gaming: vanilla.byId('tooltip-gaming')
             },
             check: {
-                provider: $('#newrating_check_provider'),
-                plan: $('#newrating_check_plan'),
-                text: $('#newrating_check_text'),
-                criteria: $('#newrating_check_criteria')
+                provider: vanilla.byId('newrating_check_provider'),
+                plan: vanilla.byId('newrating_check_plan'),
+                text: vanilla.byId('newrating_check_text'),
+                criteria: vanilla.byId('newrating_check_criteria')
             },
             button: {
-                submit: $('#newrating_submit'),
-                reset: $('#newrating_reset')
+                submit: vanilla.byId('newrating_submit'),
+                reset: vanilla.byId('newrating_reset')
             }
 
         }
@@ -151,7 +152,7 @@ define(['countable'], function(Countable) {
                 if(rating.totalRatings > 1)
                     countText += 'en';
                 countText += ' </strong>gefunden';
-                ui.rating.list.counter.html(countText);
+                vanilla.setInner(ui.rating.list.counter, countText);
 
 
                 // render ratings
@@ -163,19 +164,19 @@ define(['countable'], function(Countable) {
 
                         // hide / display more ratings button
                         if(rating.totalRatings > 0 && rating.totalRatings > rating.visibleRatings)
-                            ui.rating.list.more.show();
+                            vanilla.show(ui.rating.list.more);
                         else
-                            ui.rating.list.more.hide();
+                            vanilla.hide(ui.rating.list.more);
                     }
                 });
             } else {
-                ui.rating.list.container.hide();
+                vanilla.hide(ui.rating.list.container);
             }
         });
 
 
         // load more ratings on demand
-        ui.rating.list.more.click(function(el) {
+        vanilla.onClick(ui.rating.list.more, function(el) {
             getRatingsForLocation(options.address.longitude, options.address.latitude, options.typeFilter, options.providerFilter, rating.visibleRatings, function(data) {
                 if(data.ratings instanceof Array && data.ratings.length > 0) {
 
@@ -183,9 +184,9 @@ define(['countable'], function(Countable) {
 
                     // hide / display more ratings button
                     if(rating.totalRatings > rating.visibleRatings)
-                        ui.rating.list.more.show();
+                        vanilla.show(ui.rating.list.more);
                     else
-                        ui.rating.list.more.hide();
+                        vanilla.hide(ui.rating.list.more);
                 }
             });
             return false;
@@ -193,53 +194,59 @@ define(['countable'], function(Countable) {
 
 
         // Modals
-        ui.rating.modal.reset.delete.click(function() {
+        vanilla.onClick(ui.rating.modal.reset.delete, function() {
             // TODO: ratings zurücksetzen
             resetRatingForm();
-            ui.rating.modal.reset.dialog.modal('hide');
+            $(ui.rating.modal.reset.dialog).modal('hide');
             return false;
         });
 
         // success - alarm-button
-        ui.rating.modal.submit.alarm.click(function() {
-            ui.rating.modal.submit.dialog.modal('hide');
+        vanilla.onClick(ui.rating.modal.submit.alarm, function() {
+            $(ui.rating.modal.submit.dialog).modal('hide');
             showNewsletterModal('', true, true, '', '');
-            return false
+            return false;
         });
 
         // success - forum-button
-        ui.rating.modal.submit.forum.click(function() {
-            window.open(options.baseUrl + '/forum');
-            return false
+        vanilla.onClick(ui.rating.modal.submit.forum, function() {
+            window.open(options.baseUrl + '/forum'); // TODO: Link testen
+            return false;
+        });
+
+        // success - close & reload page
+        vanilla.onClick(ui.rating.modal.submit.close, function() {
+            window.location.reload();
+            return false;
         });
 
         // NewRating
-        ui.rating.modal.submit.geoinput.val(options.formattedAddress);
+        vanilla.setVal(ui.rating.modal.submit.geoinput, options.formattedAddress);
 
         // Reset-Button
-        ui.rating.newRating.button.reset.click(function() {
-            ui.rating.modal.reset.dialog.modal('show');
+        vanilla.onClick(ui.rating.newRating.button.reset, function() {
+            $(ui.rating.modal.reset.dialog).modal('show');
             return false;
         });
 
 
         // Missing-Send-Button
-        var geocomplete = new window.google.maps.places.Autocomplete(ui.rating.modal.submit.geoinput[0] ,{ types: ['geocode'] });
-        ui.rating.modal.submit.resend.click(function(el) {
-            //el.preventDefault();
-            ui.rating.modal.submit.resend.rotate();
+        var geocomplete = new window.google.maps.places.Autocomplete(ui.rating.modal.submit.geoinput ,{ types: ['geocode'] });
+        vanilla.onClick(ui.rating.modal.submit.resend, function(ev) {
+            //ev.preventDefault();
+            rotator.rotate(ui.rating.modal.submit.resend);
 
 
             var geocoder = new google.maps.Geocoder();
-            var addressInput = ui.rating.modal.submit.geoinput.val();
+            var addressInput = vanilla.getVal(ui.rating.modal.submit.geoinput);
 
             geocoder.geocode({'address': addressInput}, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var newAddress = convertAddress(results[0]);
                     handleNewRatingDialog(newAddress, true);
                 }else {
-                    ui.rating.modal.submit.resend.fail();
-                    ui.rating.modal.submit.notification.html('<li style="display: list-item">Die eingegebene Adresse ist ungültig</li>');
+                    rotator.fail(ui.rating.modal.submit.resend);
+                    vanilla.setInner(ui.rating.modal.submit.notification, '<li style="display: list-item">Die eingegebene Adresse ist ungültig</li>');
                 }
             });
             return false;
@@ -247,48 +254,47 @@ define(['countable'], function(Countable) {
 
 
         // Provider & Plans
-        ui.rating.newRating.provider.chosen({ disable_search_threshold: 7 });
-        ui.rating.newRating.plan.chosen({ disable_search_threshold: 7 });
+        $(ui.rating.newRating.provider).chosen({ disable_search_threshold: 7 });
+        $(ui.rating.newRating.plan).chosen({ disable_search_threshold: 7 });
 
-        ui.rating.newRating.provider.on('change', function(evt, params) {
+        $(ui.rating.newRating.provider).on('change', function(evt, params) {
+
             if(params.selected){
-                setCheckState(ui.rating.newRating.check.provider[0], true);
+                setCheckState(ui.rating.newRating.check.provider, true);
                 clearTimeout(rating.planTimeout);
                 getPlansForProvider(params.selected, 'DE');
             }
         });
 
-        ui.rating.newRating.plan.on('change', function(evt, params) {
+        $(ui.rating.newRating.plan).on('change', function(evt, params) {
             if(params.selected)
-                setCheckState(ui.rating.newRating.check.plan[0], true);
+                setCheckState(ui.rating.newRating.check.plan, true);
         });
 
 
         // Textarea
-        var newratingTextarea = document.getElementById('newrating_text');
-
         var hideProgress = false;
 
-        Countable.live(newratingTextarea, function(counter) {
+        Countable.live(ui.rating.newRating.text, function(counter) {
             rating.leftWords = rating.totalWordsToWrite - counter.words;
             var wordsInPercent = (counter.words / rating.totalWordsToWrite) * 100;
 
             if(rating.leftWords > 0) {
                 hideProgress = false;
                 if (rating.leftWords > 1)
-                    ui.rating.newRating.progress.text.html('Noch ' + rating.leftWords + ' Wörter');
+                    vanilla.setInner(ui.rating.newRating.progress.text, 'Noch ' + rating.leftWords + ' Wörter');
                 else
-                    ui.rating.newRating.progress.text.html('Noch 1 Wort');
+                    vanilla.setInner(ui.rating.newRating.progress.text, 'Noch 1 Wort');
 
-                ui.rating.newRating.progress.bar.velocity({ width: wordsInPercent + '%' }, { duration: 100 });
+                $(ui.rating.newRating.progress.bar).velocity({ width: wordsInPercent + '%' }, { duration: 100 });
             }else {
                 hideProgress = true;
                 if(rating.progressVisible) {
-                    setCheckState(ui.rating.newRating.check.text[0], true);
-                    ui.rating.newRating.progress.bar.velocity({ width: '100%' }, {duration: 100});
+                    setCheckState(ui.rating.newRating.check.text, true);
+                    $(ui.rating.newRating.progress.bar).velocity({ width: '100%' }, {duration: 100});
 
                     setTimeout(function() {
-                        ui.rating.newRating.progress.container.velocity('slideUp', {display: 'none', duration: 500});
+                        $(ui.rating.newRating.progress.container).velocity('slideUp', {display: 'none', duration: 500});
                     },500);
                     rating.progressVisible = false;
                 }
@@ -296,8 +302,8 @@ define(['countable'], function(Countable) {
 
             if(counter.characters > 0 &&  !hideProgress) {
                 if (!rating.progressVisible) {
-                    setCheckState(ui.rating.newRating.check.text[0], false);
-                    ui.rating.newRating.progress.container.velocity('slideDown', {display: 'block', duration: 500});
+                    setCheckState(ui.rating.newRating.check.text, false);
+                    $(ui.rating.newRating.progress.container).velocity('slideDown', {display: 'block', duration: 500});
                     rating.progressVisible = true;
                 }
             }
@@ -314,86 +320,50 @@ define(['countable'], function(Countable) {
 
         criterias.change(function() {
             if(checkCriteriaComplete())
-                setCheckState(ui.rating.newRating.check.criteria[0], true);
+                setCheckState(ui.rating.newRating.check.criteria, true);
             else
-                setCheckState(ui.rating.newRating.check.criteria[0], false);
+                setCheckState(ui.rating.newRating.check.criteria, false);
         });
 
         // Tooltips
-        ui.rating.newRating.text.LiteTooltip({
+        $(ui.rating.newRating.text).LiteTooltip({
             trigger: 'click',
             location: 'top',
             margin: 5,
             textalign: 'left',
             backcolor: '#22beef',
-            title: ui.rating.newRating.tooltip.rating.html()
+            title: vanilla.getInner(ui.rating.newRating.tooltip.rating)
         });
 
 
-        // TODO: hover und/oder click wird nicht richtig auf den Bewertungen ausgeführt
-        ui.rating.newRating.criteria.speed.next().LiteTooltip({
-            trigger: 'click',
-            location: 'top',
-            margin: 5,
-            textalign: 'left',
-            backcolor: '#22beef',
-            title: ui.rating.newRating.tooltip.speed.html()
-        });
+        var key, criterias = ['speed','availability','service','speechquality','streaming','gaming'];
+        for(var i=0; i<criterias.length; i++) {
+            key = criterias[i];
+            if(ui.rating.newRating.criteria.hasOwnProperty(key)
+                && ui.rating.newRating.tooltip.hasOwnProperty(key)) {
 
-        ui.rating.newRating.criteria.availability.next().LiteTooltip({
-            trigger: 'click',
-            location: 'top',
-            margin: 5,
-            textalign: 'left',
-            backcolor: '#22beef',
-            title: ui.rating.newRating.tooltip.availability.html()
-        });
-
-        ui.rating.newRating.criteria.service.next().LiteTooltip({
-            trigger: 'click',
-            location: 'top',
-            margin: 5,
-            textalign: 'left',
-            backcolor: '#22beef',
-            title: ui.rating.newRating.tooltip.service.html()
-        });
-
-        ui.rating.newRating.criteria.speechquality.next().LiteTooltip({
-            trigger: 'click',
-            location: 'top',
-            margin: 5,
-            textalign: 'left',
-            backcolor: '#22beef',
-            title: ui.rating.newRating.tooltip.speechquality.html()
-        });
-
-        ui.rating.newRating.criteria.streaming.next().LiteTooltip({
-            trigger: 'click',
-            location: 'top',
-            margin: 5,
-            textalign: 'left',
-            backcolor: '#22beef',
-            title: ui.rating.newRating.tooltip.streaming.html()
-        });
-
-        ui.rating.newRating.criteria.gaming.next().LiteTooltip({
-            trigger: 'click',
-            location: 'top',
-            margin: 5,
-            textalign: 'left',
-            backcolor: '#22beef',
-            title: ui.rating.newRating.tooltip.gaming.html()
-        });
+                $(vanilla.next(ui.rating.newRating.criteria[key])).LiteTooltip({
+                    trigger: 'click',
+                    isSticky: false,
+                    location: 'top',
+                    margin: 5,
+                    textalign: 'left',
+                    backcolor: '#22beef',
+                    title: vanilla.getInner(ui.rating.newRating.tooltip[key])
+                });
+                }
+        }
 
         // Submit Button
-        ui.rating.newRating.form.submit(function(el) {
-            el.preventDefault();
+        vanilla.onSubmit(ui.rating.newRating.form, function(ev) {
+            ev.preventDefault();
 
             // hide all dialogs
-            ui.rating.modal.submit.missing.hide();
-            ui.rating.modal.submit.success.hide();
+            vanilla.hide(ui.rating.modal.submit.missing);
+            vanilla.hide(ui.rating.modal.submit.success);
 
             handleNewRatingDialog(options.address, false, false);
+            return false;
         });
 
         getProviderList('DE');
@@ -409,23 +379,22 @@ define(['countable'], function(Countable) {
             curRating = ratings[i];
 
             src =
-                "<section class=\"rating-tile\">" +
                 "<div class=\"rt-header\">" +
                 "<div>" +
                 "<ul class=\"rating-tile-info\">" +
-                "<li class=\"rti-col1\">" +
+                "<li>" +
                 "<h3>Entfernung</h3>" +
                 "<p>"+ curRating.distanceReadable +"</p>" +
                 "</li>" +
-                "<li class=\"rti-col2\">" +
+                "<li>" +
                 "<h3>Erstellt vor</h3>" +
                 "<p>" + curRating.readableCreated + "</p>" +
                 "</li>" +
-                "<li class=\"rti-col3\">" +
+                "<li >" +
                 "<h3>Verbindung</h3>" +
                 "<p>" + curRating.providerType + "</p>" +
                 "</li>" +
-                "<li class=\"rti-col4\">" +
+                "<li class=\"rti-last\">" +
                 "<h3>" + curRating.streetName + " " + curRating.streetNumber + "</h3>" +
                 "<p>" + curRating.providerName + " " + curRating.planName + "</p>" +
                 "</li>" +
@@ -450,18 +419,22 @@ define(['countable'], function(Countable) {
                 "</div>" +
                 "</div>" +
                 "</div>" +
-                "<div class=\"rt-body\"><p>" + curRating.text + "</p></div>" +
-                "</section>";
+                "<div class=\"rt-body\"><p>" + curRating.text + "</p></div>";
 
-            var post = $(src);
+            //var post = $(src);
+
+            var post = document.createElement('section');
+            vanilla.addClass(post, 'rating-tile');
+            vanilla.setInner(post, src);
+
             if(anim)
                 setTimeout(displayPost, i * 200, post);
             else
-                post.show();
+                vanilla.show(post);
 
             rating.visibleRatings++;
 
-            ui.rating.list.container.append(post);
+            vanilla.append(ui.rating.list.container, post);
         }
     }
 
@@ -475,31 +448,32 @@ define(['countable'], function(Countable) {
 
         // when form is filled
         if(formStatus === true) {
-            ui.rating.modal.submit.dialog.modal('show');
+            $(ui.rating.modal.submit.dialog).modal('show');
 
             if(missingAddrInfoKeys.length > 0) {
                 // show missing dialog
-                ui.rating.modal.submit.missing.show();
+                vanilla.show(ui.rating.modal.submit.missing);
 
                 // set notification for missing address info
                 var notification = '';
                 for(var i=0; i<missingAddrInfoKeys.length; i++) {
                     notification += '<li style="display: list-item">Füge bitte ' + missingAddrInfo[missingAddrInfoKeys[i]] + ' hinzu</li>';
                 }
-                ui.rating.modal.submit.notification.html(notification);
+                vanilla.setInner(ui.rating.modal.submit.notification, notification);
                 if(pressSubmit)
-                    ui.rating.modal.submit.resend.fail();
+                    rotator.fail(ui.rating.modal.submit.resend);
             } else {
 
                 sendRatingForm(userAddress, 2, function(err, res) {
                     if(err == 'connection error') {
-                        ui.rating.modal.submit.resend.fail();
-                        ui.rating.modal.submit.notification.html('<li style="display: list-item">Verbindungsfehler! Versuchen Sie es später noch einmal.</li>');
+                        // TODO: vanilla version von rotate erstellen
+                        rotator.fail(ui.rating.modal.submit.resend);
+                        vanilla.setInner(ui.rating.modal.submit.notification, '<li style="display: list-item">Verbindungsfehler! Versuchen Sie es später noch einmal.</li>');
                     }else if(res.message == "rating saved"){
                         // show success dialog and reset form
-                        ui.rating.modal.submit.resend.done(function() {
-                            ui.rating.modal.submit.missing.velocity('slideUp', {display: 'none', duration: 500});
-                            ui.rating.modal.submit.success.velocity('slideDown', {display: 'block', duration: 500});
+                        rotator.done(ui.rating.modal.submit.resend, function() {
+                            $(ui.rating.modal.submit.missing).velocity('slideUp', {display: 'none', duration: 500});
+                            $(ui.rating.modal.submit.success).velocity('slideDown', {display: 'block', duration: 500});
                             resetRatingForm();
                         });
 
@@ -518,16 +492,16 @@ define(['countable'], function(Countable) {
             timeout: 5000,
             data: {
                 'address' : JSON.stringify(userAddress),
-                'provider' : ui.rating.newRating.provider.val(),
-                'plan' : ui.rating.newRating.plan.val(),
-                'text' : ui.rating.newRating.text.val(),
+                'provider' : vanilla.getVal(ui.rating.newRating.provider),
+                'plan' : vanilla.getVal(ui.rating.newRating.plan),
+                'text' : vanilla.getVal(ui.rating.newRating.text),
                 'criteria' : {
-                    speed: ui.rating.newRating.criteria.speed.rating('val'),
-                    availability: ui.rating.newRating.criteria.availability.rating('val'),
-                    speechquality: ui.rating.newRating.criteria.speechquality.rating('val'),
-                    service: ui.rating.newRating.criteria.service.rating('val'),
-                    streaming: ui.rating.newRating.criteria.streaming.rating('val'),
-                    gaming: ui.rating.newRating.criteria.gaming.rating('val')
+                    speed: $(ui.rating.newRating.criteria.speed).rating('val'),
+                    availability: $(ui.rating.newRating.criteria.availability).rating('val'),
+                    speechquality: $(ui.rating.newRating.criteria.speechquality).rating('val'),
+                    service: $(ui.rating.newRating.criteria.service).rating('val'),
+                    streaming: $(ui.rating.newRating.criteria.streaming).rating('val'),
+                    gaming: $(ui.rating.newRating.criteria.gaming).rating('val')
                 }
             }
         })
@@ -609,18 +583,25 @@ define(['countable'], function(Countable) {
         // Check required fields
         var inputError = false;
 
-        if(ui.rating.newRating.provider.val())
-            ui.rating.newRating.error.provider.hide();
+        if(vanilla.getVal(ui.rating.newRating.provider))
+            vanilla.hide(ui.rating.newRating.error.provider);
         else {
-            ui.rating.newRating.error.provider.show();
+            vanilla.show(ui.rating.newRating.error.provider);
             inputError = true;
         }
 
 
         if(rating.leftWords < 1)
-            ui.rating.newRating.error.text.hide();
+            vanilla.hide(ui.rating.newRating.error.text);
         else {
-            ui.rating.newRating.error.text.show();
+            vanilla.show(ui.rating.newRating.error.text);
+            inputError = true;
+        }
+
+        if(ui.rating.newRating.tos.checked)
+            vanilla.hide(ui.rating.newRating.error.tos);
+        else {
+            vanilla.show(ui.rating.newRating.error.tos);
             inputError = true;
         }
 
@@ -634,35 +615,45 @@ define(['countable'], function(Countable) {
 
     function resetRatingForm() {
         // select's
-        ui.rating.newRating.provider.val('').trigger('chosen:updated');
-        ui.rating.newRating.plan.val('').attr('data-placeholder', 'Bitte zuerst Provider auswählen').attr('disabled', true).trigger('chosen:updated');
+        vanilla.setVal(ui.rating.newRating.provider, '');
+        vanilla.sendEvent(ui.rating.newRating.provider, 'chosen:updated');
+
+        vanilla.setVal(ui.rating.newRating.plan, '');
+        vanilla.setAttr(ui.rating.newRating.plan, 'data-placeholder', 'Bitte zuerst Provider auswählen');
+        vanilla.setAttr(ui.rating.newRating.plan, 'disabled', true);
+        vanilla.sendEvent(ui.rating.newRating.plan, 'chosen:updated');
+
 
         // text
-        ui.rating.newRating.text.val('');
-        ui.rating.newRating.text.trigger('input');
+        vanilla.setVal(ui.rating.newRating.text, '');
+        vanilla.sendEvent(ui.rating.newRating.text, 'input');
 
         // progress bar + text
-        ui.rating.newRating.progress.text.html("Noch " + rating.totalWordsToWrite +  " Wörter");
-        ui.rating.newRating.progress.bar.velocity({ width: '0%' }, {duration: 100});
+        vanilla.setInner(ui.rating.newRating.progress.text, 'Noch ' + rating.totalWordsToWrite +  ' Wörter');
+        $(ui.rating.newRating.progress.bar).velocity({ width: '0%' }, {duration: 100});
 
         // criteria
-        // TODO: rating reseten -> Envato Anfrage
-        //newRating.criteria.voip.val(0).change();
-        //$('#newrating_speechquality').val(1).change();
+        $(ui.rating.newRating.criteria.speed).val(0).change();
+        $(ui.rating.newRating.criteria.availability).val(0).change();
+        $(ui.rating.newRating.criteria.service).val(0).change();
+        $(ui.rating.newRating.criteria.speechquality).val(0).change();
+        $(ui.rating.newRating.criteria.streaming).val(0).change();
+        $(ui.rating.newRating.criteria.gaming).val(0).change();
 
         // statushaken
-        setCheckState(ui.rating.newRating.check.provider[0], false);
-        setCheckState(ui.rating.newRating.check.plan[0], false);
-        setCheckState(ui.rating.newRating.check.text[0], false);
-        setCheckState(ui.rating.newRating.check.criteria[0], false);
+        setCheckState(ui.rating.newRating.check.provider, false);
+        setCheckState(ui.rating.newRating.check.plan, false);
+        setCheckState(ui.rating.newRating.check.text, false);
+        setCheckState(ui.rating.newRating.check.criteria, false);
 
         // modal
-        ui.rating.modal.submit.geoinput.val(options.formattedAddress);
-        ui.rating.modal.submit.resend.resetButton();
+        vanilla.setVal(ui.rating.modal.submit.geoinput, options.formattedAddress);
+        rotator.resetButton(ui.rating.modal.submit.resend);
 
         // formerror messages
-        ui.rating.newRating.error.provider.hide();
-        ui.rating.newRating.error.text.hide();
+        vanilla.hide(ui.rating.newRating.error.provider);
+        vanilla.hide(ui.rating.newRating.error.text);
+        vanilla.hide(ui.rating.newRating.error.tos);
     }
 
 
@@ -677,26 +668,26 @@ define(['countable'], function(Countable) {
 
 
     function displayPost(post) {
-        post.css({ 'display':'block'});
-        post.addClass('magictime spaceInLeft');
+        vanilla.css(post, 'display', 'block');
+        vanilla.addClass(post, 'magictime spaceInLeft');
     }
 
 
     function checkCriteriaComplete() {
 
-        if(ui.rating.newRating.criteria.gaming.rating('val') < 1)
+        if($(ui.rating.newRating.criteria.gaming).rating('val') < 1)
             return false;
 
-        if(ui.rating.newRating.criteria.streaming.rating('val') < 1)
+        if($(ui.rating.newRating.criteria.streaming).rating('val') < 1)
             return false;
 
-        if(ui.rating.newRating.criteria.speechquality.rating('val') < 1)
+        if($(ui.rating.newRating.criteria.speechquality).rating('val') < 1)
             return false;
 
-        if(ui.rating.newRating.criteria.availability.rating('val') < 1)
+        if($(ui.rating.newRating.criteria.availability).rating('val') < 1)
             return false;
 
-        if(ui.rating.newRating.criteria.speed.rating('val') < 1)
+        if($(ui.rating.newRating.criteria.speed).rating('val') < 1)
             return false;
 
         return true;
@@ -751,7 +742,9 @@ define(['countable'], function(Countable) {
                 out += '<option value="' + providerData[i].slug + '">' + providerData[i].name + '</option>';
             }
 
-            ui.rating.newRating.provider.html(out).val('').trigger("chosen:updated");
+            vanilla.setInner(ui.rating.newRating.provider, out);
+            vanilla.setVal(ui.rating.newRating.provider, '');
+            vanilla.sendEvent(ui.rating.newRating.provider, 'chosen:updated');
         }
     }
 
@@ -773,7 +766,15 @@ define(['countable'], function(Countable) {
             else
                 text = length + ' Tarife gefunden';
 
-            ui.rating.newRating.plan.html(out).attr('data-placeholder', text).val('').removeAttr('disabled').trigger("chosen:updated");
+            console.log(out);
+
+            vanilla.setInner(ui.rating.newRating.plan, out);
+            vanilla.setAttr(ui.rating.newRating.plan, 'data-placeholder', text);
+            vanilla.setVal(ui.rating.newRating.plan, '');
+            vanilla.removeAttr(ui.rating.newRating.plan, 'disabled');
+            vanilla.sendEvent(ui.rating.newRating.plan, 'chosen:updated');
+
+            //ui.rating.newRating.plan.html(out).attr('data-placeholder', text).val('').removeAttr('disabled').trigger("chosen:updated");
         }
     }
 
@@ -831,65 +832,66 @@ define(['countable'], function(Countable) {
 
     ui.graphs = {
         toplist: {
-            help: $('#toplist-help'),
-            helptext: $('#toplist-helptext'),
-            body: $('#toplist-body')
+            help: vanilla.byId('toplist-help'),
+            helptext: vanilla.byId('toplist-helptext'),
+            body: vanilla.byId('toplist-body')
         },
 
         topplans: {
-            body: $('#topplans-body')
+            body: vanilla.byId('topplans-body')
         },
 
         provider: {
-            container: $('#provider-container'),
-            title: $('#provider-title'),
-            filter: $('#provider-filter'),
-            target: $('#provider-target'),
+            container: vanilla.byId('provider-container'),
+            title: vanilla.byId('provider-title'),
+            target: vanilla.byId('provider-target'),
 
             criteria: {
                 speed: {
                     id: 'provider-speed',
-                    info: $('#provider-speed-info'),
+                    info: vanilla.byId('provider-speed-info'),
                     gauge: null
                 },
                 availability: {
                     id: 'provider-availability',
-                    info: $('#provider-availability-info'),
+                    info: vanilla.byId('provider-availability-info'),
                     gauge: null
                 },
                 service: {
                     id: 'provider-service',
-                    info: $('#provider-service-info'),
+                    info: vanilla.byId('provider-service-info'),
                     gauge: null
                 },
                 speechquality: {
                     id: 'provider-speechquality',
-                    info: $('#provider-speechquality-info'),
+                    info: vanilla.byId('provider-speechquality-info'),
                     gauge: null
                 },
                 streaming: {
                     id: 'provider-streaming',
-                    info: $('#provider-streaming-info'),
+                    info: vanilla.byId('provider-streaming-info'),
                     gauge: null
                 },
                 gaming: {
                     id: 'provider-gaming',
-                    info: $('#provider-gaming-info'),
+                    info: vanilla.byId('provider-gaming-info'),
                     gauge: null
                 }
             }
         },
 
         company: {
-            container: $('#company-container'),
+            container: vanilla.byId('company-container'),
+            imagecontainer: vanilla.byId('image-container'),
 
             fields: {
-                name: $('#company-name'),
-                founded: $('#company-founded'),
-                location: $('#company-location'),
-                employees: $('#company-employees'),
-                salesvolume: $('#company-salesvolume'),
-                url: $('#company-url')
+                name: vanilla.byId('company-name'),
+                founded: vanilla.byId('company-founded'),
+                location: vanilla.byId('company-location'),
+                employees: vanilla.byId('company-employees'),
+                logo: vanilla.byId('company-logo'),
+                url: vanilla.byId('company-url'),
+                rating: vanilla.byId('company-rating')
             }
         },
 
@@ -897,33 +899,39 @@ define(['countable'], function(Countable) {
             gauge: {
                 speed: {
                     id: 'gauge-speed',
-                    info: $('#gauge-speed-info'),
+                    info: vanilla.byId('gauge-speed-info'),
+                    heading: 'Geschwindigkeit',
                     el: null
                 },
                 availability: {
                     id: 'gauge-availability',
-                    info: $('#gauge-availability-info'),
+                    info: vanilla.byId('gauge-availability-info'),
+                    heading: 'Verfügbarkeit',
                     el: 'null'
                 },
                 service: {
                     id: 'gauge-service',
-                    info: $('#gauge-service-info'),
+                    info: vanilla.byId('gauge-service-info'),
+                    heading: 'Service',
                     el: null
                 },
                 speechquality: {
                     id: 'gauge-speechquality',
-                    info: $('#gauge-speechquality-info'),
+                    info: vanilla.byId('gauge-speechquality-info'),
+                    heading: 'Sprachqualität',
                     el: null
                 },
                 streaming: {
                     id: 'gauge-streaming',
-                    info: $('#gauge-streaming-info'),
+                    info: vanilla.byId('gauge-streaming-info'),
+                    heading: 'Streaming',
                     el: null
                 },
 
                 gaming: {
                     id: 'gauge-gaming',
-                    info: $('#gauge-gaming-info'),
+                    info: vanilla.byId('gauge-gaming-info'),
+                    heading: 'Gaming',
                     el: null
                 }
             }
@@ -950,7 +958,7 @@ define(['countable'], function(Countable) {
 
             // add click trigger for details
             $('.btn-details').click(function() {
-                var providerSlug = $(this).attr('data-provider');
+                var providerSlug = vanilla.getAttr(this, 'data-provider');
 
                 if(!graphs.providerTargetClicked) {
                     if(graphs.topListActiveProvider != providerSlug) {
@@ -967,7 +975,7 @@ define(['countable'], function(Countable) {
 
             // add click trigger for homepage
             $('.btn-homepage').click(function() {
-                popup($(this).attr('data-url'));
+                popup(vanilla.getAttr(this, 'data-url'));
             });
 
 
@@ -987,8 +995,8 @@ define(['countable'], function(Countable) {
                     triggerProviderDetails(graphs.topList[0].provider.slug);
                 else {
                     // hide table & show help us
-                    ui.graphs.toplist.body.hide();
-                    ui.graphs.toplist.help.show();
+                    vanilla.hide(ui.graphs.toplist.body);
+                    vanilla.show(ui.graphs.toplist.help);
 
                     setTopListHelpText(options.typeFilter);
                 }
@@ -1013,35 +1021,15 @@ define(['countable'], function(Countable) {
             levelColors: ['#ff7b76', '#ffc100', '#a2d200']
         };
 
-        ui.graphs.generic.gauge.speed.el = new JustGage($.extend({
-            id: ui.graphs.generic.gauge.speed.id,
-            title: "Geschwindigkeit"
-        }, defaultOptions));
 
-        ui.graphs.generic.gauge.availability.el = new JustGage($.extend({
-            id: ui.graphs.generic.gauge.availability.id,
-            title: "Verfügbarkeit"
-        }, defaultOptions));
-
-        ui.graphs.generic.gauge.service.el = new JustGage($.extend({
-            id: ui.graphs.generic.gauge.service.id,
-            title: "Service"
-        }, defaultOptions));
-
-        ui.graphs.generic.gauge.speechquality.el = new JustGage($.extend({
-            id: ui.graphs.generic.gauge.speechquality.id,
-            title: "Sprachqualität"
-        }, defaultOptions));
-
-        ui.graphs.generic.gauge.streaming.el = new JustGage($.extend({
-            id: ui.graphs.generic.gauge.streaming.id,
-            title: "Streaming"
-        }, defaultOptions));
-
-        ui.graphs.generic.gauge.gaming.el = new JustGage($.extend({
-            id: ui.graphs.generic.gauge.gaming.id,
-            title: "Gaming"
-        }, defaultOptions));
+        for(var key in ui.graphs.generic.gauge) {
+            if(ui.graphs.generic.gauge.hasOwnProperty(key)) {
+                ui.graphs.generic.gauge[key].el = new JustGage($.extend({
+                    id: ui.graphs.generic.gauge[key].id,
+                    title: ui.graphs.generic.gauge[key].heading
+                }, defaultOptions));
+            }
+        }
     }
 
 
@@ -1076,36 +1064,36 @@ define(['countable'], function(Countable) {
         if(values) {
             if(values.avg_speed > 0) {
                 ui.graphs.generic.gauge.speed.el.refresh(roundTo1(values.avg_speed));
-                ui.graphs.generic.gauge.speed.info.html(values.speed_text);
+                vanilla.setInner(ui.graphs.generic.gauge.speed.info, values.speed_text);
             }
 
             if(values.avg_availability > 0) {
                 ui.graphs.generic.gauge.availability.el.refresh(roundTo1(values.avg_availability));
-                ui.graphs.generic.gauge.availability.info.html(values.availability_text);
+                vanilla.setInner(ui.graphs.generic.gauge.availability.info, values.availability_text);
             }
 
 
             if(values.avg_service > 0) {
                 ui.graphs.generic.gauge.service.el.refresh(roundTo1(values.avg_service));
-                ui.graphs.generic.gauge.service.info.html(values.service_text);
+                vanilla.setInner(ui.graphs.generic.gauge.service.info, values.service_text);
             }
 
 
             if(values.avg_speechquality > 0) {
                 ui.graphs.generic.gauge.speechquality.el.refresh(roundTo1(values.avg_speechquality));
-                ui.graphs.generic.gauge.speechquality.info.html(values.speechquality_text);
+                vanilla.setInner(ui.graphs.generic.gauge.speechquality.info, values.speechquality_text);
             }
 
 
             if(values.avg_streaming > 0) {
                 ui.graphs.generic.gauge.streaming.el.refresh(roundTo1(values.avg_streaming));
-                ui.graphs.generic.gauge.streaming.info.html(values.streaming_text);
+                vanilla.setInner(ui.graphs.generic.gauge.streaming.info, values.streaming_text);
             }
 
 
             if(values.avg_gaming > 0) {
                 ui.graphs.generic.gauge.gaming.el.refresh(roundTo1(values.avg_gaming));
-                ui.graphs.generic.gauge.gaming.info.html(values.gaming_text);
+                vanilla.setInner(ui.graphs.generic.gauge.gaming.info, values.gaming_text);
             }
         }
     }
@@ -1114,19 +1102,20 @@ define(['countable'], function(Countable) {
     function setProviderDetails(providerEntry) {
 
         if(providerEntry) {
+        console.log(providerEntry);
 
             globals.selectedProvider  = providerEntry.provider.slug;
 
             // title
-            ui.graphs.provider.title.html(providerEntry.provider.name);
+            vanilla.setInner(ui.graphs.provider.title, providerEntry.provider.name);
 
             // company info
-            if(Object.keys(providerEntry.provider.business).length) {
+            if(Object.keys(providerEntry.provider.business).length > 0) {
                 resetCompanyInfo();
-                setCompanyInfo(providerEntry.provider.business);
-                ui.graphs.company.container.show();
+                setCompanyInfo(providerEntry.provider.business, providerEntry.provider.name, providerEntry.avg_total, providerEntry.provider.slug);
+                vanilla.show(ui.graphs.company.container);
             } else
-                ui.graphs.company.container.hide();
+                vanilla.show(ui.graphs.company.container);
 
 
             // refresh gages
@@ -1140,28 +1129,29 @@ define(['countable'], function(Countable) {
 
             // criteria infoboxes
             if(providerEntry.speed_text)
-                ui.graphs.provider.criteria.speed.info.html(providerEntry.speed_text);
+                vanilla.setInner(ui.graphs.provider.criteria.speed.info, providerEntry.speed_text);
 
             if(providerEntry.availability_text)
-                ui.graphs.provider.criteria.availability.info.html(providerEntry.availability_text);
+                vanilla.setInner(ui.graphs.provider.criteria.availability.info, providerEntry.availability_text);
 
             if(providerEntry.service_text)
-                ui.graphs.provider.criteria.service.info.html(providerEntry.service_text);
+                vanilla.setInner(ui.graphs.provider.criteria.service.info, providerEntry.service_text);
 
             if(providerEntry.speechquality_text)
-                ui.graphs.provider.criteria.speechquality.info.html(providerEntry.speechquality_text);
+                vanilla.setInner(ui.graphs.provider.criteria.speechquality.info, providerEntry.speechquality_text);
 
             if(providerEntry.streaming_text)
-                ui.graphs.provider.criteria.streaming.info.html(providerEntry.streaming_text);
+                vanilla.setInner(ui.graphs.provider.criteria.streaming.info, providerEntry.streaming_text);
 
             if(providerEntry.gaming_text)
-                ui.graphs.provider.criteria.gaming.info.html(providerEntry.gaming_text);
+                vanilla.setInner(ui.graphs.provider.criteria.gaming.info, providerEntry.gaming_text);
 
             // get & render top plans
             getTopPlans(options.address.longitude, options.address.latitude, providerEntry.provider.slug, function(result) {
 
                 // clear list
-                ui.graphs.topplans.body.children("div:not(.head)").remove();
+                var childrenToRemove = vanilla.findChildren(ui.graphs.topplans.body, ':scope > div:not(.head)');
+                vanilla.removeNodes(childrenToRemove);
 
                 addTopPlansEntries(providerEntry, result.data);
 
@@ -1188,7 +1178,7 @@ define(['countable'], function(Countable) {
 
             // toogle provider tile
             if(!graphs.topListVisible) {
-                ui.graphs.provider.container.velocity('slideDown',
+                $(ui.graphs.provider.container).velocity('slideDown',
                     {
                         duration: 150,
                         complete: function() {
@@ -1200,10 +1190,9 @@ define(['countable'], function(Countable) {
             }
             else {
                 if(graphs.topListActiveProvider == providerSlug) {
-                    ui.graphs.provider.container.velocity('slideUp', { duration: 150});
+                    $(ui.graphs.provider.container).velocity('slideUp', { duration: 150});
                     graphs.topListVisible = false;
                     graphs.topListActiveProvider = null;
-                    ui.graphs.provider.filter.val('');
                 } else {
                     setProviderDetails(providerEntry);
                     graphs.topListActiveProvider = providerSlug;
@@ -1213,40 +1202,56 @@ define(['countable'], function(Countable) {
     }
 
 
-    function setCompanyInfo(company) {
+    function setCompanyInfo(company, providerName, companyRating, providerSlug) {
+
+        if(companyRating)
+            vanilla.setInner(ui.graphs.company.fields.rating, '&#216; ' + roundTo1(companyRating));
+
         if(company.name)
-            ui.graphs.company.fields.name.html(company.name);
+            vanilla.setInner(ui.graphs.company.fields.name, company.name);
 
         if(company.founded)
-            ui.graphs.company.fields.founded.html(company.founded);
+            vanilla.setInner(ui.graphs.company.fields.founded, company.founded);
 
         if(company.location)
-            ui.graphs.company.fields.location.html(company.location);
+            vanilla.setInner(ui.graphs.company.fields.location, company.location);
 
         if(company.employees)
-            ui.graphs.company.fields.employees.html(company.employees);
+            vanilla.setInner(ui.graphs.company.fields.employees, company.employees);
 
-        if(company.salesVolume)
-            ui.graphs.company.fields.salesvolume.html(company.salesVolume);
+        if(company.logo && company.logo != '') {
+            vanilla.setAttr(ui.graphs.company.fields.logo, 'src', '../images/provider/de/' + company.logo);
+            vanilla.setAttr(ui.graphs.company.fields.logo, 'alt', providerName + ' Logo');
+            vanilla.setAttr(ui.graphs.company.fields.logo, 'title', providerName + ' Logo');
+        }
+
+        if(company.logobg && company.logobg != '') {
+            vanilla.css(ui.graphs.company.imagecontainer, 'background-color', '#' + company.logobg);
+        }
 
         if(company.url && company.url.text) {
             var link = company.url.text;
 
             if(company.url.goto)
-                link = '<a href="' + company.url.goto + '">' + company.url.text + '</a>';
+                link = '<a href="'+ options.baseUrl + '/redirect/homepage/' + providerSlug + '" rel="nofollow" target="_blank">' + company.url.text + '</a>';
 
-            ui.graphs.company.fields.url.html(link);
+            vanilla.setInner(ui.graphs.company.fields.url, link);
         }
     }
 
 
     function resetCompanyInfo() {
 
-        for(var field in ui.graphs.company.fields) {
-            if (ui.graphs.company.fields.hasOwnProperty(field)) {
-                ui.graphs.company.fields[field].html('');
-            }
-        }
+        vanilla.setInner(ui.graphs.company.fields.name, '');
+        vanilla.setInner(ui.graphs.company.fields.founded, '');
+        vanilla.setInner(ui.graphs.company.fields.location, '');
+        vanilla.setInner(ui.graphs.company.fields.employees, '');
+        vanilla.setInner(ui.graphs.company.fields.url, '');
+
+        ui.graphs.company.fields.logo.src = '../images/provider/nologo.png';
+        vanilla.setAttr(ui.graphs.company.fields.logo, 'title', 'Kein Logo vorhanden');
+        vanilla.setAttr(ui.graphs.company.fields.logo, 'alt', 'Kein Logo vorhanden');
+        vanilla.css(ui.graphs.company.imagecontainer, 'background-color', '#fff');
     }
 
 
@@ -1259,33 +1264,46 @@ define(['countable'], function(Countable) {
             entry = planEntries[i];
             plan = findPlanBySlug(topListEntry.provider.plans, entry._id.plan);
 
+
             if(entry._id.plan && plan && entry.rating > 0) {
 
                 var availabilityButton = '',
-                    affiliateButton = '';
+                    affiliateButton = '',
+                    speedText = '';
 
                 if((plan.hasOwnProperty('availabilityUrl') && plan.availabilityUrl)
                     || (topListEntry.provider.hasOwnProperty('availabilityUrl') && topListEntry.provider.availabilityUrl))
-                    availabilityButton = '<button class="btn btn-default btn-availability" ontouchend="this.onclick=touchfix" data-url="' + options.baseUrl
-                    + '/redirect/availability/' + topListEntry.provider.slug + '/' + plan.slug + '"><i class="fa fa-plug"></i> Verfügbarkeitscheck</button>';
+                    availabilityButton = '<button class="btn btn-default btn-availability" data-url="' + options.baseUrl
+                    + '/redirect/availability/' + topListEntry.provider.slug + '/' + plan.slug + '"><i class="fa fa-plug"></i> Verfügbarkeit</button>';
 
                 if((plan.hasOwnProperty('affiliateUrl') && plan.affiliateUrl)
                     || (topListEntry.provider.hasOwnProperty('affiliateUrl') && topListEntry.provider.affiliateUrl))
-                    affiliateButton = '<button class="btn btn-default btn-affiliate" ontouchend="this.onclick=touchfix" data-url="' + options.baseUrl
+                    affiliateButton = '<button class="btn btn-default btn-affiliate" data-url="' + options.baseUrl
                     + '/redirect/plan/' + topListEntry.provider.slug + '/' + plan.slug + '"><i class="fa fa-plus-square"></i> Zum Tarif</button>';
+
+                if(plan.hasOwnProperty('speed') && plan.speed > 0) {
+                    speedText = roundTo1(plan.speed / 1000) + ' MBit/s';
+                } else {
+                    speedText = '-';
+                }
 
 
                 out += '<div>' +
                 '<div class="row-hide"><div class="th">#</div><div class="cnt">' + (i+1) + '</div></div>' +
                 '<div><div class="th">Platz ' + (i+1) + '</div><div class="cnt">' + plan.name + '</div></div>' +
-                '<div class="center"><div class="th">Bewertung</div><div class="cnt">' + roundTo1(entry.rating) + '</div></div>' +
+
+
+                '<div class="center"><div class="th">Geschwindigkeit</div><div class="cnt">' + speedText + '</div></div>' +
+
+
+                '<div class="center"><div class="th">Bewertung</div><div class="cnt">&#216; ' + roundTo1(entry.rating) + '</div></div>' +
                 '<div class="right"><div class="th">Mehr</div><div class="cnt cnt-btn">' + availabilityButton + ' ' + affiliateButton + '</div></div>' +
                 '</div>';
             }
 
         }
 
-        ui.graphs.topplans.body.append(out);
+        vanilla.appendInner(ui.graphs.topplans.body, out);
     }
 
 
@@ -1298,22 +1316,22 @@ define(['countable'], function(Countable) {
             if(entries[i].avg_total > 0) {
             var affiliateButton = '';
             if(entries[i].provider.hasOwnProperty('affiliateUrl') && entries[i].provider.affiliateUrl)
-                affiliateButton = '<button type="button" class="btn btn-default btn-homepage" ontouchend="this.onclick=touchfix" data-url="' + options.baseUrl
+                affiliateButton = '<button type="button" class="btn btn-default btn-homepage" data-url="' + options.baseUrl
                 + '/redirect/provider/' + entries[i].provider.slug + '"><i class=\"fa fa-home\"></i> Homepage</button>';
 
 
             out += "<div>" +
             '<div class="row-hide"><div class="th">#</div><div class="cnt">' + (i+1) + '</div></div>' +
             '<div><div class="th">Platz ' + (i+1) + '</div><div class="cnt">' + entries[i].provider.name + '</div></div>' +
-            '<div class="center"><div class="th">Bewertung</div><div class="cnt">' + translateType(entries[i].provider.type) + '</div></div>' +
-            '<div class="center"><div class="th">Bewertung</div><div class="cnt">' + entries[i].avg_total + '</div></div>' +
+            '<div class="center"><div class="th">Verbindung</div><div class="cnt">' + translateType(entries[i].provider.type) + '</div></div>' +
+            '<div class="center"><div class="th">Bewertung</div><div class="cnt">&#216; ' + roundTo1(entries[i].avg_total) + '</div></div>' +
             '<div class="right"><div class="th">Mehr</div><div class="cnt cnt-btn">' + affiliateButton +
-            " <button type=\"button\" class=\"btn btn-default btn-details\" ontouchend=\"this.onclick=fix\" data-provider=\"" + entries[i]._id.slug + "\"><i class=\"fa fa-line-chart\"></i> Details</button>" + '</div></div>' +
+            " <button type=\"button\" class=\"btn btn-default btn-details\" data-provider=\"" + entries[i]._id.slug + "\"><i class=\"fa fa-line-chart\"></i> Details</button>" + '</div></div>' +
             "</div>";
             }
         }
 
-        ui.graphs.toplist.body.append(out);
+        vanilla.appendInner(ui.graphs.toplist.body, out);
     }
 
 
@@ -1405,8 +1423,7 @@ define(['countable'], function(Countable) {
         else if(typeFilter == 'hotspot')
             helpText = 'über <strong>WLAN-Hotspot-Provider</strong> ';
 
-        ui.graphs.toplist.helptext.html(helpText);
-
+        vanilla.setInner(ui.graphs.toplist.helptext, helpText);
     }
 
     function scrollToProviderDetails() {
@@ -1439,9 +1456,9 @@ define(['countable'], function(Countable) {
 
     ui.maps = {
         modal: {
-            dialog: $('#modalMapRatings'),
-            title: $('#modalMapRatingsTitle'),
-            body: $('#modalMapRatingsBody')
+            dialog: vanilla.byId('modalMapRatings'),
+            title: vanilla.byId('modalMapRatingsTitle'),
+            body: vanilla.byId('modalMapRatingsBody')
         }
     };
 
@@ -1541,9 +1558,9 @@ define(['countable'], function(Countable) {
 
     function showModal(lat, long, title) {
         // reset body
-        ui.maps.modal.body.html('');
-        ui.maps.modal.title.html(title);
-        ui.maps.modal.dialog.modal('show');
+        vanilla.setInner(ui.maps.modal.body, '');
+        vanilla.setInner(ui.maps.modal.title, title);
+        $(ui.maps.modal.dialog).modal('show');
 
         getModalRatings(lat, long, options.typeFilter, '', function(ratings) {
 
@@ -1558,15 +1575,15 @@ define(['countable'], function(Countable) {
                     "<div class=\"rt-header\">" +
                     "<div>" +
                     "<ul class=\"rating-tile-info\">" +
-                    "<li class=\"rti-col1\">" +
+                    "<li class=\"even\">" +
                     "<h3>Erstellt vor</h3>" +
                     "<p>" + curRating.readableCreated + "</p>" +
                     "</li>" +
-                    "<li class=\"rti-col3\">" +
+                    "<li class=\"even\">" +
                     "<h3>Verbindung</h3>" +
                     "<p>" + curRating.providerType + "</p>" +
                     "</li>" +
-                    "<li class=\"rti-col4\">" +
+                    "<li class=\"rti-last even centered\">" +
                     "<h3>Provider / Tarif</h3>" +
                     "<p class=\"big\">" + curRating.providerName + " " + curRating.planName + "</p>" +
                     "</li>" +
@@ -1597,7 +1614,7 @@ define(['countable'], function(Countable) {
 
             }
 
-            ui.maps.modal.body.append(newRating);
+            vanilla.appendInner(ui.maps.modal.body, newRating);
         });
     }
 
@@ -1636,63 +1653,62 @@ define(['countable'], function(Countable) {
     // <editor-fold desc="Newsletter">
 
     ui.newsletter = {
-        form: $('#newsletter-form'),
-        email: $('#newsletter-email'),
-        submit: $('#newsletter-submit'),
+        form: vanilla.byId('newsletter-form'),
+        email: vanilla.byId('newsletter-email'),
         options: {
-            container: $('#newsletter-options'),
-            alarm: $('#nlo-alarm'),
-            newsletter: $('#nlo-newsletter')
+            alarm: vanilla.byId('nlo-alarm'),
+            newsletter: vanilla.byId('nlo-newsletter')
         },
         modals: {
-            success: $('#modal-newsletter-success'),
-            input: $('#modal-newsletter-input')
+            success: vanilla.byId('modal-newsletter-success'),
+            input: vanilla.byId('modal-newsletter-input')
+
         },
         messages: {
-            formatError: $('#mni-formaterror'),
-            missingOption: $('#mni-missingoption'),
-            connectionError: $('#mni-connectionerror')
+            formatError: vanilla.byId('mni-formaterror'),
+            missingOption: vanilla.byId('mni-missingoption'),
+            connectionError: vanilla.byId('mni-connectionerror')
         },
         input: {
-            email: $('#mni-email'),
-            submit: $('#mni-submit'),
-            contentSubmit: $('#mni-content-submit'),
-            alarm: $('#mni-alarm'),
-            newsletter: $('#mni-newsletter')
+            email: vanilla.byId('mni-email'),
+            submit: vanilla.byId('mni-submit'),
+            contentSubmit: vanilla.byId('mni-content-submit'),
+            alarm: vanilla.byId('mni-alarm'),
+            newsletter: vanilla.byId('mni-newsletter')
         }
     };
 
     function initNewsletter() {
         // content button - only for small devices
-        ui.newsletter.input.contentSubmit.click(function(el) {
+        vanilla.onClick(ui.newsletter.input.contentSubmit, function(el) {
             el.preventDefault();
             showNewsletterModal('', true, true, '', '');
             return false;
         });
 
         // modal form
-        ui.newsletter.input.submit.click(function (el) {
+        vanilla.onClick(ui.newsletter.input.submit, function(el) {
             el.preventDefault();
 
-            ui.newsletter.input.submit.resetButton();
-            ui.newsletter.input.submit.rotate();
+            rotator.resetButton(ui.newsletter.input.submit);
+            rotator.rotate(ui.newsletter.input.submit);
 
-            var email = ui.newsletter.input.email.val();
-            var alarmChecked = ui.newsletter.input.alarm.prop('checked');
-            var newsletterChecked = ui.newsletter.input.newsletter.prop('checked');
+            var email = vanilla.getVal(ui.newsletter.input.email);
+            var alarmChecked = ui.newsletter.input.alarm.checked;
+            var newsletterChecked = ui.newsletter.input.newsletter.checked;
 
             submitNewsletterForm(email, alarmChecked, newsletterChecked, function (error) {
                 if (!error) {
-                    ui.newsletter.input.submit.done(function() {
-                        ui.newsletter.modals.input.modal('hide');
-                        ui.newsletter.modals.success.modal('show');
+                    rotator.done(ui.newsletter.input.submit, function() {
+                        $(ui.newsletter.modals.input).modal('hide');
+                        $(ui.newsletter.modals.success).modal('show');
                         resetNewsletterFields();
                     });
                 } else if (error == 'connection error') {
-                    ui.newsletter.input.submit.fail();
+                    rotator.fail(ui.newsletter.input.submit);
                     displayNewsletterErrors(false, false, true);
                 } else {
-                    ui.newsletter.input.submit.fail();
+                    rotator.fail(ui.newsletter.input.submit);
                     var emailMessage = false,
                         optionMessage = false;
 
@@ -1709,16 +1725,16 @@ define(['countable'], function(Countable) {
         });
 
         // extern form
-        ui.newsletter.form.submit(function (el) {
+        vanilla.onSubmit(ui.newsletter.form, function(el) {
             el.preventDefault();
 
-            var email = ui.newsletter.email.val();
-            var alarmChecked = ui.newsletter.options.alarm.prop('checked');
-            var newsletterChecked = ui.newsletter.options.newsletter.prop('checked');
+            var email = vanilla.getVal(ui.newsletter.email);
+            var alarmChecked = ui.newsletter.options.alarm.checked;
+            var newsletterChecked = ui.newsletter.options.newsletter.checked;
 
             submitNewsletterForm(email, alarmChecked, newsletterChecked, function (error) {
                 if (!error) {
-                    ui.newsletter.modals.success.modal('show');
+                    $(ui.newsletter.modals.success).modal('show');
                     resetNewsletterFields();
                 } else if (error == 'connection error') {
                     showNewsletterModal(email, alarmChecked, newsletterChecked, false, false, true);
@@ -1744,35 +1760,35 @@ define(['countable'], function(Countable) {
 
         // check email
         if(emailMessage)
-            ui.newsletter.messages.formatError.show();
+            vanilla.show(ui.newsletter.messages.formatError);
         else
-            ui.newsletter.messages.formatError.hide();
+            vanilla.hide(ui.newsletter.messages.formatError);
 
         // check options
         if(optionMessage)
-            ui.newsletter.messages.missingOption.show();
+            vanilla.show(ui.newsletter.messages.missingOption);
         else
-            ui.newsletter.messages.missingOption.hide();
+            vanilla.hide(ui.newsletter.messages.missingOption);
 
         // check connection
         if(connectionMessage)
-            ui.newsletter.messages.connectionError.show();
+            vanilla.show(ui.newsletter.messages.connectionError);
         else
-            ui.newsletter.messages.connectionError.hide();
+            vanilla.hide(ui.newsletter.messages.connectionError);
     }
 
 
     function showNewsletterModal(email, alarmChecked, newsletterChecked, emailMessage, optionMessage, connectionMessage) {
 
         // set input values
-        ui.newsletter.input.alarm.prop('checked', alarmChecked);
-        ui.newsletter.input.newsletter.prop('checked', newsletterChecked);
-        ui.newsletter.input.email.val(email);
+        ui.newsletter.input.alarm.checked = alarmChecked;
+        ui.newsletter.input.newsletter.checked = newsletterChecked;
+        vanilla.setVal(ui.newsletter.input.email, email);
 
         // show errors
         displayNewsletterErrors(emailMessage, optionMessage, connectionMessage);
 
-        ui.newsletter.modals.input.modal('show');
+        $(ui.newsletter.modals.input).modal('show');
     }
 
     function submitNewsletterForm(email, alarmChecked, newsletterChecked, callback) {
@@ -1852,7 +1868,7 @@ define(['countable'], function(Countable) {
 
 
     function resetNewsletterFields() {
-        ui.newsletter.email.val('');
+        vanilla.setVal(ui.newsletter.email, '');
     }
 
     // </editor-fold>
@@ -1861,21 +1877,21 @@ define(['countable'], function(Countable) {
     // *****************************************************************************************************************
     // <editor-fold desc="Sidebar">
     ui.sidebar = {
-        id: 'sidebar',
+        container: vanilla.byId('sidebar'),
 
         writeRating: {
-            button: $('.write-rating'),
+            button: vanilla.byClass('write-rating'),
             target: '#write-rating-target'
         }
     };
 
     function initSidebar() {
         // fixed sidebar
-        $('#' + ui.sidebar.id).sticky({topSpacing: 30, bottomSpacing: 237});
+        $(ui.sidebar.container).sticky({topSpacing: 30, bottomSpacing: 237});
 
         // smooth scrolling for 'bewertung schreiben' button
-        ui.sidebar.writeRating.button.click(function(e) {
-            e.preventDefault();
+        vanilla.onClick(ui.sidebar.writeRating.button, function(el) {
+            el.preventDefault();
             $.smoothScroll({
                 scrollTarget: ui.sidebar.writeRating.target
             });
@@ -1890,95 +1906,82 @@ define(['countable'], function(Countable) {
     // <editor-fold desc="Social">
     ui.social = {
         button : {
-            facebook: $('.social-fb '),
-            googleplus: $('.social-gplus'),
-            twitter: $('.social-twitter '),
-            linkedin: $('.social-linkedin'),
-            digg: $('.social-digg '),
-            xing: $('.social-xing'),
-            link: $('.social-link '),
-            email: $('.social-email')
+            /*facebook: vanilla.byClass('social-fb '),
+            googleplus: vanilla.byClass('social-gplus'),
+            twitter: vanilla.byClass('social-twitter '),
+            linkedin: vanilla.byClass('social-linkedin'),
+            digg: vanilla.byClass('social-digg '),
+            xing: vanilla.byClass('social-xing'),*/
+            link: vanilla.byClass('social-link '),
+            email: vanilla.byClass('social-email')
         },
 
         modal : {
-            facebook: $('#social-modal-fb'),
-            googleplus: $('#social-modal-gplus'),
-            twitter: $('#social-modal-twitter'),
+            facebook: vanilla.byId('social-modal-fb'),
+            googleplus: vanilla.byId('social-modal-gplus'),
+            twitter: vanilla.byId('social-modal-twitter'),
             link: {
-                modal: $('#social-modal-link'),
-                text: $('#social-link-text')
+                modal: vanilla.byId('social-modal-link'),
+                text: vanilla.byId('social-link-text')
             },
             email: {
-                modal: $('#social-modal-email'),
+                modal: vanilla.byId('social-modal-email'),
                 messages: {
-                    container: $('#sme-messages'),
-                    formaterror: $('#sme-formaterror'),
-                    connectionerror: $('#sme-connectionerror')
+                    container: vanilla.byId('sme-messages'),
+                    formaterror: vanilla.byId('sme-formaterror'),
+                    connectionerror: vanilla.byId('sme-connectionerror')
                 },
-                from: $('#sme-from'),
-                email: $('#sme-email'),
-                submit: $('#sme-submit')
+                from: vanilla.byId('sme-from'),
+                email: vanilla.byId('sme-email'),
+                submit: vanilla.byId('sme-submit')
             },
             emailSuccess: {
-                modal: $('#social-modal-email-success')
+                modal: vanilla.byId('social-modal-email-success')
             }
         }
     };
 
     function initSocial() {
-        ui.social.button.facebook.click(function() {
-            ui.social.modal.facebook.modal('show');
-            return false;
-        });
 
-        ui.social.button.googleplus.click(function() {
-            ui.social.modal.googleplus.modal('show');
-            return false;
-        });
-
-        ui.social.button.twitter.click(function() {
-            ui.social.modal.twitter.modal('show');
-            return false;
-        });
-
-        ui.social.button.link.click(function() {
-            ui.social.modal.link.text.val(getPageUrl());
-            ui.social.modal.link.modal.modal('show');
+        vanilla.onClick(ui.social.button.link , function(){
+            vanilla.setVal(ui.social.modal.link.text, getPageUrl());
+            $(ui.social.modal.link.modal).modal('show');
             return false;
         });
 
         // email form & send button
-        ui.social.button.email.click(function() {
-            ui.social.modal.email.modal.modal('show');
-            ui.social.modal.email.submit.resetButton();
+        vanilla.onClick(ui.social.button.email , function(){
+            rotator.resetButton(ui.social.modal.email.submit);
+            $(ui.social.modal.email.modal).modal('show');
             return false;
         });
 
-        ui.social.modal.email.submit.click(function(el) {
+        vanilla.onClick(ui.social.modal.email.submit , function(el){
             el.preventDefault();
             onSocialEmailSubmit();
+            return false;
         });
     }
 
 
     function onSocialEmailSubmit() {
-        var from = ui.social.modal.email.from.val();
-        var email = ui.social.modal.email.email.val();
+        var from = vanilla.getVal(ui.social.modal.email.from);
+        var email = vanilla.getVal(ui.social.modal.email.email);
         var url = getPageUrl();
 
-        ui.social.modal.email.submit.resetButton();
-        ui.social.modal.email.submit.rotate();
+        rotator.resetButton(ui.social.modal.email.submit);
+        rotator.rotate(ui.social.modal.email.submit);
 
         // reset messages
-        ui.social.modal.email.messages.container.hide();
-        ui.social.modal.email.messages.formaterror.hide();
-        ui.social.modal.email.messages.connectionerror.hide();
+        vanilla.hide(ui.social.modal.email.messages.container);
+        vanilla.hide(ui.social.modal.email.messages.formaterror);
+        vanilla.hide(ui.social.modal.email.messages.connectionerror);
 
 
         if(!email || !validateEmail(email)) {
-            ui.social.modal.email.messages.container.show();
-            ui.social.modal.email.messages.formaterror.show();
-            ui.social.modal.email.submit.fail();
+            vanilla.show(ui.social.modal.email.messages.container);
+            vanilla.show(ui.social.modal.email.messages.formaterror);
+            rotator.fail(ui.social.modal.email.submit);
             return;
         }
 
@@ -1995,17 +1998,17 @@ define(['countable'], function(Countable) {
             }
         })
             .done(function(status) {
-                ui.social.modal.email.from.val('');
-                ui.social.modal.email.email.val('');
-                ui.social.modal.email.submit.done();
-                ui.social.modal.email.modal.modal('hide');
-                ui.social.modal.emailSuccess.modal.modal('show');
+                vanilla.setVal(ui.social.modal.email.from, '');
+                vanilla.setVal(ui.social.modal.email.email, '');
+                rotator.done(ui.social.modal.email.submit);
+                $(ui.social.modal.email.modal).modal('hide');
+                $(ui.social.modal.emailSuccess.modal).modal('show');
 
             })
             .fail(function() {
-                ui.social.modal.email.messages.container.show();
-                ui.social.modal.email.messages.connectionerror.show();
-                ui.social.modal.email.submit.fail();
+                vanilla.show(ui.social.modal.email.messages.container);
+                vanilla.show(ui.social.modal.email.messages.connectionerror);
+                rotator.fail(ui.social.modal.email.submit);
             });
 
     }
@@ -2043,23 +2046,9 @@ define(['countable'], function(Countable) {
 
     function setTypePills(type) {
         if(type == 'dsl' || type == 'mobile' || type == 'hotspot')
-            ui.global.typePills[type][0].classList.add('pill-active');
+            vanilla.addClass(ui.global.typePills[type], 'pill-active');
         else
-            ui.global.typePills['all'][0].classList.add('pill-active');
-    }
-
-    function handleFeedbackOverlay(visible) {
-        if(visible) {
-
-            setTimeout( function() {
-                $.smoothScroll({
-                    scrollTarget: ui.global.showFeedbackTarget,
-                    afterScroll: function() {
-                        $('.expose').expose();
-                    }
-                });
-            }, 1500);
-        }
+            vanilla.addClass(ui.global.typePills['all'], 'pill-active');
     }
 
     function handleNewsletterPopup(visible) {

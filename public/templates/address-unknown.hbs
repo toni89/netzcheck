@@ -8,48 +8,41 @@
                 /* Scripts */
                 'jquery',
                 'bootstrap',
-                'feedback',
-                'geo',
-                'smoothscroll',
-                'expose',
+                'vanilla',
 
                 /* Custom Stylesheet */
                 'css!defaultcss'
-
-
-            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, feedback, geo, smoothScroll, expose, defaultCss) {
+            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, vanillaJs) {
 
                 var baseUrl = '{{{baseUrl}}}';
+                var homeButton = vanilla.byId('gotoHome');
+                var feedbackButton = vanilla.byId('gotoFeedback');
 
                 $(document).ready(function() {
 
-                    $('#gotoHome').click(function() {
+                    vanilla.onClick(homeButton, function(el) {
+                        el.preventDefault();
+
                         document.location.href = baseUrl + '/';
+
+                        return false;
                     });
 
-                    $('#gotoFeedback').click(function() {
+                    vanilla.onClick(feedbackButton, function(el) {
+                        el.preventDefault();
+
                         $.smoothScroll({
                             scrollTarget: '#footer',
                             afterScroll: function() {
-                                $('.expose').expose();
+                                expose.expose(document.getElementsByClassName('expose'));
                             }
                         });
+
+                        return false;
                     });
-
-                    $('.fb-form').feedback(baseUrl + '/api/social/feedback');
-
-                    $('#search-input').autocomplete();
-
-                    $('.cg-form').checkGeodata(
-                            function OnSuccess(address) {
-                                document.location.href = baseUrl + '/check/' + encodeURI(address);
-                            }, function OnError() {
-                                // TODO: alert popup oder so hinzufügen
-                                alert('Adresse nicht vorhanden');
-                            });
                 });
-            });
-
+            }
+    );
 </script>
 
 

@@ -119,11 +119,36 @@
   }
 }
 
+
+/* ------- Company Image ------- */
+
+#image-container {
+  height: 209px;
+  max-height: 209px;
+  background-color: #f8f8f8;
+  border: 1px solid #ececec;
+  overflow: hidden;
+
+  @include display-flex();
+  @include flex-justify();
+  @include align-items(center);
+
+}
+
+#company-logo {
+  margin: auto;
+  width: auto;
+  max-height: 100%;
+}
+
+
+
+
 /* ------- Rating Tiles ------- */
 
 .rating-tile {
   display: block;
-  background-color: $rating-tile-color-light;
+
   margin-bottom: 20px;
   border: none;
 
@@ -148,13 +173,23 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  align-items: center;
+  justify-content: center;
+
+
+
+  @include display-flex();
+  @include flex-wrap();
+
 
   li {
-    display: inline-block;
     padding: 5px 10px;
     text-align: center;
-    vertical-align: top;
     border-right: 1px solid $panel-color-light;
+    border-top: 1px solid $panel-color-light;
+    vertical-align: middle;
+    @include flex(1 0 auto);
+
 
     h3 {
       display: inline-block;
@@ -170,9 +205,13 @@
     }
   }
 
-  .rti-col4 {
-    border-right: none;
-    text-align: left;
+  .rti-last {
+    text-align:left;
+    border-top: 1px solid $panel-color-light;
+
+    /*min-width: 60%;*/
+    @include flex(1 0 50%);
+
 
     p {
       margin-top: 4px;
@@ -181,46 +220,39 @@
     }
 
     .big {
-      margin-top: 0px;
+      margin-top: 0;
       font-size: 18px;
       font-weight: 700;
     }
   }
 
-
-}
-
-@media(max-width:599px) {
-
-  .rating-tile-info {
-    li {
-      width: 1%;
-      height: 100%;
-      display: table-cell;
-      vertical-align: middle;
-
-      p {
-        font-size: 16px;
-      }
-    }
-
-    .rti-col3 {
-      border-right: none;
-    }
-
-    .rti-col4 {
-      display: block;
-      text-align:center;
-      width: 100%;
-      border-top: 1px solid $panel-color-light;
-    }
+  .centered {
+    text-align:center;
   }
 
+  .even {
+    @include flex(1 0 auto);
+  }
 
 }
 
-.rt-widget {
+@media(max-width:650px) {
+  .rating-tile-info .rti-last {
+      text-align: center;
+    }
+}
+
+.rt-widget, .rt-body {
   padding: 15px;
+  margin-right: 1px;
+  background-color: $rating-tile-color-light;
+}
+
+.rt-body {
+  p {
+    padding: 15px;
+    background-color: $rating-tile-color-dark;
+  }
 }
 
 .list-criteria {
@@ -237,14 +269,7 @@
   }
 }
 
-.rt-body {
-  padding: 15px;
 
-  p {
-    padding: 15px;
-    background-color: $rating-tile-color-dark;
-  }
-}
 
 /* --- map marker --- */
 

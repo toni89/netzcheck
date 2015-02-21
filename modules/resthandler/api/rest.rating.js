@@ -40,42 +40,14 @@ module.exports = {
                     spherical : true,
                     query: query
                 }
-            },
-            {
-                '$group': {
-                    _id: null,
-
-                    avg_speed: {
-                        '$avg': '$criteria_speed'
-                    },
-
-                    avg_availability: {
-                        '$avg': '$criteria_availability'
-                    },
-
-                    avg_speechquality: {
-                        '$avg': '$criteria_speechquality'
-                    },
-
-                    avg_service: {
-                        '$avg': '$criteria_service'
-                    },
-
-                    avg_streaming: {
-                        '$avg': '$criteria_streaming'
-                    },
-
-                    avg_gaming: {
-                        '$avg': '$criteria_gaming'
-                    }
-                }
             }
         ]
         , function(error, result) {
             if(error)
                 sendError(res);
             else {
-                var avgValues = result[0];
+
+                var avgValues = calculateCriteriaValues(result);
 
                 if(avgValues) {
                     avgValues.speed_text = qualityFeatures.getText('speed', avgValues.avg_speed);
@@ -121,59 +93,54 @@ module.exports = {
                     _id: {
                         slug: '$providerSlug'
                     },
-
                     count: {
                         '$sum': 1
                     },
-
-                    avg_speed: {
-                        '$avg': '$criteria_speed'
-                    },
-
-                    total_speed: {
-                        '$sum': { '$cond': [ { $ne: ['$criteria_speed', null] }, 1, 0] }
-                    },
-
-                    avg_availability: {
-                        '$avg': '$criteria_availability'
-                    },
-
-                    total_availability: {
-                        '$sum': { '$cond': [ { $ne: ['$criteria_availability', null] }, 1, 0] }
-                    },
-
-                    avg_speechquality: {
-                        '$avg': '$criteria_speechquality'
-                    },
-
-                    avg_service: {
-                        '$avg': '$criteria_service'
-                    },
-
-                    avg_streaming: {
-                        '$avg': '$criteria_streaming'
-                    },
-
-                    avg_gaming: {
-                        '$avg': '$criteria_gaming'
+                    userRatings: {
+                        '$push': {
+                            distance: '$distance',
+                            criteria_speed: '$criteria_speed',
+                            criteria_availability: '$criteria_availability',
+                            criteria_speechquality: '$criteria_speechquality',
+                            criteria_service: '$criteria_service',
+                            criteria_streaming: '$criteria_streaming',
+                            criteria_gaming: '$criteria_gaming'
+                        }
                     }
                 }
             }
-
-
         ], function(error, result) {
             if(error)
                 sendError(res);
             else {
                 var itemCount = result.length;
 
+
+                // gesamtdurchschnitt
+                var tempItemList = [];
+                for(var r=0; r<itemCount; r++) {
+                    if(result[r].userRatings.length > 0)
+                        tempItemList = tempItemList.concat(result[r].userRatings);
+                }
+                var totalAvgValues = calculateCriteriaValues(tempItemList);
+                tempItemList = [];
+
+
                 for(var i=0; i<itemCount; i++) {
                     var listItem = result[i];
+                    var avgValues = calculateCriteriaValues(listItem.userRatings);
 
-                    // calc total average
-                    // TODO: better algorithm
-                    listItem.avg_total = Math.round(((listItem.avg_speed + listItem.avg_availability + listItem.avg_speechquality +
-                        listItem.avg_service + listItem.avg_streaming + listItem.avg_gaming) / 6) * 10) /10;
+                    // Copy avgValues to listItem
+                    for (var key in avgValues) {
+                        if (avgValues.hasOwnProperty(key)) {
+                            listItem[key]= avgValues[key];
+                        }
+                    }
+
+
+                    // calc total average (mean value imputation)
+                    listItem.avg_total = Math.round(calculateTotalAvg(avgValues, totalAvgValues) *100)/100;
+
 
                     // get provider details
                     listItem.provider = modules.main.getProvider('DE', result[i]._id.slug);
@@ -185,6 +152,8 @@ module.exports = {
                     listItem.speechquality_text = qualityFeatures.getText('speechquality', listItem.avg_speechquality);
                     listItem.streaming_text = qualityFeatures.getText('streaming', listItem.avg_streaming);
                     listItem.gaming_text = qualityFeatures.getText('gaming', listItem.avg_gaming);
+
+                    listItem.userRatings = [];
                 }
 
                 // sort asc avg_total
@@ -192,7 +161,7 @@ module.exports = {
                     return obj2.avg_total - obj1.avg_total;
                 });
 
-
+                //console.log(result);
 
                 res.send({ data : result});
             }
@@ -282,7 +251,7 @@ module.exports = {
         var provider = req.query.provider || '';
         var skip = req.query.skip || 0;
 
-        modules.main.getRatingsInRadius(longitude, latitude, type, provider, maxDistance, skip, 2,
+        modules.main.getRatingsInRadius(longitude, latitude, type, provider, maxDistance, skip, 7,
             function(error, result) {
                 if(error)
                     sendError(res);
@@ -595,6 +564,98 @@ function saveRating(data, callback) {
     }
 
 }
+
+function calculateTotalAvg(valueArr, totalArr) {
+
+    var originalItems = 0;
+    var fakeItems = 0;
+
+    var originalSum = 0;
+    var fakeSum = 0;
+
+
+    for(var key in valueArr) {
+
+        if(valueArr.hasOwnProperty(key) && valueArr[key] && valueArr[key] > 0) {
+            originalSum+= valueArr[key];
+            originalItems++;
+        } else if(totalArr.hasOwnProperty(key) && totalArr[key] && totalArr[key] > 0) {
+            fakeSum+= totalArr[key];
+            fakeItems++;
+        }
+    }
+
+    if(originalItems >= 4 ) {
+        return filterNaN((originalSum + fakeSum) / (originalItems + fakeItems));
+    } else {
+        return 0;
+    }
+}
+
+function filterNaN(value) {
+    return (isNaN(value) ? 0 : value);
+}
+
+function calculateCriteriaValues(values) {
+
+    //console.log(values);
+
+    function Criteria() {
+        this.speed= 0;
+        this.availability= 0;
+        this.speechquality = 0;
+        this.service = 0;
+        this.streaming = 0;
+        this.gaming = 0;
+    }
+
+    function getWeight(distance) {
+        var sigma = -0.092103403;
+        return Math.exp(sigma * Math.pow(distance/1000, 2));
+    }
+
+
+
+    function calcAverage(avgValues, weightValues, valueKey, rating, ratingKey) {
+
+        var speedWeight = 0;
+
+        if(rating.hasOwnProperty(ratingKey) && rating[ratingKey] && rating[ratingKey] > 0) {
+            speedWeight = getWeight(rating.distance);
+            //console.log(rating[ratingKey], rating.distance, speedWeight);
+
+            avgValues[valueKey] += speedWeight * rating[ratingKey];
+            weightValues[valueKey] += speedWeight;
+        }
+    }
+
+    // Einzelwerte
+    var weight = new Criteria();
+    var avg = new Criteria();
+
+    var ratingCount = values.length;
+    for(var i=0; i<ratingCount; i++) {
+
+        calcAverage(avg, weight, 'speed',values[i], 'criteria_speed');
+        calcAverage(avg, weight, 'availability',values[i], 'criteria_availability');
+        calcAverage(avg, weight, 'speechquality',values[i], 'criteria_speechquality');
+        calcAverage(avg, weight, 'service',values[i], 'criteria_service');
+        calcAverage(avg, weight, 'streaming',values[i], 'criteria_streaming');
+        calcAverage(avg, weight, 'gaming',values[i], 'criteria_gaming');
+
+    }
+
+    return {
+        avg_speed: filterNaN(avg.speed / weight.speed),
+        avg_availability: filterNaN(avg.availability / weight.availability),
+        avg_speechquality: filterNaN(avg.speechquality / weight.speechquality),
+        avg_service: filterNaN(avg.service / weight.service),
+        avg_streaming: filterNaN(avg.streaming / weight.streaming),
+        avg_gaming: filterNaN(avg.gaming / weight.gaming)
+    };
+}
+
+
 
 function checkRating(data, callback) {
 

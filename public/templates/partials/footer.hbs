@@ -1,3 +1,55 @@
+<script>
+    require(
+        [
+            'expose',
+            'smoothscroll',
+            'feedback',
+            'module.footer-newsletter'
+        ],
+        function(exposeJs, smoothScroll, feedbackJS, ftNewsletter) {
+
+            var baseUrl = '{{{baseUrl}}}';
+            var showFeedback = '{{showFeedback}}';
+            var showNewsletter = '{{showNewsletter}}';
+
+            var fbForm = document.getElementById('fb-form');
+            var expElements = document.getElementsByClassName('expose');
+
+            $(document).ready(function() {
+
+                /* Enable feedback form */
+                $(fbForm).feedback(baseUrl + '/api/social/feedback');
+
+
+                /* Enable social buttons and newsletter popup */
+                ftNewsletter.init({
+                    baseUrl: baseUrl
+                });
+
+                /* Highlight feedback form */
+                if(showFeedback) {
+                    setTimeout( function() {
+                        $.smoothScroll({
+                            scrollTarget: '#footer',
+                            afterScroll: function() {
+                                expose.expose(expElements);
+                            }
+                        });
+                    }, 500);
+                }
+
+                /* Show newsletter popup */
+                if(showNewsletter) {
+                    ftNewsletter.show();
+                }
+
+            });
+        }
+    );
+</script>
+
+
+
 <div id="footer" role="footer">
     <div class="container">
         <div class="row">
@@ -19,7 +71,7 @@
                         <button class="social-btn social-fb simple"><span class="fa fa-facebook-square social-icon"></span></button>
                         <button class="social-btn social-gplus simple"><span class="fa fa-google-plus social-icon"></span></button>
                         <button class="social-btn social-twitter simple"><span class="fa fa-twitter social-icon"></span></button>
-                        <button class="social-btn social-linkedin simple"><span class="fa fa-linkedin social-icon"></span></button>
+                        <!--<button class="social-btn social-linkedin simple"><span class="fa fa-linkedin social-icon"></span></button>-->
                     </div>
                 </div>
 
@@ -28,7 +80,7 @@
             <div class="col-md-4 expose">
                 <h3><strong>Feedback</strong></h3>
 
-                <div class="fb-form">
+                <div id="fb-form">
                 <div class="row">
                     <div class="col-md-6 padding-right-4">
                         <input class="fb-name form-control" type="text" placeholder="Name (optional)">
@@ -47,7 +99,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="fb-error fb-input-error">Feedback-Text fehlt</div>
-                        <div class="fb-error fb-connection-error">Verbindungsproblem! Versuchen Sie es später noch einmal</div>
+                        <div class="fb-error fb-connection-error">Verbindungsfehler! Versuche es später noch einmal.</div>
                         <div class="fb-success fb-success">Feedback erfolgreich gesendet</div>
                     </div>
                 </div>

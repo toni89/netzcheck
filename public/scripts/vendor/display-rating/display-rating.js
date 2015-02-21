@@ -1,4 +1,4 @@
-define(['jquery'] ,function(jQuery) {
+define(function() {
 
     var defaultOptions = {
         backgroundColor: 'c9c9c9',
@@ -24,7 +24,7 @@ define(['jquery'] ,function(jQuery) {
 
     var config = function(options) {
         if(options) {
-            jQuery.extend(defaultOptions, options);
+            extend(defaultOptions, options);
         }
     };
 
@@ -56,6 +56,14 @@ define(['jquery'] ,function(jQuery) {
         out += '</div></div>';
         return out;
     };
+
+    function extend(){
+        for(var i=1; i<arguments.length; i++)
+            for(var key in arguments[i])
+                if(arguments[i].hasOwnProperty(key))
+                    arguments[0][key] = arguments[i][key];
+        return arguments[0];
+    }
 
     window.dRating = {
         config: config,

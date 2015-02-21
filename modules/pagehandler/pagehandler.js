@@ -61,6 +61,10 @@ module.exports = function(options, imports, register) {
         pages['page.redirect'].redirectPlan(req, res);
     });
 
+    http.get('/redirect/homepage/:providerSlug', function (req, res) {
+        pages['page.redirect'].redirectCompanyHomepage(req, res);
+    });
+
     http.get('/redirect/availability/:providerSlug/:planSlug', function (req, res) {
         pages['page.redirect'].redirectAvailability(req, res);
     });

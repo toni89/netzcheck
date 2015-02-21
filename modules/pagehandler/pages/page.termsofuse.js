@@ -13,7 +13,8 @@ module.exports = {
             'meta': {
                 'title': 'Nutzungsbedingungen',
                 'description': '',
-                'keywords': ''
+                'keywords': '',
+                'robots': 'noindex,follow'
             }
         });
     }

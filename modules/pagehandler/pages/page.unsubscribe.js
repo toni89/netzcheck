@@ -11,9 +11,21 @@ module.exports = {
 
         updateSubscription(subscriptionId, { alarm: false }, function(error) {
             if(error)
-                renderPage(res, { message: 'Bei der Abmeldung ist ein Fehler aufgetretten.<br>Versuche es später noch einmal oder kontaktiere uns über das Feedbackformular.' });
+                renderPage(res, { message: 'Bei der Abmeldung ist ein Fehler aufgetretten.<br>Versuche es später noch einmal oder kontaktiere uns über das Feedbackformular.',
+                    'meta': {
+                        'title': 'Bewertungsalarm abmelden',
+                        'description': '',
+                        'keywords': '',
+                        'robots': 'noindex,follow'
+                    } });
             else
-                renderPage(res, { message: 'Du wurdest erfolgreich vom Bewertungsalarm ausgetragen.' });
+                renderPage(res, { message: 'Du wurdest erfolgreich vom Bewertungsalarm ausgetragen.',
+                    'meta': {
+                        'title': 'Bewertungsalarm  abmelden',
+                        'description': '',
+                        'keywords': '',
+                        'robots': 'noindex,follow'
+                    } });
         });
 
     },
@@ -23,9 +35,21 @@ module.exports = {
 
         updateSubscription(subscriptionId, { newsletter: false }, function(error) {
             if(error)
-                renderPage(res, { message: 'Bei der Abmeldung ist ein Fehler aufgetretten.<br>Versuche es später noch einmal oder kontaktiere uns über das Feedbackformular.' });
+                renderPage(res, { message: 'Bei der Abmeldung ist ein Fehler aufgetretten.<br>Versuche es später noch einmal oder kontaktiere uns über das Feedbackformular.',
+                    'meta': {
+                        'title': 'Newsletter abmelden',
+                        'description': '',
+                        'keywords': '',
+                        'robots': 'noindex,follow'
+                    } });
             else
-                renderPage(res, { message: 'Du wurdest erfolgreich vom Newsletter ausgetragen.' });
+                renderPage(res, { message: 'Du wurdest erfolgreich vom Newsletter ausgetragen.',
+                    'meta': {
+                        'title': 'Newsletter abmelden',
+                        'description': '',
+                        'keywords': '',
+                        'robots': 'noindex,follow'
+                    } });
         });
     }
 };

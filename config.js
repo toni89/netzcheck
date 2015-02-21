@@ -24,8 +24,8 @@ module.exports = [
 
     {
         'packagePath' : './modules/server',
-        'baseUrl': 'http://192.168.1.101:8000',
-        'mailerUrl': 'http://192.168.1.101:8001',
+        'baseUrl': 'http://192.168.1.100:8000',
+        'mailerUrl': 'http://192.168.1.100:8001',
         'http' : {
             'port': '8000'
         }

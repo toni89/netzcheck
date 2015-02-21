@@ -4,67 +4,40 @@
                 /* Stylesheets */
                 'css!bootstrapcss',
                 'css!fontawesomecss',
+                'css!slidebarscss',
 
                 /* Scripts */
                 'jquery',
                 'bootstrap',
                 'geo',
-                'feedback',
-                'smoothscroll',
-                'expose',
-                'rotator',
-
-                // modules
-                'module.footer-newsletter',
 
                 /* Custom Stylesheet */
                 'css!defaultcss'
-
-            ], function(bootstrapCss, fontawesomeCss, jquery, bootstrap, geo, feedback, smoothScroll, expose, rotator,
-                footerNewsletter,
-                defaultCss) {
+            ], function(bootstrapCss, fontawesomeCss, slidebarsCss, jquery, bootstrap, geoJs) {
 
                 var baseUrl = '{{{baseUrl}}}';
-                var showFeedback = '{{showFeedback}}';
-                var showNewsletter = '{{showNewsletter}}';
-
+                var searchInput = document.getElementById('welcome-address');
+                var searchForm = document.getElementsByClassName('cg-form');
 
                 $(document).ready(function() {
-                    footerNewsletter.init({
-                        baseUrl: baseUrl
-                    });
 
-                    $('.fb-form').feedback(baseUrl + '/api/social/feedback');
+                    /* Enable autocomplete for search input */
+                    geo.geocomplete(searchInput);
 
+                    /* Verify input and redirect*/
+                    geo.checkGeodata(searchForm,
 
+                            function OnSuccess(address) {
+                                document.location.href = baseUrl + '/check/' + encodeURI(address);
+                            },
 
-                    if(showFeedback) {
-                        setTimeout( function() {
-                            $.smoothScroll({
-                                scrollTarget: '#footer',
-                                afterScroll: function() {
-                                    $('.expose').expose();
-                                }
-                            });
-                        }, 500);
-                    }
-
-                    if(showNewsletter) {
-                        footerNewsletter.show();
-                    }
-
-                    $('#welcome-address').autocomplete();
-
-                    $('.cg-form').checkGeodata(
-                        function OnSuccess(address) {
-                            document.location.href = baseUrl + '/check/' + encodeURI(address);
-                        }, function OnError(address) {
-                            // TODO: alert popup oder so hinzufügen
-                            alert('Addresse ist ungültig');
-                        });
+                            function OnError() {
+                                // TODO: alert popup oder so hinzufügen
+                                alert('Adresse nicht vorhanden');
+                            }
+                    );
                 });
             });
-
 </script>
 
 
@@ -91,7 +64,7 @@
                                     <input id="welcome-address" class="form-control cg-address" type="text" placeholder="Adresse eingeben ...">
 
                                     <span class="input-group-btn">
-                                        <input type="submit" id="welcome-submit" class="btn btn-blue" value="Suchen">
+                                        <input type="submit" id="welcome-submit" class="btn btn-blue" value="Suchen" ontouchend="this.onclick=touchfix">
                                     </span>
                                 </div>
                             </form>
@@ -110,22 +83,22 @@
             <div class="row text-center">
                 <div class="col-md-4">
                     <div class="welcome-tile">
-                        <h2>Ortsabhängig</h2>
-                        <p>Herkömmliche Verfügbarkeitschecks verraten nichts über die tatsächliche Leitungsqualität vor Ort. Wir bieten eine Plattform mit der Sie aufgrund Erfahrungen anderer den passenden Provider für eine Umgebung finden können.</p>
+                        <h2>Keine Pauschalaussagen</h2>
+                        <p>Profitiere von den Erfahrungen Anderer und wähle den besten Internetprovider für deine Umgebung</p>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="welcome-tile">
-                        <h2>DSL, LTE/UMTS oder WLAN</h2>
-                        <p>Ob Stadt oder Land. Je nach Gebiet sind verschiedene Techniken empfehlenswert. Finden Sie vor Abschluss eines Vertrages die richtige Wahl um später böse Überraschungen zu vermeiden.</p>
+                        <h2>DSL, LTE/UMTS oder Funk</h2>
+                        <p>Ob Stadt oder Land. Die richtige Technik bringt dich schnell ins Internet</p>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="welcome-tile">
                         <h2>Community</h2>
-                        <p>Tauschen Sie sich mit anderen über Ihre Erfahrungen aus. In unserem Forum finden Sie eine Anlaufstelle für technische Fragen sowie Informationen zum Stand des Netzausbaues für ihre Umgebung.</p>
+                        <p>Diskutiere in unserem Forum über Probleme und Themen rund um deinen Internetanschluss</p>
                     </div>
                 </div>
             </div>
@@ -144,29 +117,28 @@
                     <div class="col-md-12 welcome-feature">
                         <div class="feature-icon"><div><i class="fa fa-star-half-o fa-4x"></i></div></div>
                         <div>
-                            <h2>Intelligentes Bewertungssystem</h2>
-                            Jede Bewertung wird anhand vorgegebener Kriterien erstellt und fließt über einen ausgeklügelten Algorithmus in die Gesamtbewertung einer Umgebung ein.
-
+                            <h2>Einfaches Bewertungssystem</h2>
+                            Unser System analysiert alle Bewertungen in der Umgebung und zeigt die besten Ergebnisse in einer detaillierten Übersicht an
                         </div>
                     </div>
                 </div>
-
+<!--
                 <div class="row">
                     <div class="col-md-12 welcome-feature">
                         <div class="feature-icon"><div><i class="fa fa-map-marker fa-4x"></i></div></div>
                         <div>
                             <h2>Auf einem Blick</h2>
-                            Sehen Sie wann und wie weit von ihnen entfernt jemand seinen Internetanschluss bewertet und entscheiden Sie selbst ob Sie aufgrund dessen eine Providerwahl treffen wollen.
+
                         </div>
                     </div>
                 </div>
-
+-->
                 <div class="row">
                     <div class="col-md-12 welcome-feature">
                         <div class="feature-icon"><div><i class="fa fa-envelope fa-3x"></i></div></div>
                         <div>
                             <h2>Umgebungsalarm</h2>
-                            Es gibt noch keine Bewertungen in Ihrer Nähe? Kein Problem! Melden Sie sich bei unserem Umgebungsalarm an und wir informieren Sie sofort wenn eine Bewertung online geht.
+                            Es gibt noch keine Bewertungen in der Nähe? Kein Problem! Unser Umgebungsalarm informiert dich sobald neue Bewertungen online gehen
                         </div>
                     </div>
                 </div>
