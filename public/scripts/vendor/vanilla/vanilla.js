@@ -174,7 +174,7 @@
 
         if(el && callback) {
 
-            if(el == '[object NodeList]') {
+            if(el == '[object NodeList]' || el == '[object HTMLCollection]') {
                 var len = el.length;
 
                 for(var i=0; i<len; i++) {

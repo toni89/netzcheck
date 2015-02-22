@@ -19,23 +19,27 @@
                 var searchInput = document.getElementById('welcome-address');
                 var searchForm = document.getElementsByClassName('cg-form');
 
+                /* Enable autocomplete for search input */
+                geo.geocomplete(searchInput);
+
+                /* Verify input and redirect*/
+                geo.checkGeodata(searchForm,
+
+                        function OnSuccess(address) {
+                            window.location.href = baseUrl + '/check/' + encodeURI(address);
+                            return false;
+                        },
+
+                        function OnError() {
+                            // TODO: alert popup oder so hinzufügen
+                            alert('Adresse nicht vorhanden');
+                            return false;
+                        }
+                );
+
                 $(document).ready(function() {
 
-                    /* Enable autocomplete for search input */
-                    geo.geocomplete(searchInput);
 
-                    /* Verify input and redirect*/
-                    geo.checkGeodata(searchForm,
-
-                            function OnSuccess(address) {
-                                document.location.href = baseUrl + '/check/' + encodeURI(address);
-                            },
-
-                            function OnError() {
-                                // TODO: alert popup oder so hinzufügen
-                                alert('Adresse nicht vorhanden');
-                            }
-                    );
                 });
             });
 </script>

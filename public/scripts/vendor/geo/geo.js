@@ -10,7 +10,6 @@
 
             addEvent(form, 'submit', function(el) {
                 el.preventDefault();
-
                 var addressInput = this.querySelectorAll('.cg-address')[0];
 
                 if(addressInput && addressInput.value != '') {
@@ -29,7 +28,7 @@
 
     function addEvent(el, eventName, callback) {
         if(el && callback) {
-            if(el == '[object NodeList]') {
+            if(el == '[object NodeList]' || el == '[object HTMLCollection]') {
                 var len = el.length;
                 for(var i=0; i<len; i++) {
                     addEventHandler(el[i], eventName, callback);
@@ -41,9 +40,11 @@
     }
 
     function addEventHandler(elem, eventType, handler) {
-        if (elem.addEventListener)
-            elem.addEventListener (eventType, handler, false);
-        else if (elem.attachEvent)
-            elem.attachEvent ('on' + eventType, handler);
+        if (elem.attachEvent) {
+            elem.attachEvent('on' + eventType, handler);
+        } else {
+            elem.addEventListener(eventType, handler, false);
+        }
     }
+
 })(this.geo = this.geo || {});

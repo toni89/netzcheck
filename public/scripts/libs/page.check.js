@@ -259,15 +259,20 @@ define(['countable'], function(Countable) {
 
         $(ui.rating.newRating.provider).on('change', function(evt, params) {
 
-            if(params.selected){
+            var selected = ui.rating.newRating.provider.value;
+
+            if(selected && selected !=''){
                 setCheckState(ui.rating.newRating.check.provider, true);
                 clearTimeout(rating.planTimeout);
-                getPlansForProvider(params.selected, 'DE');
+                getPlansForProvider(selected, 'DE');
             }
         });
 
         $(ui.rating.newRating.plan).on('change', function(evt, params) {
-            if(params.selected)
+
+            var selected = ui.rating.newRating.plan.value;
+
+            if(selected && selected != '')
                 setCheckState(ui.rating.newRating.check.plan, true);
         });
 
