@@ -51,8 +51,8 @@ define(['countable'], function(Countable) {
 
     var rating = {
         providerList: [],
-        leftWords: 5,
-        totalWordsToWrite: 5,
+        leftWords: 10,
+        totalWordsToWrite: 10,
         planTimeout: null,
         progressVisible: false,
         totalRatings: 0,

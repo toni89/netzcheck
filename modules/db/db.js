@@ -7,6 +7,7 @@ module.exports = function(options, imports, register) {
 
     var db = mongojs(options.database, ['ratings','newsletter']);
 
+
     // ratings collection settings
     db['ratings'].ensureIndex({ location: '2dsphere'});
     db['newsletter'].ensureIndex({ location: '2dsphere'});
@@ -15,6 +16,10 @@ module.exports = function(options, imports, register) {
         console.log("cant connect to database. ");
         console.log(error);
         console.log("reconnecting ...");
+    });
+
+    db.on('ready',function() {
+        console.log('database connected');
     });
 
     process.on('SIGINT', function() {

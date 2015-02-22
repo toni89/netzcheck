@@ -220,7 +220,6 @@ module.exports = {
             if(error)
                 sendError(res);
             else {
-                console.log(result);
                 res.send({ data : result });
             }
         });
