@@ -18,7 +18,7 @@ module.exports = {
 
                 modules.mailer.sendMail(job.data.options, function(err, info) {
                     if (err || !info)
-                        return done([Error('email/sendMail: E-Mail options are bad'), err , job.data.options]);
+                        return done([Error('email/sendMail: E-Mail options are bad'), err]);
                     else
                         return done();
                 });
