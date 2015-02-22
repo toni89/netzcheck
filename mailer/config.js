@@ -36,7 +36,8 @@ module.exports = {
         port: 465,
         user: 'hammerschmidt.webservices@gmail.com',
         password: 'a89t]QB4hpTnr',
-        debug: false
+        debug: false,
+        secure: false
     }
 
 };
