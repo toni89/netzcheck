@@ -34,7 +34,7 @@ modules.mongojs = mongojs;
 modules.mailer = nodemailer.createTransport(smtpTransport({
     host: config.email.host,
     port: config.email.port,
-    secure: false,
+    secure: true,
     debug: config.email.debug,
     auth: {
         user: config.email.user,
