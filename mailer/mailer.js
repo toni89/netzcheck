@@ -107,7 +107,7 @@ emailTemplates(config.general.templatesDir,function(err, template) {
     });
 
     modules.rest.get('/newrating', function(req, res) {
-        //api['admin'].rest.OnNewRating(req, res);
+        api['admin'].rest.OnNewRating(req, res);
         api['alarm'].rest.OnNewRating(req, res);
     });
 
