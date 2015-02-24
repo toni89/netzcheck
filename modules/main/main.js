@@ -1,4 +1,5 @@
-var assert = require('assert');
+var assert = require('assert'),
+    mongojs = require('mongojs');
 
 var providerList = {},
     provider_DE = require('../../libs/provider_DE.js'),
@@ -144,6 +145,51 @@ var main = {
                 else
                     callback(null, results);
         });
+    },
+
+    getRatingById: function(id, callback) {
+
+        db.ratings.findOne({ _id: mongojs.ObjectId(id) }, function(error, result) {
+            if(error) {
+                callback(error);
+            } else {
+                callback(null, result);
+            }
+        });
+    },
+
+    getSingleRating: function(longitude, latitude, id, radius, callback) {
+
+        var limit = 1;
+
+        try {
+
+        db.ratings.aggregate(
+            [
+                { '$geoNear': {
+                    near: { type:    "Point" ,
+                        coordinates: [ parseFloat(longitude), parseFloat(latitude) ]
+                    },
+                    limit: 500,
+                    distanceField: 'distance',
+                    maxDistance: radius,
+                    spherical : true,
+                    query : { _id: mongojs.ObjectId(id) }
+                }
+                },
+                /*{ '$match': { _id: mongojs.ObjectId(id) }},*/
+                { '$limit': parseInt(limit) }
+            ], function(error, results) {
+                if(error)
+                    callback(error);
+                else
+                    callback(null, results);
+            });
+
+        } catch(err) {
+            callback(Error('fatal db error')); //send500(res);
+}
+
     },
 
     getPlan: function(provider, planSlug) {

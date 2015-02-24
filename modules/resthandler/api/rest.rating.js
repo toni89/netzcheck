@@ -260,6 +260,22 @@ module.exports = {
         );
     },
 
+    getRating: function(req, res) {
+        var longitude = req.query.long;
+        var latitude = req.query.lat;
+        var ratingId = req.query.id;
+
+        modules.main.getSingleRating(longitude, latitude, ratingId, maxDistance, function(error, result) {
+            if(error || !result) {
+                sendError(res);
+            } else {
+                var extendedRating = addProperInfo(result);
+                res.send({ rating : extendedRating });
+            }
+        });
+
+    },
+
     getMapRatings: function(req, res) {
         var longitude = req.query.long;
         var latitude = req.query.lat;

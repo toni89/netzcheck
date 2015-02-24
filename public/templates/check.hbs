@@ -51,6 +51,7 @@
             var typeFilter = '{{{typeFilter}}}';
             var baseUrl = '{{{baseUrl}}}';
             var showNewsletter = '{{showNewsletter2}}';
+            var showRating = '{{showRating}}';
 
 
             var options = {
@@ -59,7 +60,8 @@
                 formattedAddress: '{{{formattedAddress}}}',
                 typeFilter: typeFilter,
                 providerFilter: providerFilter,
-                showNewsletter: showNewsletter
+                showNewsletter: showNewsletter,
+                showRating: showRating
             };
 
 
@@ -93,8 +95,8 @@
                     </div>
                 </section>
 
+                <!--
                 <section class="tile">
-                    <!-- tile body -->
                     <div class="tile-body">
                         <h1><strong>{{{titlePrefix}}}:</strong> {{{titlePostfix}}}</h1>
 
@@ -108,21 +110,17 @@
                             <div class="col-sm-4 col-md-4"><div id="gauge-streaming"></div><div id="gauge-streaming-info" class="well">Keine Daten vorhanden</div></div>
                             <div class="col-sm-4 col-md-4"><div id="gauge-gaming"></div><div id="gauge-gaming-info" class="well last-well">Keine Daten vorhanden</div></div>
                         </div>
-
-
                     </div>
-                    <!-- /tile body -->
-
                 </section>
+                -->
 
 
-                {{> content-social}}
 
 
                 <section class="tile">
                     <!-- tile body -->
                     <div class="tile-body">
-                        <h2><strong>Top</strong> Provider</h2>
+                        <h1><strong>{{{titlePrefix}}}:</strong> {{{titlePostfix}}}</h1>
 
                             <div class="notification" id="toplist-help" style="display: none;">
                                 <p>Bis jetzt hat niemand eine Bewertung <span id="toplist-helptext"></span>für <br>diese Umgebung geschrieben. Hilf mit und sei der Erste!</p>
@@ -135,7 +133,7 @@
                             <div class="blocktable" id="toplist-body">
                                 <div class="head">
                                     <div>#</div>
-                                    <div>Name</div>
+                                    <div>Provider</div>
                                     <div class="center">Verbindung</div>
                                     <div class="center">Bewertung</div>
                                     <div></div>
@@ -292,7 +290,7 @@
                                 <div class="blocktable" id="topplans-body">
                                     <div class="head">
                                         <div>#</div>
-                                        <div>Name</div>
+                                        <div>Tarif</div>
                                         <div class="center">Geschwindigkeit</div>
                                         <div class="center">Bewertung</div>
                                         <div></div>
@@ -306,7 +304,7 @@
 
                 </section>
 
-
+                {{> content-social}}
 
                 <section class="tile">
 

@@ -1,4 +1,5 @@
-var modules;
+var modules,
+    mongojs = require('mongojs');
 
 module.exports = {
 
@@ -65,7 +66,7 @@ function updateSubscription(subscriptionId, setParam, callback) {
         try {
 
             modules.db.newsletter.findAndModify({
-                query: { _id: modules.mongojs.ObjectId(subscriptionId) },
+                query: { _id: mongojs.ObjectId(subscriptionId) },
                 update: { $set: setParam },
                 new: true
             }, function(error, subscription) {

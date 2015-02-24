@@ -17,6 +17,7 @@ module.exports = {
         var providerFilter = req.query.provider || '';
         var showFeedback = req.query.feedback == '1' || '';
         var showNewsletter = req.query.newsletter == '1' || '';
+        var showRating = req.query.ratingId || '';
 
         var reqUrl = url.parse(req.url);
         var keywords = '';
@@ -110,6 +111,7 @@ module.exports = {
                                                 'ratingsRAW': JSON.stringify(ratings),
                                                 'showFeedback' : showFeedback,
                                                 'showNewsletter2' : showNewsletter,
+                                                'showRating' : showRating,
 
                                                 /* Meta */
                                                 'meta': {

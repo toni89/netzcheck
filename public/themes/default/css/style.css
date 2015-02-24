@@ -894,6 +894,11 @@ body {
 
   .social-btn .social-text {
     padding-left: 10px; } }
+#newR {
+  background-color: red;
+  display: inline;
+  padding: 0 3px; }
+
 /* ---------------------------- Forms ---------------------------- */
 #newrating {
   margin-top: 15px; }

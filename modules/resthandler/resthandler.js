@@ -47,6 +47,10 @@ module.exports = function(options, imports, register) {
         api['rest.rating'].addRating(req, res);
     });
 
+    rest.get('/api/rating', function(req, res) {
+        api['rest.rating'].getRating(req, res);
+    });
+
     rest.get('/api/rating/generic', function(req, res) {
         api['rest.rating'].getGeneric(req, res);
     });

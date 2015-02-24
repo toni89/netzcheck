@@ -7,7 +7,8 @@ define(['countable'], function(Countable) {
         formattedAddress: '',
         typeFilter: '',
         providerFilter: '',
-        showNewsletter: false
+        showNewsletter: false,
+        showRating: ''
     };
 
     var globals = {
@@ -154,13 +155,27 @@ define(['countable'], function(Countable) {
                 countText += ' </strong>gefunden';
                 vanilla.setInner(ui.rating.list.counter, countText);
 
+                if(options.showRating != '') {
+                    getRatingById(options.address.longitude, options.address.latitude, options.showRating, function(data) {
+                        if(data.rating) {
+                            renderRatings(data.rating, false, '', options.showRating);
+
+                            setTimeout(function() {
+                                $.smoothScroll({
+                                    scrollTarget: ui.rating.list.container
+                                });
+                            }, 1000);
+                        }
+                    })
+                }
+
 
                 // render ratings
                 getRatingsForLocation(options.address.longitude, options.address.latitude, options.typeFilter, options.providerFilter, 0, function(data) {
 
                     if(data.ratings instanceof Array && data.ratings.length > 0) {
 
-                        renderRatings(data.ratings, false);
+                        renderRatings(data.ratings, false, options.showRating);
 
                         // hide / display more ratings button
                         if(rating.totalRatings > 0 && rating.totalRatings > rating.visibleRatings)
@@ -375,13 +390,17 @@ define(['countable'], function(Countable) {
     }
 
 
-    function renderRatings(ratings, anim) {
+    function renderRatings(ratings, anim, exclude, highlight) {
 
         var curRating;
         var src = '';
 
         for(var i=0; i<ratings.length; i++) {
             curRating = ratings[i];
+
+            var hl ='';
+            if(curRating._id == highlight)
+                hl= '<div id="newR">Neu</div> ';
 
             src =
                 "<div class=\"rt-header\">" +
@@ -400,7 +419,7 @@ define(['countable'], function(Countable) {
                 "<p>" + curRating.providerType + "</p>" +
                 "</li>" +
                 "<li class=\"rti-last\">" +
-                "<h3>" + curRating.streetName + " " + curRating.streetNumber + "</h3>" +
+                "<h3>" + hl + curRating.streetName + " " + curRating.streetNumber + "</h3>" +
                 "<p>" + curRating.providerName + " " + curRating.planName + "</p>" +
                 "</li>" +
                 "</ul>" +
@@ -428,18 +447,23 @@ define(['countable'], function(Countable) {
 
             //var post = $(src);
 
-            var post = document.createElement('section');
-            vanilla.addClass(post, 'rating-tile');
-            vanilla.setInner(post, src);
+            console.log(curRating);
 
-            if(anim)
-                setTimeout(displayPost, i * 200, post);
-            else
-                vanilla.show(post);
+            if(curRating._id != exclude) {
 
-            rating.visibleRatings++;
+                var post = document.createElement('section');
+                vanilla.addClass(post, 'rating-tile');
+                vanilla.setInner(post, src);
 
-            vanilla.append(ui.rating.list.container, post);
+                if (anim)
+                    setTimeout(displayPost, i * 200, post);
+                else
+                    vanilla.show(post);
+
+                rating.visibleRatings++;
+
+                vanilla.append(ui.rating.list.container, post);
+            }
         }
     }
 
@@ -698,6 +722,23 @@ define(['countable'], function(Countable) {
         return true;
     }
 
+    function getRatingById(longitude, latitude, ratingId, callback) {
+
+        $.ajax({
+            type: 'GET',
+            url: options.baseUrl + '/api/rating?long=' + longitude + '&lat=' + latitude + '&id=' + ratingId,
+            dataType: 'json',
+            timeout: 5000
+        })
+            .done(function(data) {
+                callback(data);
+            })
+            .fail(function() {
+                callback();
+            });
+
+    }
+
 
     function getRatingsCount(longitude, latitude, typeFilter, providerFilter, callback) {
 
@@ -947,12 +988,14 @@ define(['countable'], function(Countable) {
     function initGraphs() {
 
         // render generic & provider gauges
-        initGenericGages();
+        //initGenericGages();
         initProviderGages();
 
+        /*
         getGeneric(options.address.longitude, options.address.latitude, options.typeFilter, function(result) {
             setGenericGages(result.data);
         });
+        */
 
         // get & render toplist
         getTopList(options.address.longitude, options.address.latitude, options.typeFilter, function(list) {
