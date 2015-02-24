@@ -223,7 +223,7 @@ body {
   .navbar-nav {
     display: none; } }
 /* ---------------------------- Content ---------------------------- */
-#content {
+#content, #welcome-content {
   margin-top: 10px;
   margin-bottom: 15px;
   background-color: #f6f6f6;
@@ -533,6 +533,11 @@ body {
 
   .fb-name {
     margin-bottom: 8px; } }
+#welcome-content {
+  padding: 0;
+  margin: 0;
+  background: url(./../images/welcome-bg-1920px.jpg) no-repeat center top fixed; }
+
 .fullrow {
   width: 100%; }
 
@@ -540,9 +545,11 @@ body {
   background-color: #22beef;
   color: #fff; }
 
+/*
 #welcome-image {
-  background: url(./../images/welcome-bg-1920px.jpg) no-repeat center top fixed; }
-
+  background: url(./../images/welcome-bg-1920px.jpg) no-repeat center top fixed;
+}
+*/
 #welcome-title {
   text-align: center;
   font-size: 24px; }
@@ -568,7 +575,14 @@ body {
     text-align: right; }
 
 .welcome-tile {
-  padding: 15px 0; }
+  padding: 10px;
+  background-color: #22beef;
+  color: #fff !important; }
+  .welcome-tile h2 {
+    padding-bottom: 5px;
+    font-weight: 700; }
+  .welcome-tile p {
+    font-size: 16px; }
 
 #welcome-address {
   -webkit-border-top-left-radius: 2px;
